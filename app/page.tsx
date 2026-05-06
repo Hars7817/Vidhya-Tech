@@ -155,7 +155,7 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-96 md:h-full flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-96 md:h-[500px] lg:h-[600px] flex items-center justify-center overflow-hidden rounded-[28px]">
       {/* Enhanced Animated Background Circles */}
       <AnimatedCircle delay={0} size={500} opacity={0.2} />
       <AnimatedCircle delay={1.5} size={350} opacity={0.15} />
@@ -217,7 +217,7 @@ const HeroCarousel = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent rounded-[28px]" />
             <div className="absolute left-8 bottom-8 max-w-xl text-left text-white">
               <p className="text-sm uppercase tracking-[0.3em] text-[#ffcc00] mb-2">
-                Featured Project
+                {slide.label}
               </p>
               <h3 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
                 {slide.title}
@@ -252,8 +252,8 @@ const HeroCarousel = () => {
 // Animated Stats Component
 const AnimatedStats = () => {
   const stats = [
-    { number: 30, suffix: '+', label: 'Projects Completed' },
-    { number: 15, suffix: '+', label: 'Happy Clients' },
+    { number: 14, suffix: '+', label: 'Projects Completed' },
+    { number: 9, suffix: '+', label: 'Happy Clients' },
     { number: 2, suffix: '+', label: 'Years Experience' },
   ];
 
