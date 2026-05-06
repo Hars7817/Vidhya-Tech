@@ -94,10 +94,34 @@ const portfolioProjects = [
 
 // Hero Carousel Images
 const heroSlides = [
-  { id: 1, emoji: '🚀', title: 'Innovation' },
-  { id: 2, emoji: '💡', title: 'Creativity' },
-  { id: 3, emoji: '🎯', title: 'Strategy' },
-  { id: 4, emoji: '⚡', title: 'Performance' },
+  {
+    id: 1,
+    image:
+      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80',
+    title: 'Creative Digital Experiences',
+    subtitle: 'Beautiful interfaces and powerful web solutions built to scale.',
+  },
+  {
+    id: 2,
+    image:
+      'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80',
+    title: 'Modern Web Design',
+    subtitle: 'Visually striking websites with polished typography and UI.',
+  },
+  {
+    id: 3,
+    image:
+      'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80',
+    title: 'AI-Powered Growth',
+    subtitle: 'Smart automation and data-driven experiences for real results.',
+  },
+  {
+    id: 4,
+    image:
+      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+    title: 'Fast & Responsive Sites',
+    subtitle: 'High-performance websites optimized for every device.',
+  },
 ];
 
 // Team Members
@@ -205,29 +229,34 @@ const HeroCarousel = () => {
           <motion.div
             key={slide.id}
             className="absolute inset-0 flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{
               opacity: index === currentIndex ? 1 : 0,
-              scale: index === currentIndex ? 1 : 0.8,
+              scale: index === currentIndex ? 1 : 0.95,
             }}
-            transition={{ duration: 0.8, ease: 'easeInOut' }}
+            transition={{ duration: 1, ease: 'easeInOut' }}
           >
-            <div className="text-center">
-              <motion.div
-                className="text-9xl md:text-[150px] mb-6"
-                animate={{ y: [0, -20, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                {slide.emoji}
-              </motion.div>
-              <motion.p
-                className="text-2xl md:text-4xl font-bold text-[#ffcc00]"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
+            <motion.img
+              src={slide.image}
+              alt={slide.title}
+              className="w-full h-full object-cover rounded-[28px] shadow-2xl border border-white/10"
+              initial={{ scale: 1.05 }}
+              animate={{
+                scale: index === currentIndex ? [1.05, 1, 1.08] : 1.05,
+              }}
+              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent rounded-[28px]" />
+            <div className="absolute left-8 bottom-8 max-w-xl text-left text-white">
+              <p className="text-sm uppercase tracking-[0.3em] text-[#ffcc00] mb-2">
+                Featured Project
+              </p>
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
                 {slide.title}
-              </motion.p>
+              </h3>
+              <p className="mt-4 max-w-md text-sm md:text-base text-white/75">
+                {slide.subtitle}
+              </p>
             </div>
           </motion.div>
         ))}
