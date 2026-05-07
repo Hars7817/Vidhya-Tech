@@ -101,10 +101,9 @@ const teamMembers = [
     id: 1,
     name: 'Harsh Kumar',
     role: 'Web Development',
-    image: '/team/harsh-kumar.jpg',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
     imagePosition: '50% 42%',
-    // Replace with image 
-    icon: '',  // Fallback icon
+    icon: '👨‍💻',  // Fallback icon
     description: 'Expert in building scalable web applications with modern technologies.',
     bgColor: 'from-blue-600 to-blue-400'
   },
@@ -112,9 +111,9 @@ const teamMembers = [
     id: 2,
     name: 'Harsh Vasisth',
     role: 'Web & Software Development',
-     image: '/team/harsh-vasisth.jpg',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop',
     imagePosition: '50% 42%',
-    icon: '',  // Fallback icon
+    icon: '👨‍💼',  // Fallback icon
     description: 'Specialized in full-stack development and software architecture.',
     bgColor: 'from-purple-600 to-purple-400'
   },
@@ -122,9 +121,9 @@ const teamMembers = [
     id: 3,
     name: 'Lakshya Kumar Gupta',
     role: 'UI/UX Designer',
-    image: '/team/lakshya-gupta.jpg',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop',
     imagePosition: '50% 42%',
-    icon: '',  // Fallback icon
+    icon: '🎨',  // Fallback icon
     description: 'Creating beautiful and intuitive user experiences for digital products.',
     bgColor: 'from-pink-600 to-pink-400'
   }
