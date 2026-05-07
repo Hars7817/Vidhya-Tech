@@ -52,9 +52,10 @@ const services = [
 const portfolioProjects = [
   {
     id: 1,
-    title: 'Digital Agency Website',
+    title: 'School Website',
     category: 'Web Design',
     image: 'https://cdn-icons-png.flaticon.com/512/1995/1995506.png',
+    link: 'https://example-school.com',
     color: '#3b82f6'
   },
   {
@@ -62,6 +63,7 @@ const portfolioProjects = [
     title: 'E-Commerce Website',
     category: 'Web Development',
     image: 'https://cdn-icons-png.flaticon.com/512/1913/1913949.png',
+    link: 'https://example-ecommerce.com',
     color: '#ec4899'
   },
   {
@@ -69,6 +71,7 @@ const portfolioProjects = [
     title: 'AI Chatbot Solution',
     category: 'AI Solutions',
     image: 'https://cdn-icons-png.flaticon.com/512/8297/8297839.png',
+    link: 'https://example-chatbot.com',
     color: '#8b5cf6'
   },
   {
@@ -76,6 +79,7 @@ const portfolioProjects = [
     title: 'Fitness Website Design',
     category: 'Web Design',
     image: 'https://cdn-icons-png.flaticon.com/512/1995/1995506.png',
+    link: 'https://example-fitness.com',
     color: '#f59e0b'
   },
   {
@@ -83,13 +87,14 @@ const portfolioProjects = [
     title: 'Restaurant Website',
     category: 'Web Development',
     image: 'https://cdn-icons-png.flaticon.com/512/921/921489.png',
+    link: 'https://example-restaurant.com',
     color: '#10b981'
   },
   {
     id: 6,
     title: 'Marketing Campaign',
-    category: 'Marketing',
     image: 'https://cdn-icons-png.flaticon.com/512/3556/3556098.png',
+    link: 'https://example-marketing.com',
     color: '#06b6d4'
   }
 ];
@@ -164,34 +169,43 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-96 md:h-[500px] lg:h-screen flex items-center justify-center overflow-hidden rounded-[32px]">
+    <div className="relative w-full h-96 md:h-[650px] lg:h-screen flex items-center justify-center overflow-hidden rounded-[32px]">
       {/* Enhanced Animated Background Circles */}
       <AnimatedCircle delay={0} size={500} opacity={0.2} />
       <AnimatedCircle delay={1.5} size={350} opacity={0.15} />
       <AnimatedCircle delay={3} size={250} opacity={0.12} />
       
-      {/* Prominent Glowing Yellow Circle - Behind Image */}
+      {/* Solid Gold Circle Border - Behind Image */}
       <motion.div
-        className="absolute z-0 rounded-full"
+        className="absolute z-0 rounded-full border-4 border-[#ffcc00]"
         style={{ 
-          width: 450, 
-          height: 450, 
+          width: 500, 
+          height: 500, 
           left: '50%', 
           top: '50%', 
           transform: 'translate(-50%, -50%)',
-          background: 'radial-gradient(circle, #ffcc00 0%, rgba(255,204,0,0.6) 35%, transparent 70%)',
-          filter: 'blur(50px)',
-          boxShadow: '0 0 80px 20px rgba(255,204,0,0.3)'
         }}
         animate={{
-          scale: [1, 1.15, 0.95, 1],
-          opacity: [0.25, 0.35, 0.2, 0.25],
+          scale: [1, 1.05, 0.98, 1],
         }}
         transition={{
           duration: 6,
           delay: 0,
           repeat: Infinity,
           ease: 'easeInOut',
+        }}
+      />
+      
+      {/* Solid Fill Circle - Behind Image */}
+      <motion.div
+        className="absolute z-0 rounded-full"
+        style={{ 
+          width: 480, 
+          height: 480, 
+          left: '50%', 
+          top: '50%', 
+          transform: 'translate(-50%, -50%)',
+          background: 'rgba(255,204,0,0.08)',
         }}
       />
       
@@ -497,9 +511,12 @@ export default function Home() {
 
           <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {portfolioProjects.map((project, index) => (
-              <motion.div
+              <motion.a
                 key={project.id}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] hover:border-[#ffcc00]/50 transition-all duration-300"
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] hover:border-[#ffcc00]/50 transition-all duration-300 block cursor-pointer"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
@@ -516,13 +533,14 @@ export default function Home() {
                     <img src={project.image} alt={project.title} className="w-full h-full object-contain filter brightness-0 invert" />
                   </motion.div>
                 </div>
-                <div className="p-6 border-t border-white/10">
+                <div className="p-6 border-t border-white/10 group-hover:bg-white/[0.05] transition-all">
                   <p className="text-xs font-bold text-[#ffcc00] uppercase tracking-widest mb-3">
                     {project.category}
                   </p>
-                  <h3 className="text-lg font-black text-white leading-tight">{project.title}</h3>
+                  <h3 className="text-lg font-black text-white leading-tight group-hover:text-[#ffcc00] transition-colors">{project.title}</h3>
+                  <p className="text-xs text-white/50 mt-2 group-hover:text-[#ffcc00] transition-colors">Click to view →</p>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </motion.div>
 
