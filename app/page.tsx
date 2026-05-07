@@ -165,7 +165,6 @@ const AnimatedCircle = ({ delay = 0, size = 300, opacity = 0.1 }) => {
 };
 
 // Hero Carousel Component
-// Hero Carousel Component
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
