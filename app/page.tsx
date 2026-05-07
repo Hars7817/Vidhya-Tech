@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 import { heroSlides } from './heroSlides';
-import { img } from 'framer-motion/client';
+// import { img } from 'framer-motion/client';
 // Services Data
 const services = [
   {
@@ -165,6 +165,7 @@ const AnimatedCircle = ({ delay = 0, size = 300, opacity = 0.1 }) => {
 };
 
 // Hero Carousel Component
+// Hero Carousel Component
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -172,142 +173,101 @@ const HeroCarousel = () => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroSlides.length);
     }, 4000);
+
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="relative w-full h-96 md:h-[650px] lg:h-screen flex items-center justify-center overflow-hidden rounded-[32px]">
-      {/* Enhanced Animated Background Circles */}
-      <AnimatedCircle delay={0} size={500} opacity={0.2} />
-      <AnimatedCircle delay={1.5} size={350} opacity={0.15} />
-      <AnimatedCircle delay={3} size={250} opacity={0.12} />
-      
-      {/* Solid Gold Circle Border - Behind Image */}
+    <div className="relative flex items-center justify-center w-full h-[500px] md:h-[650px] overflow-hidden">
+
+      {/* Background Glow */}
+      <div className="absolute w-[500px] h-[500px] rounded-full border border-[#ffcc00]/40 bg-[#ffcc00]/10 blur-3xl" />
+
+      {/* Animated Ring */}
       <motion.div
-        className="absolute z-0 rounded-full border-4 border-[#ffcc00]"
-        style={{ 
-          width: 500, 
-          height: 500, 
-          left: '50%', 
-          top: '50%', 
-          transform: 'translate(-50%, -50%)',
-        }}
+        className="absolute w-[520px] h-[520px] rounded-full border-2 border-[#ffcc00]/40"
         animate={{
-          scale: [1, 1.05, 0.98, 1],
+          scale: [1, 1.05, 1],
+          rotate: [0, 3, 0],
         }}
         transition={{
           duration: 6,
-          delay: 0,
           repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-      
-      {/* Solid Fill Circle - Behind Image */}
-      <motion.div
-        className="absolute z-0 rounded-full"
-        style={{ 
-          width: 480, 
-          height: 480, 
-          left: '50%', 
-          top: '50%', 
-          transform: 'translate(-50%, -50%)',
-          background: 'rgba(255,204,0,0.08)',
-        }}
-      />
-      
-      {/* Additional accent circles for dramatic effect */}
-      <motion.div
-        className="absolute rounded-full border-2 border-[#ffcc00]/30 bg-[#ffcc00]/5"
-        style={{ width: 450, height: 450, left: '-8%', top: '50%', transform: 'translateY(-50%)' }}
-        animate={{
-          scale: [1, 1.3, 0.7, 1],
-          opacity: [0.08, 0.25, 0.05, 0.08],
-        }}
-        transition={{
-          duration: 7,
-          delay: 0.5,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-      <motion.div
-        className="absolute rounded-full border-2 border-[#ffcc00]/20 bg-[#ffcc00]/3"
-        style={{ width: 600, height: 600, right: '-20%', bottom: '-30%' }}
-        animate={{
-          scale: [1, 1.4, 0.75, 1],
-          opacity: [0.05, 0.2, 0.03, 0.05],
-        }}
-        transition={{
-          duration: 8,
-          delay: 2,
-          repeat: Infinity,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
       />
 
-      {/* Carousel Container */}
-      <div className="relative z-10 w-full h-full flex items-center justify-center px-4 md:px-8">
-        {heroSlides.map((slide, index) => (
+      {/* Slides */}
+      {heroSlides.map((slide, index) => (
+        <motion.div
+          key={index}
+          className="absolute inset-0 flex items-center justify-center"
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: currentIndex === index ? 1 : 0,
+            scale: currentIndex === index ? 1 : 0.96,
+          }}
+          transition={{
+            duration: 0.8,
+          }}
+        >
+          {/* Main Card */}
           <motion.div
-            key={index}
-            className="absolute inset-0 flex items-center justify-end px-4 md:px-8"
-            initial={{ opacity: 0, scale: 0.95 }}
+            className="relative w-full max-w-[520px] h-[350px] md:h-[500px] rounded-[32px] overflow-hidden border-4 border-white/90 shadow-[0_0_60px_rgba(255,204,0,0.15)]"
             animate={{
-              opacity: index === currentIndex ? 1 : 0,
-              scale: index === currentIndex ? 1 : 0.95,
+              y: [0, -10, 0],
             }}
-            transition={{ duration: 1, ease: 'easeInOut' }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           >
-            <motion.div
-              className="relative h-96 md:h-[500px] lg:h-[600px] w-96 md:w-[480px] lg:w-[480px] overflow-hidden rounded-[28px] border-4 border-white shadow-2xl"
-              initial={{ scale: 1 }}
-              animate={{
-                 scale: index === currentIndex ? [1, 1.02, 1] : 1,
-              }}
-              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-            </motion.div>
-            <div className="absolute left-8 top-20 max-w-xl text-left text-white md:left-16 md:top-32 lg:left-20">
-              <p className="text-sm uppercase tracking-[0.3em] text-[#ffcc00] mb-2">
+            {/* Image */}
+            <img
+              src={slide.image}
+              alt={slide.title}
+              className="w-full h-full object-cover"
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+
+            {/* Content */}
+            <div className="absolute bottom-0 left-0 p-6 md:p-8 z-10">
+              <p className="text-[#ffcc00] text-xs md:text-sm font-bold uppercase tracking-[0.2em] mb-2">
                 {slide.label}
               </p>
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
+
+              <h3 className="text-2xl md:text-4xl font-black text-white leading-tight mb-3">
                 {slide.title}
               </h3>
-              <p className="mt-4 max-w-md text-sm md:text-base text-white/75">
+
+              <p className="text-sm md:text-base text-white/70 max-w-md leading-relaxed">
                 {slide.text}
               </p>
             </div>
           </motion.div>
-        ))}
-      </div>
+        </motion.div>
+      ))}
 
-      {/* Carousel Indicators */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2">
+      {/* Indicators */}
+      <div className="absolute bottom-5 flex gap-3 z-20">
         {heroSlides.map((_, index) => (
-          <motion.button
+          <button
             key={index}
-            className={`h-2 rounded-full transition-all ${
-              index === currentIndex ? 'w-8 bg-[#ffcc00]' : 'w-2 bg-white/30'
-            }`}
             onClick={() => setCurrentIndex(index)}
+            className={`transition-all duration-300 rounded-full ${
+              currentIndex === index
+                ? "w-10 h-3 bg-[#ffcc00]"
+                : "w-3 h-3 bg-white/40"
+            }`}
           />
         ))}
       </div>
-
-       {/* Rounded focus ring */}
-      <div className="pointer-events-none absolute inset-2 rounded-[34px] border-2 border-[#ffcc00]/45 md:inset-8" />
     </div>
   );
 };
-
 // Animated Stats Component
 const AnimatedStats = () => {
   const stats = [
