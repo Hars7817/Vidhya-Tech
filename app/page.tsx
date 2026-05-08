@@ -206,12 +206,13 @@ const HeroCarousel = () => {
   return (
     <div className="relative flex items-center justify-center w-full h-[500px] md:h-[650px] overflow-hidden">
 
-      {/* Background Glow */}
-      <div className="absolute w-[500px] h-[500px] rounded-full border border-[#ffcc00]/40 bg-[#ffcc00]/10 blur-3xl" />
+    
+     {/* Background Glow */}
+      <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-[#ffcc00]/40 bg-[#ffcc00]/10 blur-3xl z-0" />
 
       {/* Animated Ring */}
       <motion.div
-        className="absolute w-[520px] h-[520px] rounded-full border-2 border-[#ffcc00]/40"
+          className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full border-2 border-[#ffcc00]/40 z-0"
         animate={{
           scale: [1, 1.05, 1],
           rotate: [0, 3, 0],
@@ -239,7 +240,7 @@ const HeroCarousel = () => {
         >
           {/* Main Card */}
           <motion.div
-            className="relative w-full max-w-[520px] h-[350px] md:h-[500px] rounded-[32px] overflow-hidden border-4 border-white/90 shadow-[0_0_60px_rgba(255,204,0,0.15)]"
+          className="relative z-10 w-full max-w-[520px] h-[350px] md:h-[500px] rounded-[32px] overflow-hidden border-4 border-white/90 shadow-[0_0_60px_rgba(255,204,0,0.15)]"
             animate={{
               y: [0, -10, 0],
             }}
@@ -455,7 +456,7 @@ export default function Home() {
       <div className="group rounded-[28px] overflow-hidden border border-blue-500/40 bg-[#07152c] hover:scale-[1.02] transition duration-300">
 
         {/* Image */}
-        <div className="relative h-[230px] overflow-hidden">
+        <div className="relative h-[180px] overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop"
             alt="Web Development"
@@ -466,16 +467,16 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="p-8">
-          <div className="w-16 h-16 rounded-full bg-blue-600/30 border border-blue-400 flex items-center justify-center text-3xl mb-6">
+        <div className="p-6">
+          <div className="w-12 h-12 rounded-full bg-blue-600/30 border border-blue-400 flex items-center justify-center text-xl mb-4">
             💻
           </div>
 
-          <h3 className="text-white text-4xl font-bold mb-4">
+          <h3 className="text-white text-2xl font-bold mb-3">
             Web Development
           </h3>
 
-          <p className="text-gray-300 text-lg leading-relaxed">
+          <p className="text-gray-300 text-sm leading-relaxed">
             We build fast, responsive websites that engage and
             convert your business needs.
           </p>
@@ -485,7 +486,7 @@ export default function Home() {
       {/* CARD 2 */}
       <div className="group rounded-[28px] overflow-hidden border border-purple-500/40 bg-[#210433] hover:scale-[1.02] transition duration-300">
 
-        <div className="relative h-[230px] overflow-hidden">
+        <div className="relative h-[180px] overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop"
             alt="AI Automation"
@@ -495,16 +496,16 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#210433] to-transparent" />
         </div>
 
-        <div className="p-8">
-          <div className="w-16 h-16 rounded-full bg-purple-600/30 border border-purple-400 flex items-center justify-center text-3xl mb-6">
+        <div className="p-6">
+          <div className="w-12 h-12 rounded-full bg-purple-600/30 border border-purple-400 flex items-center justify-center text-xl mb-4">
             🤖
           </div>
 
-          <h3 className="text-white text-4xl font-bold mb-4">
+          <h3 className="text-white text-2xl font-bold mb-3">
             AI Automation
           </h3>
 
-          <p className="text-gray-300 text-lg leading-relaxed">
+          <p className="text-gray-300 text-sm leading-relaxed">
             Automate your business workflows with cutting-edge
             AI solutions.
           </p>
@@ -514,7 +515,7 @@ export default function Home() {
       {/* CARD 3 */}
       <div className="group rounded-[28px] overflow-hidden border border-pink-500/40 bg-[#330017] hover:scale-[1.02] transition duration-300">
 
-        <div className="relative h-[230px] overflow-hidden">
+        <div className="relative h-[180px] overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
             alt="Digital Marketing"
@@ -524,16 +525,16 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#330017] to-transparent" />
         </div>
 
-        <div className="p-8">
-          <div className="w-16 h-16 rounded-full bg-pink-600/30 border border-pink-400 flex items-center justify-center text-3xl mb-6">
+        <div className="p-6">
+          <div className="w-12 h-12 rounded-full bg-pink-600/30 border border-pink-400 flex items-center justify-center text-xl mb-4">
             📢
           </div>
 
-          <h3 className="text-white text-4xl font-bold mb-4">
+          <h3 className="text-white text-2xl font-bold mb-3">
             Digital Marketing
           </h3>
 
-          <p className="text-gray-300 text-lg leading-relaxed">
+          <p className="text-gray-300 text-sm leading-relaxed">
             Grow your brand with result-driven marketing
             strategies.
           </p>
@@ -543,7 +544,7 @@ export default function Home() {
       {/* CARD 4 */}
       <div className="group rounded-[28px] overflow-hidden border border-cyan-500/40 bg-[#03242b] hover:scale-[1.02] transition duration-300">
 
-        <div className="relative h-[230px] overflow-hidden">
+        <div className="relative h-[180px] overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1200&auto=format&fit=crop"
             alt="Video Editing"
@@ -553,16 +554,16 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#03242b] to-transparent" />
         </div>
 
-        <div className="p-8">
-          <div className="w-16 h-16 rounded-full bg-cyan-600/30 border border-cyan-400 flex items-center justify-center text-3xl mb-6">
+        <div className="p-6">
+          <div className="w-12 h-12 rounded-full bg-cyan-600/30 border border-cyan-400 flex items-center justify-center text-xl mb-4">
             🎬
           </div>
 
-          <h3 className="text-white text-4xl font-bold mb-4">
+          <h3 className="text-white text-2xl font-bold mb-3">
             Video Editing
           </h3>
 
-          <p className="text-gray-300 text-lg leading-relaxed">
+          <p className="text-gray-300 text-sm leading-relaxed">
             Professional video editing services for YouTube,
             Reels and social media.
           </p>
@@ -572,7 +573,7 @@ export default function Home() {
       {/* CARD 5 */}
       <div className="group rounded-[28px] overflow-hidden border border-orange-500/40 bg-[#2b1200] hover:scale-[1.02] transition duration-300">
 
-        <div className="relative h-[230px] overflow-hidden">
+        <div className="relative h-[180px] overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=1200&auto=format&fit=crop"
             alt="Social Media"
@@ -582,16 +583,16 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#2b1200] to-transparent" />
         </div>
 
-        <div className="p-8">
-          <div className="w-16 h-16 rounded-full bg-orange-600/30 border border-orange-400 flex items-center justify-center text-3xl mb-6">
+        <div className="p-6">
+          <div className="w-12 h-12 rounded-full bg-orange-600/30 border border-orange-400 flex items-center justify-center text-xl mb-4">
             👥
           </div>
 
-          <h3 className="text-white text-4xl font-bold mb-4">
+          <h3 className="text-white text-2xl font-bold mb-3">
             Social Media Management
           </h3>
 
-          <p className="text-gray-300 text-lg leading-relaxed">
+          <p className="text-gray-300 text-sm leading-relaxed">
             We manage your social media accounts and boost
             your online presence.
           </p>
@@ -601,7 +602,7 @@ export default function Home() {
       {/* CARD 6 */}
       <div className="group rounded-[28px] overflow-hidden border border-green-500/40 bg-[#03240f] hover:scale-[1.02] transition duration-300">
 
-        <div className="relative h-[230px] overflow-hidden">
+        <div className="relative h-[180px] overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=1200&auto=format&fit=crop"
             alt="AI Integration"
@@ -611,16 +612,16 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#03240f] to-transparent" />
         </div>
 
-        <div className="p-8">
-          <div className="w-16 h-16 rounded-full bg-green-600/30 border border-green-400 flex items-center justify-center text-3xl mb-6">
+        <div className="p-6">
+          <div className="w-12 h-12 rounded-full bg-green-600/30 border border-green-400 flex items-center justify-center text-xl mb-4">
             🧠
           </div>
 
-          <h3 className="text-white text-4xl font-bold mb-4">
+          <h3 className="text-white text-2xl font-bold mb-3">
             AI Integration
           </h3>
 
-          <p className="text-gray-300 text-lg leading-relaxed">
+          <p className="text-gray-300 text-sm leading-relaxed">
             Integrate AI into your business for smarter
             solutions.
           </p>
