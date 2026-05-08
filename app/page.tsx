@@ -741,7 +741,7 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {['https://via.placeholder.com/150?text=Client+1', 'https://via.placeholder.com/150?text=Client+2', 'https://via.placeholder.com/150?text=Client+3', 'https://via.placeholder.com/150?text=Client+4', 'https://via.placeholder.com/150?text=Client+5', 'https://via.placeholder.com/150?text=Client+6'].map((logo, index) => (
+            {['https://schoolaxis.in/assets/img/saas-c/team/school4.jpg', 'https://schoolaxis.in/assets/img/saas-c/team/school8.jpg', 'https://schoolaxis.in/assets/img/saas-c/team/school12.jpg', 'https://www.uneecops.com/wp-content/uploads/2023/09/Group-322.png', 'https://www.uneecops.com/wp-content/uploads/2023/09/Group-315.png', 'https://www.striven.com/wp-content/uploads/newsweek-logo.webp'].map((logo, index) => (
               <motion.div
                 key={index}
                 className="flex items-center justify-center p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-[#ffcc00]/50 transition-all duration-300 h-32"
@@ -940,65 +940,93 @@ export default function Home() {
 
       {/* ============ TESTIMONIALS SECTION ============ */}
       <section className="px-5 py-24 sm:px-6 lg:px-8 bg-black relative">
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-sm font-bold text-[#ffcc00] uppercase tracking-widest mb-4 inline-block px-4 py-2 border border-[#ffcc00]/30 rounded-full">
-              TESTIMONIALS
-            </p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
-              What Our Clients Say
-            </h2>
-          </motion.div>
+  <div className="mx-auto max-w-7xl">
+    <motion.div
+      className="text-center mb-16"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      <p className="text-sm font-bold text-[#ffcc00] uppercase tracking-widest mb-4 inline-block px-4 py-2 border border-[#ffcc00]/30 rounded-full">
+        TESTIMONIALS
+      </p>
+      <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
+        What Our Clients Say
+      </h2>
+    </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                text: 'Vidhya Tech transformed our online presence completely. Highly professional!',
-                author: 'Priya Sharma',
-                company: 'Tech Startup',
-                rating: 5
-              },
-              {
-                text: 'Amazing results on our AI integration project. Exceeded expectations!',
-                author: 'Rajesh Patel',
-                company: 'E-commerce Business',
-                rating: 5
-              },
-              {
-                text: 'Their creative approach and timely delivery made all the difference.',
-                author: 'Sneha Singh',
-                company: 'Digital Marketing Agency',
-                rating: 5
-              },
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index}
-                className="p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-[#ffcc00]/30 transition-all"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
+    <div className="grid md:grid-cols-3 gap-6">
+      {[
+        {
+          text: 'Vidhya Tech transformed our online presence completely. Highly professional!',
+          author: 'Amit Sharma',
+          company: 'Tech Startup',
+          image: 'https://randomuser.me/api/portraits/men/32.jpg',
+          rating: 5
+        },
+        {
+          text: 'Amazing results on our AI integration project. Exceeded expectations!',
+          author: 'Rohit Verma',
+          company: 'E-commerce Business',
+          image: 'https://randomuser.me/api/portraits/men/45.jpg',
+          rating: 5
+        },
+        {
+          text: 'Their creative approach and timely delivery made all the difference.',
+          author: 'Sandeep Gupta',
+          company: 'Digital Marketing Agency',
+          image: 'https://randomuser.me/api/portraits/men/65.jpg',
+          rating: 5
+        },
+      ].map((testimonial, index) => (
+        <motion.div
+          key={index}
+          className="p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-[#ffcc00]/30 transition-all"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1, duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+
+          {/* 👤 Profile */}
+          <div className="flex items-center gap-4 mb-4">
+            <img
+              src={testimonial.image}
+              alt={testimonial.author}
+              className="w-12 h-12 rounded-full object-cover border-2 border-[#ffcc00]"
+            />
+            <div>
+              <p className="font-black text-white">{testimonial.author}</p>
+              <p className="text-sm text-white/60">{testimonial.company}</p>
+            </div>
+          </div>
+
+          {/* ⭐ Real Stars */}
+          <div className="flex mb-4">
+            {[...Array(testimonial.rating)].map((_, i) => (
+              <svg
+                key={i}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-5 h-5 text-[#ffcc00]"
               >
-                <div className="text-[#ffcc00] text-lg mb-4">
-                  {'⭐'.repeat(testimonial.rating)}
-                </div>
-                 <p className="text-white/80 mb-6 leading-relaxed italic">&ldquo;{testimonial.text}&rdquo;</p>
-                <div>
-                  <p className="font-black text-white">{testimonial.author}</p>
-                  <p className="text-sm text-white/60">{testimonial.company}</p>
-                </div>
-              </motion.div>
+                <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.32.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.386a.562.562 0 01-.84.61l-4.73-2.885a.563.563 0 00-.586 0l-4.73 2.885a.562.562 0 01-.84-.61l1.285-5.386a.563.563 0 00-.182-.557L2.043 10.385a.562.562 0 01.32-.988l5.518-.442a.563.563 0 00.475-.345l2.125-5.111z" />
+              </svg>
             ))}
           </div>
-        </div>
-      </section>
 
+          {/* 💬 Review */}
+          <p className="text-white/80 leading-relaxed italic">
+            &ldquo;{testimonial.text}&rdquo;
+          </p>
+
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
       {/* ============ CTA SECTION ============ */}
       <section className="px-5 py-24 sm:px-6 lg:px-8 bg-gradient-to-r from-[#ffcc00]/10 to-[#ffcc00]/5 relative overflow-hidden">
         {/* Animated Background Elements */}
