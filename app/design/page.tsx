@@ -47,12 +47,12 @@ const designs = [
   type: 'internal'
 },
   {
-    title: 'Landing Page Design',
-    category: 'Marketing',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200',
-    link: 'https://example.com',
-    type: 'external',
-  },
+  title: 'Construction Website',
+  category: 'Website',
+  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyIlo0ITqTk6LqFIRMqjIm_03JEeZSwinFxg&s',
+  link: '/design/construction',
+  type: 'internal'
+},
   {
     title: 'Admin Panel UI',
     category: 'Software',
