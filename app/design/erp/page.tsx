@@ -5,7 +5,7 @@ export default function ERPDesignPage() {
     <div className="min-h-screen bg-black text-white flex flex-col">
 
       {/* TOP BAR */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+      {/* <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
         <h1 className="text-xl font-bold text-[#ffcc00]">
           ERP Design Preview
         </h1>
@@ -17,7 +17,7 @@ export default function ERPDesignPage() {
         >
           Open Full Screen
         </a>
-      </div>
+      </div> */}
 
       {/* IFRAME */}
       <iframe

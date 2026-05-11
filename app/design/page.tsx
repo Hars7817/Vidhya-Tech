@@ -5,9 +5,9 @@ import Link from 'next/link';
 
 const designs = [
   {
-    title: 'School Website Design',
-    category: 'Web',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200',
+    title: 'Bright Futture Academy',
+    category: 'Website',
+    image: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4bf43e183310133.653d5654b8145.jpg',
     link: '/design/school',
     type: 'internal',
   },
@@ -18,12 +18,12 @@ const designs = [
     link: '/design/erp',
     type: 'internal',
   },
-  {
-    title: 'Mobile App Design',
-    category: 'App',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200',
-    link: 'https://example.com',
-    type: 'external',
+   {
+     title: 'Restaurant Website',
+     category: 'Website',
+     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd5gDVElwBUh_a8XutB9QLzv2v61e7eq9g-w&s',
+     link: '/design/restaurant',
+     type: 'internal'
   },
   {
     title: 'Dashboard UI',
@@ -137,7 +137,9 @@ export default function DesignPage() {
 }
 
 /* 🔥 REUSABLE CARD */
-function CardContent({ design }: any) {
+type DesignItem = (typeof designs)[number];
+
+function CardContent({ design }: { design: DesignItem }) {
   return (
     <>
       <div className="relative h-[200px] overflow-hidden">

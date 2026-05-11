@@ -736,7 +736,7 @@ export default function Home() {
               Trusted By Leading Brands
             </h2>
             <p className="text-white/70 max-w-3xl mx-auto text-lg leading-relaxed">
-              We've partnered with companies across various industries to deliver exceptional digital solutions.
+              We&apos;ve partnered with companies across various industries to deliver exceptional digital solutions.
             </p>
           </motion.div>
 
