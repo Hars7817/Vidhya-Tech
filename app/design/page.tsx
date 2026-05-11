@@ -56,7 +56,7 @@ const designs = [
   {
   title: 'ERP Software',
   category: 'software',
-  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoK0b5JoB98LrhC7dC4Gm3g5cRyEJIY77T3A&s',
+  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq23393hryKmHQ8iPEKyw0-C0_8m9Zrk7dUg&s',
   link: '/design/erpsoftware'
 },
   {
