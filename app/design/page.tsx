@@ -33,19 +33,19 @@ const designs = [
   type: 'internal'
 },
   {
-    title: 'E-commerce Design',
-    category: 'Web',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200',
-    link: 'https://example.com',
-    type: 'external',
-  },
+  title: 'Nexmart E-commerce',
+  category: 'E-commerce',
+  image: 'https://yt3.googleusercontent.com/sC6zwneN2nCExhaPz_l6fUJaw9nFzwUTj43cBefZfYvGI1ktEXcmn5m3nYhpQw4Hge2-wilziQ=s900-c-k-c0x00ffffff-no-rj',
+  link: '/design/nexmart',
+  type: 'internal'
+},
   {
-    title: 'Portfolio Design',
-    category: 'Creative',
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1200',
-    link: 'https://example.com',
-    type: 'external',
-  },
+  title: 'Full E-commerce Website',
+  category: 'E-commerce website',
+  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB9c_dmxf-2sCzWAoTX2m7cRRXn-2RzUw08g&s',
+  link: '/design/ecommerce',
+  type: 'internal'
+},
   {
     title: 'Landing Page Design',
     category: 'Marketing',

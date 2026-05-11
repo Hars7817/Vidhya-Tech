@@ -1,0 +1,2970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NexMart - Premium Shopping Experience with thousands of products">
+<meta name="keywords" content="ecommerce, shopping, online store, fashion, electronics">
+<title>NexMart — Premium E-Commerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --primary: #0A0A0F;
+  --accent: #FF3D57;
+  --accent2: #FF8C42;
+  --gold: #FFD700;
+  --surface: #13131A;
+  --surface2: #1C1C27;
+  --surface3: #252535;
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.15);
+  --text: #F0F0F5;
+  --text2: #9999BB;
+  --text3: #666688;
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --info: #3B82F6;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-lg: 0 24px 64px rgba(0,0,0,0.6);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--primary);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: 'DM Sans', sans-serif; border: none; outline: none; }
+input, textarea, select { font-family: 'DM Sans', sans-serif; }
+img { max-width: 100%; }
+.page { display: none; }
+.page.active { display: block; }
+
+/* NAVBAR */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(10,10,15,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+.nav-inner {
+  max-width: 1440px; margin: 0 auto;
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0 2rem; height: 72px;
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem;
+  background: linear-gradient(135deg, #FF3D57, #FF8C42);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; flex-shrink: 0; cursor: pointer;
+}
+.nav-logo span { -webkit-text-fill-color: var(--text); }
+.nav-search {
+  flex: 1; max-width: 480px; margin: 0 auto;
+  position: relative;
+}
+.nav-search input {
+  width: 100%; padding: 0.65rem 1rem 0.65rem 2.8rem;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 100px; color: var(--text); font-size: 0.9rem;
+  transition: var(--transition);
+}
+.nav-search input:focus { outline: none; border-color: var(--accent); background: var(--surface3); }
+.nav-search input::placeholder { color: var(--text3); }
+.nav-search .search-icon {
+  position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+  color: var(--text3); font-size: 0.85rem;
+}
+.nav-search .search-btn {
+  position: absolute; right: 0.4rem; top: 50%; transform: translateY(-50%);
+  background: linear-gradient(135deg, #FF3D57, #FF8C42);
+  color: #fff; border: none; border-radius: 100px;
+  padding: 0.35rem 0.9rem; font-size: 0.8rem; font-weight: 500;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 0.25rem; list-style: none;
+}
+.nav-links li a {
+  padding: 0.5rem 0.75rem; font-size: 0.9rem; color: var(--text2);
+  border-radius: var(--radius); transition: var(--transition);
+  display: block;
+}
+.nav-links li a:hover { color: var(--text); background: var(--surface2); }
+.nav-actions {
+  display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
+}
+.nav-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text2); font-size: 1rem; display: flex;
+  align-items: center; justify-content: center;
+  transition: var(--transition); position: relative;
+}
+.nav-btn:hover { color: var(--text); border-color: var(--border2); }
+.nav-btn .badge {
+  position: absolute; top: -2px; right: -2px;
+  background: var(--accent); color: #fff; font-size: 0.65rem;
+  font-weight: 700; width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #FF3D57, #FF8C42);
+  color: #fff; border: none; border-radius: 100px;
+  padding: 0.65rem 1.5rem; font-size: 0.9rem; font-weight: 600;
+  transition: var(--transition); display: inline-flex;
+  align-items: center; gap: 0.5rem;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,61,87,0.4); }
+.btn-outline {
+  background: transparent; color: var(--text);
+  border: 1px solid var(--border2); border-radius: 100px;
+  padding: 0.65rem 1.5rem; font-size: 0.9rem; font-weight: 500;
+  transition: var(--transition); display: inline-flex;
+  align-items: center; gap: 0.5rem;
+}
+.btn-outline:hover { background: var(--surface2); border-color: var(--border2); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; width: 40px; height: 40px;
+  align-items: center; justify-content: center;
+}
+.hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: var(--transition); }
+
+/* HERO */
+.hero {
+  min-height: 100vh; padding-top: 72px;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse at 60% 50%, rgba(255,61,87,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(255,140,66,0.1) 0%, transparent 50%);
+}
+.hero-grid {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-inner {
+  max-width: 1440px; margin: 0 auto; padding: 4rem 2rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: center; position: relative; z-index: 1; width: 100%;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(255,61,87,0.1); border: 1px solid rgba(255,61,87,0.3);
+  color: var(--accent); font-size: 0.8rem; font-weight: 600;
+  padding: 0.35rem 0.9rem; border-radius: 100px; margin-bottom: 1.5rem;
+  animation: fadeInUp 0.6s ease both;
+}
+.hero-badge .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800;
+  line-height: 1.05; margin-bottom: 1.5rem;
+  animation: fadeInUp 0.6s 0.1s ease both;
+}
+.hero h1 .gradient-text {
+  background: linear-gradient(135deg, #FF3D57 0%, #FF8C42 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.1rem; color: var(--text2); line-height: 1.7;
+  margin-bottom: 2rem; max-width: 480px;
+  animation: fadeInUp 0.6s 0.2s ease both;
+}
+.hero-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: fadeInUp 0.6s 0.3s ease both;
+}
+.hero-stats {
+  display: flex; gap: 2rem; margin-top: 3rem;
+  animation: fadeInUp 0.6s 0.4s ease both;
+}
+.hero-stat h3 { font-size: 1.8rem; font-weight: 800; }
+.hero-stat p { font-size: 0.85rem; color: var(--text3); }
+.hero-visual {
+  position: relative; animation: fadeInRight 0.8s 0.2s ease both;
+}
+.hero-card-stack {
+  position: relative; height: 500px;
+}
+.hero-card {
+  position: absolute; border-radius: var(--radius-lg);
+  overflow: hidden; box-shadow: var(--shadow-lg);
+}
+.hero-card-main {
+  width: 320px; height: 420px; right: 0; top: 0;
+  background: linear-gradient(135deg, var(--surface2), var(--surface3));
+  border: 1px solid var(--border);
+}
+.hero-card-mini {
+  width: 220px; height: 140px;
+  background: var(--surface2); border: 1px solid var(--border);
+  padding: 1.2rem; display: flex; flex-direction: column;
+  justify-content: space-between;
+}
+.hero-card-mini-1 { left: 0; top: 60px; animation: float 4s ease-in-out infinite; }
+.hero-card-mini-2 { left: 30px; bottom: 20px; animation: float 4s 2s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.product-img-placeholder {
+  width: 100%; height: 260px;
+  background: linear-gradient(135deg, #1C1C27, #252535);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; color: var(--text3);
+}
+.hero-card-main .product-info { padding: 1rem; }
+.hero-card-main .product-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; }
+.hero-card-main .product-price { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
+.hero-card-main .product-old-price { color: var(--text3); text-decoration: line-through; font-size: 0.85rem; margin-left: 0.5rem; }
+.mini-label { font-size: 0.75rem; color: var(--text3); }
+.mini-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
+.mini-chart { display: flex; gap: 3px; align-items: flex-end; height: 30px; }
+.mini-bar { flex: 1; border-radius: 3px 3px 0 0; background: var(--accent); opacity: 0.7; }
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInRight { from { opacity: 0; transform: translateX(32px); } to { opacity: 1; transform: translateX(0); } }
+
+/* SECTIONS */
+.section { padding: 5rem 0; }
+.section-inner { max-width: 1440px; margin: 0 auto; padding: 0 2rem; }
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-label {
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+.section h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; }
+.section p.sub { color: var(--text2); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+
+/* CATEGORIES */
+.categories-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+.cat-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem 1rem;
+  text-align: center; cursor: pointer; transition: var(--transition);
+}
+.cat-card:hover { border-color: var(--accent); transform: translateY(-4px); background: var(--surface3); }
+.cat-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.cat-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+.cat-count { font-size: 0.8rem; color: var(--text3); }
+
+/* PRODUCT GRID */
+.products-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.product-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  transition: var(--transition); cursor: pointer; position: relative;
+}
+.product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--border2); }
+.product-card-img {
+  width: 100%; height: 220px; object-fit: cover;
+  background: linear-gradient(135deg, var(--surface3), var(--surface));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem; color: var(--text3); transition: var(--transition);
+  position: relative; overflow: hidden;
+}
+.product-card:hover .product-card-img { transform: scale(1.05); }
+.product-badge {
+  position: absolute; top: 0.75rem; left: 0.75rem;
+  background: var(--accent); color: #fff;
+  font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.6rem;
+  border-radius: 6px; z-index: 1;
+}
+.product-badge.new { background: var(--info); }
+.product-badge.trending { background: var(--warning); }
+.product-wishlist {
+  position: absolute; top: 0.75rem; right: 0.75rem;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(0,0,0,0.5); border: 1px solid var(--border2);
+  color: var(--text2); display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; z-index: 1; transition: var(--transition);
+  backdrop-filter: blur(10px);
+}
+.product-wishlist.active, .product-wishlist:hover { color: var(--accent); border-color: var(--accent); }
+.product-card-body { padding: 1rem; }
+.product-category { font-size: 0.75rem; color: var(--text3); margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 1px; }
+.product-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; line-height: 1.3; }
+.product-rating { display: flex; align-items: center; gap: 0.35rem; margin-bottom: 0.5rem; }
+.stars { color: var(--gold); font-size: 0.8rem; }
+.rating-count { font-size: 0.75rem; color: var(--text3); }
+.product-footer { display: flex; align-items: center; justify-content: space-between; }
+.price-group { display: flex; align-items: baseline; gap: 0.5rem; }
+.price-now { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--accent); }
+.price-was { font-size: 0.8rem; color: var(--text3); text-decoration: line-through; }
+.add-to-cart-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, #FF3D57, #FF8C42);
+  color: #fff; font-size: 0.9rem; display: flex;
+  align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.add-to-cart-btn:hover { transform: scale(1.1); box-shadow: 0 4px 16px rgba(255,61,87,0.4); }
+
+/* FILTER SIDEBAR */
+.filter-layout { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; align-items: start; }
+.filter-sidebar {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem; position: sticky; top: 90px;
+}
+.filter-group { margin-bottom: 1.5rem; }
+.filter-group h4 { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text2); margin-bottom: 0.75rem; }
+.filter-options { display: flex; flex-direction: column; gap: 0.5rem; }
+.filter-option {
+  display: flex; align-items: center; gap: 0.6rem;
+  cursor: pointer; font-size: 0.9rem; color: var(--text2);
+  transition: var(--transition); padding: 0.25rem 0;
+}
+.filter-option:hover { color: var(--text); }
+.filter-option input[type=checkbox] { accent-color: var(--accent); }
+.filter-check { display: flex; align-items: center; gap: 0.5rem; }
+.price-range-inputs { display: flex; gap: 0.5rem; align-items: center; }
+.price-range-inputs input {
+  flex: 1; padding: 0.5rem; background: var(--surface3);
+  border: 1px solid var(--border); border-radius: 8px;
+  color: var(--text); font-size: 0.85rem;
+}
+.color-swatches { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.color-swatch {
+  width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+  border: 2px solid transparent; transition: var(--transition);
+}
+.color-swatch:hover, .color-swatch.active { border-color: #fff; transform: scale(1.1); }
+
+/* PRODUCT DETAIL */
+.product-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.product-images { position: sticky; top: 90px; }
+.product-main-img {
+  width: 100%; aspect-ratio: 1; border-radius: var(--radius-lg);
+  background: var(--surface2); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 6rem; color: var(--text3); margin-bottom: 1rem;
+  overflow: hidden; cursor: zoom-in;
+}
+.product-thumbnails { display: flex; gap: 0.75rem; overflow-x: auto; }
+.product-thumb {
+  width: 72px; height: 72px; flex-shrink: 0; border-radius: var(--radius);
+  background: var(--surface2); border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; cursor: pointer; transition: var(--transition);
+}
+.product-thumb.active { border-color: var(--accent); }
+.product-detail-name { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; margin-bottom: 0.75rem; }
+.product-detail-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+.stock-badge { font-size: 0.8rem; padding: 0.3rem 0.8rem; border-radius: 100px; font-weight: 600; }
+.in-stock { background: rgba(34,197,94,0.1); color: var(--success); }
+.out-of-stock { background: rgba(255,61,87,0.1); color: var(--accent); }
+.detail-price-group { margin-bottom: 1.5rem; }
+.detail-price { font-size: 2rem; font-weight: 800; color: var(--accent); }
+.detail-old-price { font-size: 1rem; color: var(--text3); text-decoration: line-through; margin-left: 0.75rem; }
+.detail-discount { background: rgba(255,61,87,0.1); color: var(--accent); font-size: 0.8rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 6px; margin-left: 0.5rem; }
+.variant-group { margin-bottom: 1.5rem; }
+.variant-group h4 { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.75rem; }
+.size-options { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.size-btn {
+  min-width: 44px; height: 44px; border-radius: var(--radius);
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text2); font-size: 0.85rem; font-weight: 500;
+  transition: var(--transition); padding: 0 0.75rem;
+}
+.size-btn:hover, .size-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(255,61,87,0.05); }
+.qty-selector { display: flex; align-items: center; gap: 0; margin-bottom: 1.5rem; }
+.qty-selector label { font-size: 0.85rem; color: var(--text2); margin-right: 1rem; }
+.qty-btn {
+  width: 40px; height: 40px; background: var(--surface2);
+  border: 1px solid var(--border); color: var(--text2);
+  font-size: 1.1rem; transition: var(--transition);
+}
+.qty-btn:first-of-type { border-radius: var(--radius) 0 0 var(--radius); }
+.qty-btn:last-of-type { border-radius: 0 var(--radius) var(--radius) 0; }
+.qty-btn:hover { color: var(--text); background: var(--surface3); }
+.qty-display {
+  width: 52px; height: 40px; background: var(--surface3);
+  border: 1px solid var(--border); border-left: 0; border-right: 0;
+  text-align: center; font-weight: 600; color: var(--text);
+  display: flex; align-items: center; justify-content: center;
+}
+.detail-actions { display: flex; gap: 1rem; margin-bottom: 2rem; }
+.btn-cart {
+  flex: 1; padding: 1rem; background: linear-gradient(135deg, #FF3D57, #FF8C42);
+  color: #fff; border: none; border-radius: 100px; font-weight: 600; font-size: 1rem;
+  transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.btn-cart:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,61,87,0.4); }
+.btn-wish {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text2); font-size: 1.1rem; display: flex;
+  align-items: center; justify-content: center; transition: var(--transition);
+}
+.btn-wish:hover, .btn-wish.active { color: var(--accent); border-color: var(--accent); }
+.product-features { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+.product-feature { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text2); }
+.product-feature i { color: var(--success); font-size: 0.9rem; }
+.product-tabs { border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+.tab-nav { display: flex; gap: 0; }
+.tab-btn {
+  padding: 0.75rem 1.25rem; font-size: 0.9rem; font-weight: 500;
+  background: none; color: var(--text3); border-bottom: 2px solid transparent;
+  margin-bottom: -1px; transition: var(--transition);
+}
+.tab-btn.active { color: var(--accent); border-color: var(--accent); }
+.tab-btn:hover { color: var(--text2); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* REVIEWS */
+.reviews-list { display: flex; flex-direction: column; gap: 1.5rem; }
+.review-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.25rem;
+}
+.review-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.75rem; }
+.reviewer { display: flex; align-items: center; gap: 0.75rem; }
+.reviewer-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem;
+}
+.reviewer-name { font-weight: 600; font-size: 0.9rem; }
+.review-date { font-size: 0.75rem; color: var(--text3); }
+.review-text { font-size: 0.9rem; color: var(--text2); line-height: 1.6; }
+
+/* CART SIDEBAR */
+.sidebar-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+  z-index: 2000; opacity: 0; visibility: hidden; transition: var(--transition);
+  backdrop-filter: blur(4px);
+}
+.sidebar-overlay.open { opacity: 1; visibility: visible; }
+.sidebar-panel {
+  position: fixed; top: 0; right: 0; bottom: 0; width: 420px;
+  background: var(--surface); border-left: 1px solid var(--border);
+  z-index: 2001; transform: translateX(100%); transition: 0.4s cubic-bezier(0.4,0,0.2,1);
+  display: flex; flex-direction: column;
+}
+.sidebar-panel.open { transform: translateX(0); }
+.sidebar-header {
+  padding: 1.5rem; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.sidebar-header h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; }
+.sidebar-close {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text2); font-size: 1rem; display: flex;
+  align-items: center; justify-content: center; transition: var(--transition);
+}
+.sidebar-close:hover { color: var(--text); }
+.sidebar-body { flex: 1; overflow-y: auto; padding: 1.5rem; }
+.sidebar-footer { padding: 1.5rem; border-top: 1px solid var(--border); }
+.cart-item {
+  display: flex; gap: 1rem; padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.cart-item-img {
+  width: 72px; height: 72px; border-radius: var(--radius);
+  background: var(--surface2); display: flex; align-items: center;
+  justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+}
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+.cart-item-variant { font-size: 0.8rem; color: var(--text3); margin-bottom: 0.5rem; }
+.cart-item-footer { display: flex; align-items: center; justify-content: space-between; }
+.cart-item-price { font-weight: 700; color: var(--accent); }
+.cart-item-actions { display: flex; align-items: center; gap: 0.5rem; }
+.cart-qty-btn {
+  width: 26px; height: 26px; border-radius: 6px;
+  background: var(--surface3); border: 1px solid var(--border);
+  color: var(--text2); font-size: 0.85rem; display: flex;
+  align-items: center; justify-content: center; transition: var(--transition);
+}
+.cart-qty-btn:hover { color: var(--text); }
+.cart-qty-val { font-size: 0.85rem; font-weight: 600; min-width: 20px; text-align: center; }
+.cart-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.cart-total-label { font-size: 0.9rem; color: var(--text2); }
+.cart-total-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; }
+.empty-state { text-align: center; padding: 3rem 1rem; }
+.empty-state i { font-size: 3rem; color: var(--text3); margin-bottom: 1rem; display: block; }
+.empty-state h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+.empty-state p { font-size: 0.85rem; color: var(--text3); }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+  z-index: 3000; display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: var(--transition);
+  backdrop-filter: blur(8px); padding: 1rem;
+}
+.modal-overlay.open { opacity: 1; visibility: visible; }
+.modal {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-xl); max-width: 480px; width: 100%;
+  max-height: 90vh; overflow-y: auto; padding: 2.5rem;
+  transform: scale(0.95); transition: var(--transition);
+}
+.modal-overlay.open .modal { transform: scale(1); }
+.modal h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.modal p.sub { font-size: 0.9rem; color: var(--text2); margin-bottom: 2rem; text-align: left; }
+.form-group { margin-bottom: 1.25rem; }
+.form-group label { display: block; font-size: 0.85rem; color: var(--text2); margin-bottom: 0.5rem; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 0.75rem 1rem;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius); color: var(--text); font-size: 0.9rem;
+  transition: var(--transition);
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none; border-color: var(--accent);
+}
+.form-group input::placeholder { color: var(--text3); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.modal-tabs { display: flex; gap: 0; margin-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.modal-tab {
+  flex: 1; padding: 0.75rem; text-align: center; font-weight: 600; font-size: 0.9rem;
+  color: var(--text3); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: var(--transition);
+}
+.modal-tab.active { color: var(--accent); border-color: var(--accent); }
+.modal-tab-content { display: none; }
+.modal-tab-content.active { display: block; }
+.social-login { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+.social-btn {
+  width: 100%; padding: 0.75rem;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius); color: var(--text); font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  transition: var(--transition);
+}
+.social-btn:hover { border-color: var(--border2); background: var(--surface3); }
+.divider { display: flex; align-items: center; gap: 1rem; margin: 1.5rem 0; color: var(--text3); font-size: 0.8rem; }
+.divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.otp-inputs { display: flex; gap: 0.75rem; justify-content: center; margin: 1.5rem 0; }
+.otp-input {
+  width: 50px; height: 56px; text-align: center; font-size: 1.5rem; font-weight: 700;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius); color: var(--text); transition: var(--transition);
+}
+.otp-input:focus { outline: none; border-color: var(--accent); }
+
+/* CHECKOUT */
+.checkout-grid { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; align-items: start; }
+.checkout-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;
+}
+.checkout-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+.checkout-card h3 span {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, #FF3D57, #FF8C42);
+  color: #fff; font-size: 0.8rem; display: flex;
+  align-items: center; justify-content: center;
+}
+.payment-options { display: flex; flex-direction: column; gap: 0.75rem; }
+.payment-option {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem; background: var(--surface3);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  cursor: pointer; transition: var(--transition);
+}
+.payment-option.selected { border-color: var(--accent); background: rgba(255,61,87,0.05); }
+.payment-option input[type=radio] { accent-color: var(--accent); }
+.payment-icon { font-size: 1.2rem; width: 32px; text-align: center; }
+.payment-label { font-size: 0.9rem; font-weight: 500; }
+.payment-sub { font-size: 0.75rem; color: var(--text3); }
+.order-summary-card { position: sticky; top: 90px; }
+.order-line { display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.5rem 0; }
+.order-line.total { font-weight: 700; font-size: 1rem; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem; }
+.coupon-row { display: flex; gap: 0.5rem; margin: 1rem 0; }
+.coupon-row input { flex: 1; }
+.coupon-row button { flex-shrink: 0; }
+
+/* DASHBOARD */
+.dashboard-grid { display: grid; grid-template-columns: 240px 1fr; gap: 2rem; align-items: start; }
+.dash-sidebar {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem; position: sticky; top: 90px;
+}
+.dash-user { text-align: center; margin-bottom: 1.5rem; }
+.dash-avatar {
+  width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 0.75rem;
+  background: linear-gradient(135deg, #FF3D57, #FF8C42);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; font-weight: 800; color: #fff;
+}
+.dash-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+.dash-email { font-size: 0.8rem; color: var(--text3); }
+.dash-nav { display: flex; flex-direction: column; gap: 0.25rem; }
+.dash-nav-btn {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.75rem; border-radius: var(--radius);
+  background: none; color: var(--text2); font-size: 0.9rem;
+  transition: var(--transition); text-align: left; width: 100%;
+}
+.dash-nav-btn:hover { background: var(--surface3); color: var(--text); }
+.dash-nav-btn.active { background: rgba(255,61,87,0.1); color: var(--accent); }
+.dash-section { display: none; }
+.dash-section.active { display: block; }
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+.stat-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.25rem;
+}
+.stat-card .stat-icon {
+  width: 44px; height: 44px; border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; margin-bottom: 0.75rem;
+}
+.stat-card .stat-label { font-size: 0.8rem; color: var(--text3); margin-bottom: 0.35rem; }
+.stat-card .stat-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.4rem; }
+.stat-card .stat-change { font-size: 0.75rem; margin-top: 0.25rem; }
+.positive { color: var(--success); }
+.negative { color: var(--accent); }
+.orders-table { width: 100%; border-collapse: collapse; }
+.orders-table th {
+  text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--text3); padding: 0.75rem 1rem; border-bottom: 1px solid var(--border);
+}
+.orders-table td { padding: 1rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; vertical-align: middle; }
+.orders-table tr:last-child td { border-bottom: none; }
+.order-status {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+}
+.status-delivered { background: rgba(34,197,94,0.1); color: var(--success); }
+.status-processing { background: rgba(59,130,246,0.1); color: var(--info); }
+.status-shipped { background: rgba(245,158,11,0.1); color: var(--warning); }
+.status-cancelled { background: rgba(255,61,87,0.1); color: var(--accent); }
+
+/* ADMIN */
+.admin-grid { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; padding-top: 72px; }
+.admin-sidebar {
+  background: var(--surface); border-right: 1px solid var(--border);
+  padding: 2rem 1rem; position: sticky; top: 72px; height: calc(100vh - 72px); overflow-y: auto;
+}
+.admin-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; padding: 0 0.75rem; margin-bottom: 2rem; color: var(--accent); }
+.admin-nav-group { margin-bottom: 1.5rem; }
+.admin-nav-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text3); padding: 0 0.75rem; margin-bottom: 0.5rem; }
+.admin-nav-btn {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.75rem; border-radius: var(--radius);
+  background: none; color: var(--text2); font-size: 0.875rem;
+  transition: var(--transition); width: 100%; text-align: left;
+}
+.admin-nav-btn:hover { background: var(--surface2); color: var(--text); }
+.admin-nav-btn.active { background: rgba(255,61,87,0.1); color: var(--accent); }
+.admin-nav-btn i { width: 18px; text-align: center; }
+.admin-main { padding: 2rem; }
+.admin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
+.admin-header h2 { font-size: 1.5rem; font-weight: 800; }
+.admin-section { display: none; }
+.admin-section.active { display: block; }
+.analytics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+.mini-chart-bar {
+  display: flex; align-items: flex-end; gap: 4px; height: 64px;
+  margin-top: 0.75rem;
+}
+.mini-chart-bar .bar {
+  flex: 1; border-radius: 4px 4px 0 0; background: linear-gradient(to top, #FF3D57, #FF8C42);
+  opacity: 0.7; transition: opacity 0.2s;
+}
+.mini-chart-bar .bar:hover { opacity: 1; }
+.table-wrapper {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.table-header {
+  padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.table-header h3 { font-size: 1rem; font-weight: 700; }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--text3); padding: 0.75rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface3);
+}
+.data-table td { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); font-size: 0.875rem; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--surface3); }
+.action-btns { display: flex; gap: 0.5rem; }
+.action-btn {
+  width: 30px; height: 30px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; transition: var(--transition);
+}
+.action-edit { background: rgba(59,130,246,0.1); color: var(--info); }
+.action-edit:hover { background: rgba(59,130,246,0.2); }
+.action-delete { background: rgba(255,61,87,0.1); color: var(--accent); }
+.action-delete:hover { background: rgba(255,61,87,0.2); }
+
+/* TRACKING */
+.tracking-steps { display: flex; flex-direction: column; gap: 0; margin: 2rem 0; }
+.tracking-step { display: flex; gap: 1rem; position: relative; }
+.tracking-step:not(:last-child)::after {
+  content: ''; position: absolute; left: 19px; top: 44px;
+  width: 2px; height: calc(100% - 12px); background: var(--border);
+}
+.tracking-step.done::after { background: var(--success); }
+.step-icon {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; background: var(--surface2); border: 2px solid var(--border);
+  z-index: 1; position: relative;
+}
+.tracking-step.done .step-icon { background: var(--success); border-color: var(--success); color: #fff; }
+.tracking-step.active .step-icon { border-color: var(--accent); color: var(--accent); background: rgba(255,61,87,0.1); }
+.step-info { padding: 0.5rem 0 1.5rem; }
+.step-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+.step-time { font-size: 0.75rem; color: var(--text3); }
+.step-desc { font-size: 0.8rem; color: var(--text2); margin-top: 0.25rem; }
+
+/* TOAST */
+.toast-container { position: fixed; top: 90px; right: 1.5rem; z-index: 9999; display: flex; flex-direction: column; gap: 0.75rem; }
+.toast {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1rem 1.25rem;
+  display: flex; align-items: center; gap: 0.75rem; min-width: 280px; max-width: 360px;
+  box-shadow: var(--shadow); animation: slideIn 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes slideIn { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+.toast.exit { animation: slideOut 0.3s ease forwards; }
+@keyframes slideOut { to { transform: translateX(120%); opacity: 0; } }
+.toast-icon { font-size: 1.1rem; flex-shrink: 0; }
+.toast-icon.success { color: var(--success); }
+.toast-icon.error { color: var(--accent); }
+.toast-icon.info { color: var(--info); }
+.toast-text { flex: 1; font-size: 0.875rem; }
+.toast-title { font-weight: 600; margin-bottom: 0.1rem; }
+.toast-sub { font-size: 0.8rem; color: var(--text2); }
+
+/* FOOTER */
+footer {
+  background: var(--surface); border-top: 1px solid var(--border);
+  padding: 4rem 0 2rem; margin-top: 5rem;
+}
+.footer-grid {
+  max-width: 1440px; margin: 0 auto; padding: 0 2rem;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+}
+.footer-brand p { font-size: 0.9rem; color: var(--text2); line-height: 1.7; margin: 1rem 0 1.5rem; max-width: 300px; }
+.social-links { display: flex; gap: 0.75rem; }
+.social-link {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text2); display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; transition: var(--transition);
+}
+.social-link:hover { color: var(--text); border-color: var(--border2); }
+.footer-col h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+.footer-links { display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a { font-size: 0.875rem; color: var(--text2); transition: var(--transition); }
+.footer-links a:hover { color: var(--text); }
+.footer-bottom {
+  max-width: 1440px; margin: 3rem auto 0; padding: 1.5rem 2rem 0;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.8rem; color: var(--text3);
+}
+.newsletter-form { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+.newsletter-form input {
+  flex: 1; padding: 0.65rem 1rem; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: 100px;
+  color: var(--text); font-size: 0.85rem;
+}
+.newsletter-form input::placeholder { color: var(--text3); }
+.newsletter-form input:focus { outline: none; border-color: var(--accent); }
+.newsletter-form button {
+  padding: 0.65rem 1.25rem; background: linear-gradient(135deg, #FF3D57, #FF8C42);
+  color: #fff; border: none; border-radius: 100px; font-size: 0.85rem; font-weight: 600;
+}
+
+/* MISC */
+.breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text3); margin-bottom: 2rem; }
+.breadcrumb a { cursor: pointer; transition: var(--transition); }
+.breadcrumb a:hover { color: var(--text); }
+.breadcrumb .sep { color: var(--text3); }
+.page-hero {
+  padding: 6rem 0 3rem; background: var(--surface);
+  border-bottom: 1px solid var(--border); margin-bottom: 0;
+}
+.page-hero h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; }
+.page-hero p { color: var(--text2); margin-top: 0.75rem; }
+.wishlist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+.faq-list { max-width: 720px; margin: 0 auto; }
+.faq-item {
+  border-bottom: 1px solid var(--border); padding: 1.5rem 0;
+}
+.faq-question {
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; font-weight: 600; font-size: 0.95rem; gap: 1rem;
+}
+.faq-icon { font-size: 1rem; color: var(--text3); flex-shrink: 0; transition: var(--transition); }
+.faq-item.open .faq-icon { transform: rotate(180deg); color: var(--accent); }
+.faq-answer { font-size: 0.9rem; color: var(--text2); line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; }
+.faq-item.open .faq-answer { max-height: 300px; padding-top: 1rem; }
+.policy-content { max-width: 800px; margin: 0 auto; }
+.policy-content h3 { font-size: 1.1rem; font-weight: 700; margin: 2rem 0 0.75rem; }
+.policy-content p, .policy-content li { font-size: 0.9rem; color: var(--text2); line-height: 1.8; }
+.policy-content ul { padding-left: 1.5rem; }
+.policy-content li { margin-bottom: 0.5rem; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.25rem; display: flex; gap: 1rem;
+}
+.contact-card-icon {
+  width: 48px; height: 48px; border-radius: var(--radius);
+  background: rgba(255,61,87,0.1); color: var(--accent);
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+}
+.contact-card h4 { font-weight: 600; margin-bottom: 0.25rem; }
+.contact-card p { font-size: 0.85rem; color: var(--text2); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.about-visual {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-xl); height: 400px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 6rem; color: var(--text3);
+}
+.values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.value-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.25rem;
+}
+.value-card i { font-size: 1.3rem; color: var(--accent); margin-bottom: 0.75rem; display: block; }
+.value-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.35rem; }
+.value-card p { font-size: 0.8rem; color: var(--text2); line-height: 1.6; }
+
+/* LOYALTY POINTS */
+.loyalty-bar { height: 8px; border-radius: 4px; background: var(--surface3); overflow: hidden; margin: 0.5rem 0; }
+.loyalty-progress { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #FF3D57, #FF8C42); transition: width 1s ease; }
+
+/* CHATBOT */
+.chatbot-btn {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 1500;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, #FF3D57, #FF8C42);
+  color: #fff; font-size: 1.3rem; display: flex;
+  align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(255,61,87,0.4);
+  animation: pulse-shadow 2s infinite;
+}
+@keyframes pulse-shadow { 0%,100% { box-shadow: 0 8px 24px rgba(255,61,87,0.4); } 50% { box-shadow: 0 8px 48px rgba(255,61,87,0.6); } }
+.chatbot-window {
+  position: fixed; bottom: 6rem; right: 2rem; z-index: 1500;
+  width: 360px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg); overflow: hidden;
+  transform: scale(0.8) translateY(20px); opacity: 0; visibility: hidden;
+  transition: 0.3s cubic-bezier(0.4,0,0.2,1); transform-origin: bottom right;
+}
+.chatbot-window.open { transform: scale(1) translateY(0); opacity: 1; visibility: visible; }
+.chatbot-header {
+  padding: 1rem 1.25rem; background: linear-gradient(135deg, #FF3D57, #FF8C42);
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.chatbot-avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; }
+.chatbot-header-info h4 { font-weight: 700; font-size: 0.9rem; color: #fff; }
+.chatbot-header-info p { font-size: 0.75rem; color: rgba(255,255,255,0.7); }
+.chatbot-body { height: 320px; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.chat-msg { display: flex; gap: 0.5rem; }
+.chat-msg.user { flex-direction: row-reverse; }
+.chat-bubble {
+  max-width: 240px; padding: 0.65rem 0.9rem; border-radius: 18px;
+  font-size: 0.85rem; line-height: 1.5;
+}
+.chat-msg.bot .chat-bubble { background: var(--surface2); color: var(--text); border-bottom-left-radius: 4px; }
+.chat-msg.user .chat-bubble { background: linear-gradient(135deg, #FF3D57, #FF8C42); color: #fff; border-bottom-right-radius: 4px; }
+.chatbot-footer {
+  padding: 0.75rem 1rem; border-top: 1px solid var(--border);
+  display: flex; gap: 0.5rem;
+}
+.chatbot-footer input {
+  flex: 1; padding: 0.5rem 0.75rem;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 100px; color: var(--text); font-size: 0.85rem;
+}
+.chatbot-footer input:focus { outline: none; border-color: var(--accent); }
+.chatbot-footer button {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, #FF3D57, #FF8C42);
+  color: #fff; font-size: 0.9rem; display: flex; align-items: center; justify-content: center;
+}
+
+/* MOBILE NAV */
+.mobile-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 900;
+  background: rgba(10,10,15,0.95); border-top: 1px solid var(--border);
+  display: none; padding: 0.5rem 0; padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  backdrop-filter: blur(20px);
+}
+.mobile-nav-items { display: flex; justify-content: space-around; }
+.mobile-nav-item {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.25rem; padding: 0.5rem 1rem; background: none;
+  color: var(--text3); font-size: 0.65rem; transition: var(--transition);
+}
+.mobile-nav-item.active, .mobile-nav-item:hover { color: var(--accent); }
+.mobile-nav-item i { font-size: 1.3rem; }
+
+/* SEARCH SUGGESTIONS */
+.search-suggestions {
+  position: absolute; top: 100%; left: 0; right: 0;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); margin-top: 0.5rem;
+  z-index: 100; overflow: hidden; display: none;
+}
+.search-suggestions.show { display: block; }
+.suggestion-item {
+  padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.75rem;
+  cursor: pointer; font-size: 0.875rem; transition: var(--transition);
+}
+.suggestion-item:hover { background: var(--surface3); }
+.suggestion-item i { color: var(--text3); font-size: 0.8rem; }
+
+/* AI RECOMMENDATIONS */
+.ai-rec-banner {
+  background: linear-gradient(135deg, rgba(255,61,87,0.1), rgba(255,140,66,0.1));
+  border: 1px solid rgba(255,61,87,0.2); border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2rem;
+}
+.ai-rec-banner i { font-size: 1.5rem; color: var(--accent); }
+.ai-rec-banner h4 { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+.ai-rec-banner p { font-size: 0.8rem; color: var(--text2); }
+
+/* LOYALTY PROGRAM */
+.loyalty-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.tier-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem; text-align: center;
+}
+.tier-badge { font-size: 2rem; margin-bottom: 0.75rem; }
+.tier-card h3 { font-weight: 800; font-size: 1rem; margin-bottom: 0.5rem; }
+.tier-card p { font-size: 0.8rem; color: var(--text2); }
+.tier-card.active { border-color: var(--gold); }
+
+/* SCROLL */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border2); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .admin-grid { grid-template-columns: 1fr; }
+  .admin-sidebar { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .filter-layout { grid-template-columns: 1fr; }
+  .filter-sidebar { position: relative; top: auto; }
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-visual { display: none; }
+  .hero-stats { justify-content: center; }
+  .hero p { margin: 0 auto 2rem; }
+  .hero-actions { justify-content: center; }
+  .product-detail-grid { grid-template-columns: 1fr; }
+  .checkout-grid { grid-template-columns: 1fr; }
+  .order-summary-card { position: relative; top: auto; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .analytics-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .nav-search { max-width: none; flex: 1; }
+  .hamburger { display: flex; }
+  .mobile-nav { display: block; }
+  body { padding-bottom: 70px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .sidebar-panel { width: 100%; }
+  .loyalty-tiers { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .chatbot-window { width: calc(100vw - 2rem); right: 1rem; }
+  .values-grid { grid-template-columns: 1fr; }
+  .page-hero { padding: 5rem 0 2.5rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .nav-inner { padding: 0 1rem; }
+  .section-inner { padding: 0 1rem; }
+  .section { padding: 3rem 0; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home')">Nex<span>Mart</span></div>
+    <div class="nav-search">
+      <i class="fa fa-search search-icon"></i>
+      <input type="text" id="searchInput" placeholder="Search products, brands..." oninput="handleSearch(this.value)" onfocus="showSuggestions()" onblur="hideSuggestions()">
+      <button class="search-btn" onclick="doSearch()">Search</button>
+      <div class="search-suggestions" id="searchSuggestions">
+        <div class="suggestion-item" onclick="searchFor('iPhone 15 Pro')"><i class="fa fa-search"></i> iPhone 15 Pro</div>
+        <div class="suggestion-item" onclick="searchFor('Nike Air Max')"><i class="fa fa-search"></i> Nike Air Max</div>
+        <div class="suggestion-item" onclick="searchFor('Samsung TV')"><i class="fa fa-search"></i> Samsung 4K TV</div>
+        <div class="suggestion-item" onclick="searchFor('Laptop')"><i class="fa fa-search"></i> Gaming Laptop</div>
+        <div class="suggestion-item" onclick="searchFor('Headphones')"><i class="fa fa-search"></i> Wireless Headphones</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a onclick="showPage('home')" style="cursor:pointer">Home</a></li>
+      <li><a onclick="showPage('products')" style="cursor:pointer">Products</a></li>
+      <li><a onclick="showPage('about')" style="cursor:pointer">About</a></li>
+      <li><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="toggleWishlistSidebar()" title="Wishlist">
+        <i class="fa fa-heart"></i>
+        <span class="badge" id="wishlistBadge">0</span>
+      </button>
+      <button class="nav-btn" onclick="toggleCart()" title="Cart">
+        <i class="fa fa-shopping-cart"></i>
+        <span class="badge" id="cartBadge">0</span>
+      </button>
+      <button class="nav-btn" onclick="showPage('dashboard')" title="Account">
+        <i class="fa fa-user"></i>
+      </button>
+      <button class="btn-primary" onclick="openAuth()" id="loginBtn" style="padding:0.5rem 1rem;font-size:0.85rem;">Sign In</button>
+      <button class="hamburger" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu" style="position:fixed;top:72px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);z-index:999;padding:1rem 2rem;display:none;flex-direction:column;gap:0.5rem;">
+  <a onclick="showPage('home');toggleMobileMenu()" style="padding:0.75rem;cursor:pointer;font-size:0.95rem;">🏠 Home</a>
+  <a onclick="showPage('products');toggleMobileMenu()" style="padding:0.75rem;cursor:pointer;font-size:0.95rem;">🛍️ Products</a>
+  <a onclick="showPage('categories');toggleMobileMenu()" style="padding:0.75rem;cursor:pointer;font-size:0.95rem;">📂 Categories</a>
+  <a onclick="showPage('about');toggleMobileMenu()" style="padding:0.75rem;cursor:pointer;font-size:0.95rem;">ℹ️ About</a>
+  <a onclick="showPage('contact');toggleMobileMenu()" style="padding:0.75rem;cursor:pointer;font-size:0.95rem;">📞 Contact</a>
+  <a onclick="showPage('faq');toggleMobileMenu()" style="padding:0.75rem;cursor:pointer;font-size:0.95rem;">❓ FAQ</a>
+</div>
+
+<!-- PAGES -->
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="dot"></span> 2M+ Happy Customers</div>
+        <h1>Shop the <span class="gradient-text">Future</span> of Retail Today</h1>
+        <p>Discover millions of products across every category. Lightning-fast delivery, world-class brands, unbeatable prices.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="showPage('products')"><i class="fa fa-shopping-bag"></i> Shop Now</button>
+          <button class="btn-outline" onclick="showPage('categories')"><i class="fa fa-th"></i> Browse Categories</button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><h3>50K+</h3><p>Products</p></div>
+          <div class="hero-stat"><h3>2M+</h3><p>Customers</p></div>
+          <div class="hero-stat"><h3>4.9★</h3><p>Rating</p></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <div class="hero-card hero-card-main">
+            <div class="product-img-placeholder">👟</div>
+            <div class="product-info">
+              <div class="product-name">Air Max Pro 2024</div>
+              <div>
+                <span class="product-price">₹8,499</span>
+                <span class="product-old-price">₹12,999</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-card hero-card-mini hero-card-mini-1">
+            <div class="mini-label">Today's Sales</div>
+            <div class="mini-value">₹2,45,000</div>
+            <div class="mini-chart">
+              <div class="mini-bar" style="height:40%"></div>
+              <div class="mini-bar" style="height:70%"></div>
+              <div class="mini-bar" style="height:55%"></div>
+              <div class="mini-bar" style="height:90%"></div>
+              <div class="mini-bar" style="height:75%"></div>
+            </div>
+          </div>
+          <div class="hero-card hero-card-mini hero-card-mini-2">
+            <div class="mini-label">Orders Today</div>
+            <div class="mini-value">1,248</div>
+            <div style="color:var(--success);font-size:0.75rem;margin-top:0.25rem;">↑ 24% vs yesterday</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="section" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Browse by Category</div>
+        <h2>Shop Every Category</h2>
+        <p class="sub">From fashion to electronics, find everything you need in one place.</p>
+      </div>
+      <div class="categories-grid" id="categoriesGrid"></div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Hot Right Now</div>
+        <h2>Featured Products</h2>
+        <p class="sub">Handpicked deals and trending items just for you.</p>
+      </div>
+      <div class="ai-rec-banner">
+        <i class="fa fa-robot"></i>
+        <div>
+          <h4>AI-Powered Recommendations</h4>
+          <p>Personalized picks based on your browsing history and preferences</p>
+        </div>
+        <button class="btn-outline" style="margin-left:auto;font-size:0.8rem;padding:0.4rem 1rem;" onclick="showPage('products')">View All</button>
+      </div>
+      <div class="products-grid" id="featuredProducts"></div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <button class="btn-outline" onclick="showPage('products')"><i class="fa fa-th"></i> View All Products</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Banner -->
+  <section class="section" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="section-inner">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;">
+        <div style="display:flex;align-items:center;gap:1rem;padding:1.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-lg);">
+          <div style="font-size:2rem;">🚀</div>
+          <div><h4 style="font-size:0.9rem;font-weight:700;">Free Delivery</h4><p style="font-size:0.8rem;color:var(--text2);">On orders above ₹499</p></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;padding:1.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-lg);">
+          <div style="font-size:2rem;">🔒</div>
+          <div><h4 style="font-size:0.9rem;font-weight:700;">Secure Payment</h4><p style="font-size:0.8rem;color:var(--text2);">100% secure & encrypted</p></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;padding:1.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-lg);">
+          <div style="font-size:2rem;">↩️</div>
+          <div><h4 style="font-size:0.9rem;font-weight:700;">Easy Returns</h4><p style="font-size:0.8rem;color:var(--text2);">30-day hassle-free returns</p></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;padding:1.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-lg);">
+          <div style="font-size:2rem;">🎧</div>
+          <div><h4 style="font-size:0.9rem;font-weight:700;">24/7 Support</h4><p style="font-size:0.8rem;color:var(--text2);">Always here to help you</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section">
+    <div class="section-inner">
+      <div style="background:linear-gradient(135deg,var(--surface2),var(--surface3));border:1px solid var(--border);border-radius:var(--radius-xl);padding:3rem;text-align:center;">
+        <div class="section-label">Newsletter</div>
+        <h2>Get Exclusive Deals</h2>
+        <p style="color:var(--text2);margin:1rem auto 2rem;max-width:400px;">Subscribe and get 15% off your first order plus early access to sales.</p>
+        <div style="display:flex;gap:0.75rem;max-width:400px;margin:0 auto;">
+          <input type="email" placeholder="Enter your email" style="flex:1;padding:0.875rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:100px;color:var(--text);font-size:0.9rem;">
+          <button class="btn-primary" onclick="subscribeNewsletter()">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PRODUCTS PAGE -->
+<div class="page" id="page-products">
+  <div class="page-hero">
+    <div class="section-inner">
+      <div class="breadcrumb"><a onclick="showPage('home')">Home</a><span class="sep">/</span><span>Products</span></div>
+      <h1>All Products</h1>
+      <p>Discover our collection of 50,000+ products</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="section-inner">
+      <div class="filter-layout">
+        <!-- Filter Sidebar -->
+        <div class="filter-sidebar">
+          <h3 style="font-size:1rem;font-weight:700;margin-bottom:1.25rem;">Filters</h3>
+          <div class="filter-group">
+            <h4>Category</h4>
+            <div class="filter-options">
+              <label class="filter-option"><input type="checkbox" checked onchange="applyFilters()"> All Products</label>
+              <label class="filter-option"><input type="checkbox" onchange="applyFilters()"> Electronics</label>
+              <label class="filter-option"><input type="checkbox" onchange="applyFilters()"> Fashion</label>
+              <label class="filter-option"><input type="checkbox" onchange="applyFilters()"> Home & Living</label>
+              <label class="filter-option"><input type="checkbox" onchange="applyFilters()"> Sports</label>
+              <label class="filter-option"><input type="checkbox" onchange="applyFilters()"> Beauty</label>
+            </div>
+          </div>
+          <div class="filter-group">
+            <h4>Price Range</h4>
+            <div class="price-range-inputs">
+              <input type="number" placeholder="₹ Min" id="priceMin" value="0">
+              <span style="color:var(--text3);">—</span>
+              <input type="number" placeholder="₹ Max" id="priceMax" value="100000">
+            </div>
+            <input type="range" min="0" max="100000" value="50000" style="width:100%;margin-top:0.75rem;accent-color:var(--accent);" oninput="document.getElementById('priceMax').value=this.value">
+          </div>
+          <div class="filter-group">
+            <h4>Rating</h4>
+            <div class="filter-options">
+              <label class="filter-option"><input type="radio" name="rating"> ⭐⭐⭐⭐⭐ 5.0</label>
+              <label class="filter-option"><input type="radio" name="rating"> ⭐⭐⭐⭐ 4.0+</label>
+              <label class="filter-option"><input type="radio" name="rating"> ⭐⭐⭐ 3.0+</label>
+              <label class="filter-option"><input type="radio" name="rating" checked> Any Rating</label>
+            </div>
+          </div>
+          <div class="filter-group">
+            <h4>Colors</h4>
+            <div class="color-swatches">
+              <div class="color-swatch" style="background:#FF3D57" title="Red"></div>
+              <div class="color-swatch active" style="background:#3B82F6" title="Blue"></div>
+              <div class="color-swatch" style="background:#22C55E" title="Green"></div>
+              <div class="color-swatch" style="background:#F59E0B" title="Yellow"></div>
+              <div class="color-swatch" style="background:#8B5CF6" title="Purple"></div>
+              <div class="color-swatch" style="background:#F0F0F5" title="White"></div>
+              <div class="color-swatch" style="background:#1C1C27;border:1px solid var(--border)" title="Black"></div>
+            </div>
+          </div>
+          <div class="filter-group">
+            <h4>Availability</h4>
+            <label class="filter-option"><input type="checkbox" checked> In Stock</label>
+            <label class="filter-option" style="margin-top:0.5rem;"><input type="checkbox"> Include Out of Stock</label>
+          </div>
+          <div class="filter-group">
+            <h4>Discount</h4>
+            <div class="filter-options">
+              <label class="filter-option"><input type="checkbox"> 10% or more</label>
+              <label class="filter-option"><input type="checkbox"> 25% or more</label>
+              <label class="filter-option"><input type="checkbox"> 50% or more</label>
+            </div>
+          </div>
+          <button class="btn-primary" style="width:100%;justify-content:center;" onclick="applyFilters()">Apply Filters</button>
+          <button class="btn-outline" style="width:100%;justify-content:center;margin-top:0.5rem;" onclick="resetFilters()">Reset All</button>
+        </div>
+        <!-- Products Grid -->
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+            <p style="color:var(--text2);font-size:0.9rem;">Showing <strong style="color:var(--text);">48</strong> products</p>
+            <div style="display:flex;gap:0.75rem;align-items:center;">
+              <select style="padding:0.5rem 0.75rem;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:0.85rem;">
+                <option>Sort by: Popularity</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest First</option>
+                <option>Best Rated</option>
+              </select>
+            </div>
+          </div>
+          <div class="products-grid" id="allProductsGrid"></div>
+          <div style="display:flex;justify-content:center;gap:0.5rem;margin-top:2rem;">
+            <button class="btn-outline" style="min-width:40px;height:40px;padding:0;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;">‹</button>
+            <button class="btn-primary" style="min-width:40px;height:40px;padding:0;border-radius:var(--radius);">1</button>
+            <button class="btn-outline" style="min-width:40px;height:40px;padding:0;border-radius:var(--radius);">2</button>
+            <button class="btn-outline" style="min-width:40px;height:40px;padding:0;border-radius:var(--radius);">3</button>
+            <button class="btn-outline" style="min-width:40px;height:40px;padding:0;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PRODUCT DETAIL PAGE -->
+<div class="page" id="page-product-detail">
+  <section class="section" style="padding-top:6rem;">
+    <div class="section-inner">
+      <div class="breadcrumb"><a onclick="showPage('home')">Home</a><span class="sep">/</span><a onclick="showPage('products')">Products</a><span class="sep">/</span><span id="detailBreadcrumb">Product</span></div>
+      <div class="product-detail-grid" id="productDetailContent"></div>
+      <!-- Related Products -->
+      <div style="margin-top:4rem;">
+        <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem;">You May Also Like</h2>
+        <div class="products-grid" id="relatedProducts"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CART/CHECKOUT PAGE -->
+<div class="page" id="page-checkout">
+  <section class="section" style="padding-top:6rem;">
+    <div class="section-inner">
+      <div class="breadcrumb"><a onclick="showPage('home')">Home</a><span class="sep">/</span><span>Checkout</span></div>
+      <h1 style="font-size:1.8rem;font-weight:800;margin-bottom:2rem;">Secure Checkout</h1>
+      <div class="checkout-grid">
+        <div>
+          <!-- Address -->
+          <div class="checkout-card">
+            <h3><span>1</span> Delivery Address</h3>
+            <div class="form-row">
+              <div class="form-group"><label>First Name</label><input type="text" placeholder="John"></div>
+              <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe"></div>
+            </div>
+            <div class="form-group"><label>Mobile Number</label><input type="tel" placeholder="+91 98765 43210"></div>
+            <div class="form-group"><label>Address Line</label><input type="text" placeholder="House No, Street, Area"></div>
+            <div class="form-row">
+              <div class="form-group"><label>City</label><input type="text" placeholder="Mumbai"></div>
+              <div class="form-group"><label>Pincode</label><input type="text" placeholder="400001"></div>
+            </div>
+            <div class="form-group"><label>State</label><select><option>Maharashtra</option><option>Delhi</option><option>Uttar Pradesh</option><option>Karnataka</option><option>Tamil Nadu</option></select></div>
+          </div>
+          <!-- OTP Verification -->
+          <div class="checkout-card">
+            <h3><span>2</span> OTP Verification</h3>
+            <p style="font-size:0.875rem;color:var(--text2);margin-bottom:1rem;">Enter OTP sent to your mobile number</p>
+            <div class="otp-inputs">
+              <input type="text" maxlength="1" class="otp-input" oninput="moveNext(this)">
+              <input type="text" maxlength="1" class="otp-input" oninput="moveNext(this)">
+              <input type="text" maxlength="1" class="otp-input" oninput="moveNext(this)">
+              <input type="text" maxlength="1" class="otp-input" oninput="moveNext(this)">
+              <input type="text" maxlength="1" class="otp-input" oninput="moveNext(this)">
+              <input type="text" maxlength="1" class="otp-input">
+            </div>
+            <button class="btn-outline" style="font-size:0.8rem;padding:0.4rem 0.9rem;">Resend OTP</button>
+          </div>
+          <!-- Payment -->
+          <div class="checkout-card">
+            <h3><span>3</span> Payment Method</h3>
+            <div class="payment-options">
+              <div class="payment-option selected" onclick="selectPayment(this)">
+                <input type="radio" name="payment" checked>
+                <div class="payment-icon">📱</div>
+                <div><div class="payment-label">UPI</div><div class="payment-sub">GPay, PhonePe, Paytm, BHIM</div></div>
+              </div>
+              <div class="payment-option" onclick="selectPayment(this)">
+                <input type="radio" name="payment">
+                <div class="payment-icon">💳</div>
+                <div><div class="payment-label">Credit / Debit Card</div><div class="payment-sub">Visa, Mastercard, RuPay</div></div>
+              </div>
+              <div class="payment-option" onclick="selectPayment(this)">
+                <input type="radio" name="payment">
+                <div class="payment-icon">🏦</div>
+                <div><div class="payment-label">Net Banking</div><div class="payment-sub">All major banks supported</div></div>
+              </div>
+              <div class="payment-option" onclick="selectPayment(this)">
+                <input type="radio" name="payment">
+                <div class="payment-icon">👛</div>
+                <div><div class="payment-label">Wallets</div><div class="payment-sub">Mobikwik, Freecharge, Amazon Pay</div></div>
+              </div>
+              <div class="payment-option" onclick="selectPayment(this)">
+                <input type="radio" name="payment">
+                <div class="payment-icon">💵</div>
+                <div><div class="payment-label">Cash on Delivery</div><div class="payment-sub">Pay when delivered</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Order Summary -->
+        <div class="order-summary-card">
+          <div class="checkout-card">
+            <h3 style="border-bottom:1px solid var(--border);padding-bottom:1rem;margin-bottom:1rem;">Order Summary</h3>
+            <div id="checkoutItems"></div>
+            <div style="margin:1rem 0;padding-top:1rem;border-top:1px solid var(--border);">
+              <div class="order-line"><span>Subtotal</span><span id="checkoutSubtotal">₹0</span></div>
+              <div class="order-line"><span>Delivery</span><span style="color:var(--success);">FREE</span></div>
+              <div class="order-line"><span>Discount</span><span id="checkoutDiscount" style="color:var(--success);">-₹0</span></div>
+              <div class="order-line total"><span>Total</span><span id="checkoutTotal">₹0</span></div>
+            </div>
+            <!-- Coupon -->
+            <div class="coupon-row">
+              <input type="text" id="couponInput" placeholder="Enter coupon code" style="padding:0.6rem 0.9rem;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:0.85rem;">
+              <button class="btn-primary" style="padding:0.6rem 1rem;font-size:0.85rem;" onclick="applyCoupon()">Apply</button>
+            </div>
+            <div id="couponMsg" style="font-size:0.8rem;margin-top:0.5rem;"></div>
+            <div style="font-size:0.75rem;color:var(--text3);margin:0.75rem 0;">💡 Try: <span onclick="applyCouponCode('NEWNEX15')" style="color:var(--accent);cursor:pointer;">NEWNEX15</span> or <span onclick="applyCouponCode('SAVE50')" style="color:var(--accent);cursor:pointer;">SAVE50</span></div>
+            <button class="btn-primary" style="width:100%;justify-content:center;padding:1rem;" onclick="placeOrder()">
+              <i class="fa fa-lock"></i> Place Order Securely
+            </button>
+            <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:0.75rem;font-size:0.75rem;color:var(--text3);">
+              <i class="fa fa-shield-alt"></i> SSL Encrypted · Secure Checkout
+            </div>
+          </div>
+          <!-- Loyalty Points -->
+          <div class="checkout-card">
+            <h3 style="font-size:0.9rem;"><span>🏆</span> Loyalty Rewards</h3>
+            <p style="font-size:0.8rem;color:var(--text2);">You'll earn <strong style="color:var(--gold);">248 NexPoints</strong> on this order</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- DASHBOARD PAGE -->
+<div class="page" id="page-dashboard">
+  <div class="page-hero">
+    <div class="section-inner">
+      <h1>My Dashboard</h1>
+      <p>Manage your orders, profile, and preferences</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="section-inner">
+      <div class="dashboard-grid">
+        <!-- Sidebar -->
+        <div class="dash-sidebar">
+          <div class="dash-user">
+            <div class="dash-avatar">AK</div>
+            <div class="dash-name">Arjun Kumar</div>
+            <div class="dash-email">arjun@example.com</div>
+          </div>
+          <div class="dash-nav">
+            <button class="dash-nav-btn active" onclick="switchDashTab(this,'overview')"><i class="fa fa-th-large" style="width:18px;"></i> Overview</button>
+            <button class="dash-nav-btn" onclick="switchDashTab(this,'orders')"><i class="fa fa-box" style="width:18px;"></i> My Orders</button>
+            <button class="dash-nav-btn" onclick="switchDashTab(this,'wishlist')"><i class="fa fa-heart" style="width:18px;"></i> Wishlist</button>
+            <button class="dash-nav-btn" onclick="switchDashTab(this,'tracking')"><i class="fa fa-map-marker-alt" style="width:18px;"></i> Track Order</button>
+            <button class="dash-nav-btn" onclick="switchDashTab(this,'addresses')"><i class="fa fa-map" style="width:18px;"></i> Addresses</button>
+            <button class="dash-nav-btn" onclick="switchDashTab(this,'loyalty')"><i class="fa fa-star" style="width:18px;"></i> Loyalty Rewards</button>
+            <button class="dash-nav-btn" onclick="switchDashTab(this,'referral')"><i class="fa fa-user-plus" style="width:18px;"></i> Referral Program</button>
+            <button class="dash-nav-btn" onclick="switchDashTab(this,'settings')"><i class="fa fa-cog" style="width:18px;"></i> Settings</button>
+            <div style="height:1px;background:var(--border);margin:0.75rem 0;"></div>
+            <button class="dash-nav-btn" onclick="openAdmin()"><i class="fa fa-shield-alt" style="width:18px;"></i> Admin Panel</button>
+            <button class="dash-nav-btn" onclick="signOut()"><i class="fa fa-sign-out-alt" style="width:18px;"></i> Sign Out</button>
+          </div>
+        </div>
+        <!-- Content -->
+        <div class="dash-content">
+          <!-- Overview -->
+          <div class="dash-section active" id="dash-overview">
+            <div class="stats-row">
+              <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(255,61,87,0.1);color:var(--accent);"><i class="fa fa-box"></i></div>
+                <div class="stat-label">Total Orders</div>
+                <div class="stat-val">24</div>
+                <div class="stat-change positive">↑ 3 this month</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(34,197,94,0.1);color:var(--success);"><i class="fa fa-check-circle"></i></div>
+                <div class="stat-label">Delivered</div>
+                <div class="stat-val">21</div>
+                <div class="stat-change positive">↑ 87.5% rate</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(255,215,0,0.1);color:var(--gold);"><i class="fa fa-star"></i></div>
+                <div class="stat-label">NexPoints</div>
+                <div class="stat-val">3,240</div>
+                <div class="stat-change positive">↑ 248 earned</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(59,130,246,0.1);color:var(--info);"><i class="fa fa-heart"></i></div>
+                <div class="stat-label">Wishlist</div>
+                <div class="stat-val" id="dashWishlistCount">0</div>
+                <div class="stat-change" style="color:var(--text3);">Items saved</div>
+              </div>
+            </div>
+            <div class="table-wrapper">
+              <div class="table-header"><h3>Recent Orders</h3><button class="btn-outline" style="font-size:0.8rem;padding:0.4rem 0.9rem;" onclick="switchDashTab(document.querySelector('.dash-nav-btn:nth-child(2)'),'orders')">View All</button></div>
+              <table class="orders-table">
+                <thead><tr><th>Order ID</th><th>Items</th><th>Date</th><th>Total</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody>
+                  <tr><td>#NX82341</td><td>Nike Air Max, Polo Tee</td><td>Dec 15, 2024</td><td>₹9,248</td><td><span class="order-status status-delivered"><i class="fa fa-check"></i> Delivered</span></td><td><button class="btn-outline" style="font-size:0.75rem;padding:0.3rem 0.7rem;" onclick="switchDashTab(null,'tracking')">Track</button></td></tr>
+                  <tr><td>#NX82156</td><td>Samsung Galaxy Tab</td><td>Dec 10, 2024</td><td>₹32,999</td><td><span class="order-status status-shipped"><i class="fa fa-shipping-fast"></i> Shipped</span></td><td><button class="btn-outline" style="font-size:0.75rem;padding:0.3rem 0.7rem;" onclick="switchDashTab(null,'tracking')">Track</button></td></tr>
+                  <tr><td>#NX81987</td><td>Coffee Maker, Mug Set</td><td>Dec 5, 2024</td><td>₹4,599</td><td><span class="order-status status-processing"><i class="fa fa-clock"></i> Processing</span></td><td><button class="btn-outline" style="font-size:0.75rem;padding:0.3rem 0.7rem;" onclick="switchDashTab(null,'tracking')">Track</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Orders -->
+          <div class="dash-section" id="dash-orders">
+            <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:1.5rem;">My Orders</h2>
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+              <div class="checkout-card" style="margin:0;">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+                  <div>
+                    <div style="font-weight:700;margin-bottom:0.25rem;">Order #NX82341</div>
+                    <div style="font-size:0.8rem;color:var(--text3);">Placed on Dec 15, 2024</div>
+                    <div style="margin-top:0.75rem;display:flex;gap:0.75rem;align-items:center;">
+                      <div style="width:48px;height:48px;background:var(--surface3);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">👟</div>
+                      <div><div style="font-size:0.875rem;font-weight:600;">Nike Air Max Pro + 1 more</div><div style="font-size:0.8rem;color:var(--text3);">₹9,248 · 2 items</div></div>
+                    </div>
+                  </div>
+                  <div style="text-align:right;">
+                    <span class="order-status status-delivered"><i class="fa fa-check"></i> Delivered</span>
+                    <div style="margin-top:0.75rem;display:flex;gap:0.5rem;">
+                      <button class="btn-outline" style="font-size:0.8rem;padding:0.4rem 0.8rem;" onclick="switchDashTab(null,'tracking')">Track</button>
+                      <button class="btn-outline" style="font-size:0.8rem;padding:0.4rem 0.8rem;" onclick="showToast('Invoice downloaded!','success')"><i class="fa fa-download"></i> Invoice</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="checkout-card" style="margin:0;">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+                  <div>
+                    <div style="font-weight:700;margin-bottom:0.25rem;">Order #NX82156</div>
+                    <div style="font-size:0.8rem;color:var(--text3);">Placed on Dec 10, 2024</div>
+                    <div style="margin-top:0.75rem;display:flex;gap:0.75rem;align-items:center;">
+                      <div style="width:48px;height:48px;background:var(--surface3);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">📱</div>
+                      <div><div style="font-size:0.875rem;font-weight:600;">Samsung Galaxy Tab S9</div><div style="font-size:0.8rem;color:var(--text3);">₹32,999 · 1 item</div></div>
+                    </div>
+                  </div>
+                  <div style="text-align:right;">
+                    <span class="order-status status-shipped"><i class="fa fa-shipping-fast"></i> Shipped</span>
+                    <div style="margin-top:0.75rem;">
+                      <button class="btn-primary" style="font-size:0.8rem;padding:0.4rem 0.8rem;" onclick="switchDashTab(null,'tracking')">Track Package</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Wishlist -->
+          <div class="dash-section" id="dash-wishlist">
+            <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:1.5rem;">My Wishlist</h2>
+            <div class="wishlist-grid" id="wishlistGrid"></div>
+            <div id="emptyWishlist" style="display:none;text-align:center;padding:3rem;">
+              <div style="font-size:3rem;margin-bottom:1rem;">💔</div>
+              <h3>Your wishlist is empty</h3>
+              <p style="color:var(--text2);margin-top:0.5rem;">Save products you love by clicking the heart icon</p>
+              <button class="btn-primary" style="margin-top:1.5rem;" onclick="showPage('products')">Browse Products</button>
+            </div>
+          </div>
+          <!-- Tracking -->
+          <div class="dash-section" id="dash-tracking">
+            <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:1.5rem;">Track Order</h2>
+            <div class="checkout-card" style="margin-bottom:1.5rem;">
+              <div style="display:flex;gap:0.75rem;">
+                <input type="text" placeholder="Enter Order ID (e.g. #NX82156)" id="trackingInput" style="flex:1;padding:0.75rem;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);" value="#NX82156">
+                <button class="btn-primary" onclick="trackOrder()">Track</button>
+              </div>
+            </div>
+            <div class="checkout-card" id="trackingResult">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
+                <div>
+                  <h3 style="font-size:1rem;font-weight:700;">Order #NX82156</h3>
+                  <p style="font-size:0.85rem;color:var(--text2);">Samsung Galaxy Tab S9 · ETA: Dec 20, 2024</p>
+                </div>
+                <span class="order-status status-shipped">📦 In Transit</span>
+              </div>
+              <div class="tracking-steps">
+                <div class="tracking-step done">
+                  <div class="step-icon"><i class="fa fa-check"></i></div>
+                  <div class="step-info">
+                    <div class="step-title">Order Placed</div>
+                    <div class="step-time">Dec 10, 2024 · 2:30 PM</div>
+                    <div class="step-desc">Your order has been confirmed and payment received.</div>
+                  </div>
+                </div>
+                <div class="tracking-step done">
+                  <div class="step-icon"><i class="fa fa-check"></i></div>
+                  <div class="step-info">
+                    <div class="step-title">Processing</div>
+                    <div class="step-time">Dec 11, 2024 · 9:15 AM</div>
+                    <div class="step-desc">Warehouse is preparing your item for shipment.</div>
+                  </div>
+                </div>
+                <div class="tracking-step done">
+                  <div class="step-icon"><i class="fa fa-check"></i></div>
+                  <div class="step-info">
+                    <div class="step-title">Shipped</div>
+                    <div class="step-time">Dec 12, 2024 · 11:45 AM</div>
+                    <div class="step-desc">Package picked up by BlueDart Express. Tracking: BD789234561</div>
+                  </div>
+                </div>
+                <div class="tracking-step active">
+                  <div class="step-icon"><i class="fa fa-shipping-fast"></i></div>
+                  <div class="step-info">
+                    <div class="step-title">In Transit</div>
+                    <div class="step-time">Dec 14, 2024 · 6:00 AM</div>
+                    <div class="step-desc">Package is at Mumbai Hub. Expected delivery by Dec 20.</div>
+                  </div>
+                </div>
+                <div class="tracking-step">
+                  <div class="step-icon"><i class="fa fa-home"></i></div>
+                  <div class="step-info">
+                    <div class="step-title">Delivered</div>
+                    <div class="step-time">Expected: Dec 20, 2024</div>
+                    <div class="step-desc">Package will be delivered to your address.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Addresses -->
+          <div class="dash-section" id="dash-addresses">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+              <h2 style="font-size:1.3rem;font-weight:800;">Saved Addresses</h2>
+              <button class="btn-primary" style="font-size:0.85rem;padding:0.5rem 1rem;" onclick="showToast('Address form would open','info')"><i class="fa fa-plus"></i> Add New</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
+              <div class="checkout-card" style="margin:0;position:relative;border-color:var(--accent);">
+                <div style="position:absolute;top:0.75rem;right:0.75rem;font-size:0.7rem;background:rgba(255,61,87,0.1);color:var(--accent);padding:0.2rem 0.5rem;border-radius:6px;font-weight:600;">DEFAULT</div>
+                <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:0.5rem;">🏠 Home</h4>
+                <p style="font-size:0.85rem;color:var(--text2);line-height:1.6;">Arjun Kumar<br>42 Marine Drive, Nariman Point<br>Mumbai, Maharashtra - 400021<br>📞 +91 98765 43210</p>
+                <div style="display:flex;gap:0.5rem;margin-top:1rem;">
+                  <button class="btn-outline" style="font-size:0.8rem;padding:0.4rem 0.8rem;">Edit</button>
+                  <button class="btn-outline" style="font-size:0.8rem;padding:0.4rem 0.8rem;color:var(--accent);">Delete</button>
+                </div>
+              </div>
+              <div class="checkout-card" style="margin:0;">
+                <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:0.5rem;">🏢 Office</h4>
+                <p style="font-size:0.85rem;color:var(--text2);line-height:1.6;">Arjun Kumar<br>Bandra Kurla Complex, BKC<br>Mumbai, Maharashtra - 400051<br>📞 +91 98765 43210</p>
+                <div style="display:flex;gap:0.5rem;margin-top:1rem;">
+                  <button class="btn-outline" style="font-size:0.8rem;padding:0.4rem 0.8rem;">Edit</button>
+                  <button class="btn-outline" style="font-size:0.8rem;padding:0.4rem 0.8rem;color:var(--accent);">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Loyalty -->
+          <div class="dash-section" id="dash-loyalty">
+            <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:1.5rem;">Loyalty Rewards</h2>
+            <div class="checkout-card" style="margin-bottom:1.5rem;background:linear-gradient(135deg,rgba(255,215,0,0.05),rgba(255,140,66,0.05));border-color:rgba(255,215,0,0.2);">
+              <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;">
+                <div style="font-size:2.5rem;">🏆</div>
+                <div>
+                  <div style="font-size:0.8rem;color:var(--text3);">Your Points</div>
+                  <div style="font-size:2rem;font-weight:800;color:var(--gold);">3,240 pts</div>
+                </div>
+              </div>
+              <div style="font-size:0.85rem;color:var(--text2);margin-bottom:0.75rem;">Progress to Gold Tier (5,000 pts)</div>
+              <div class="loyalty-bar"><div class="loyalty-progress" style="width:64.8%;"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text3);margin-top:0.4rem;"><span>3,240 / 5,000</span><span>1,760 pts to Gold</span></div>
+            </div>
+            <div class="loyalty-tiers">
+              <div class="tier-card"><div class="tier-badge">🥉</div><h3>Bronze</h3><p>0 – 2,000 pts</p><p style="margin-top:0.5rem;font-size:0.75rem;color:var(--accent);">Current: Completed ✓</p></div>
+              <div class="tier-card active"><div class="tier-badge">🥈</div><h3>Silver</h3><p>2,000 – 5,000 pts</p><p style="margin-top:0.5rem;font-size:0.75rem;color:var(--gold);">Current Tier ★</p></div>
+              <div class="tier-card"><div class="tier-badge">🥇</div><h3>Gold</h3><p>5,000+ pts</p><p style="margin-top:0.5rem;font-size:0.75rem;color:var(--text3);">+5% cashback on all orders</p></div>
+            </div>
+          </div>
+          <!-- Referral -->
+          <div class="dash-section" id="dash-referral">
+            <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:1.5rem;">Referral Program</h2>
+            <div class="checkout-card" style="text-align:center;margin-bottom:1.5rem;">
+              <div style="font-size:3rem;margin-bottom:1rem;">🎁</div>
+              <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Invite Friends, Earn Rewards</h3>
+              <p style="color:var(--text2);font-size:0.875rem;margin-bottom:1.5rem;">You earn ₹200 and your friend gets ₹150 off their first order!</p>
+              <div style="background:var(--surface3);border:1px dashed var(--border2);border-radius:var(--radius);padding:1rem;display:flex;align-items:center;justify-content:space-between;max-width:320px;margin:0 auto 1rem;">
+                <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;letter-spacing:2px;">ARJUN-NX2024</span>
+                <button class="btn-primary" style="padding:0.4rem 0.8rem;font-size:0.8rem;" onclick="copyReferral()"><i class="fa fa-copy"></i> Copy</button>
+              </div>
+              <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;">
+                <button class="social-btn" style="width:auto;padding:0.5rem 1rem;" onclick="showToast('WhatsApp share opened!','success')"><i class="fab fa-whatsapp" style="color:#25D366;"></i> Share on WhatsApp</button>
+                <button class="social-btn" style="width:auto;padding:0.5rem 1rem;" onclick="showToast('Link copied!','success')"><i class="fa fa-link"></i> Copy Link</button>
+              </div>
+            </div>
+            <div class="stats-row" style="grid-template-columns:repeat(3,1fr);">
+              <div class="stat-card"><div class="stat-label">Referrals Sent</div><div class="stat-val">12</div></div>
+              <div class="stat-card"><div class="stat-label">Successful</div><div class="stat-val">8</div></div>
+              <div class="stat-card"><div class="stat-label">Earned</div><div class="stat-val">₹1,600</div></div>
+            </div>
+          </div>
+          <!-- Settings -->
+          <div class="dash-section" id="dash-settings">
+            <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:1.5rem;">Account Settings</h2>
+            <div class="checkout-card" style="margin-bottom:1.5rem;">
+              <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1.25rem;">Personal Information</h3>
+              <div class="form-row">
+                <div class="form-group"><label>First Name</label><input type="text" value="Arjun"></div>
+                <div class="form-group"><label>Last Name</label><input type="text" value="Kumar"></div>
+              </div>
+              <div class="form-group"><label>Email</label><input type="email" value="arjun@example.com"></div>
+              <div class="form-group"><label>Phone</label><input type="tel" value="+91 98765 43210"></div>
+              <button class="btn-primary" onclick="showToast('Profile updated!','success')">Save Changes</button>
+            </div>
+            <div class="checkout-card" style="margin-bottom:1.5rem;">
+              <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1.25rem;">Notifications</h3>
+              <div style="display:flex;flex-direction:column;gap:1rem;">
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                  <div><div style="font-size:0.875rem;font-weight:500;">Order Updates</div><div style="font-size:0.8rem;color:var(--text3);">Get notified about order status changes</div></div>
+                  <label style="position:relative;display:inline-block;width:44px;height:24px;"><input type="checkbox" checked style="opacity:0;width:0;height:0;"><span style="position:absolute;cursor:pointer;inset:0;background:var(--accent);border-radius:24px;transition:0.3s;"></span></label>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                  <div><div style="font-size:0.875rem;font-weight:500;">Deals & Offers</div><div style="font-size:0.8rem;color:var(--text3);">Exclusive deals and flash sales</div></div>
+                  <label style="position:relative;display:inline-block;width:44px;height:24px;"><input type="checkbox" checked style="opacity:0;width:0;height:0;"><span style="position:absolute;cursor:pointer;inset:0;background:var(--accent);border-radius:24px;transition:0.3s;"></span></label>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                  <div><div style="font-size:0.875rem;font-weight:500;">Newsletter</div><div style="font-size:0.8rem;color:var(--text3);">Weekly product highlights</div></div>
+                  <label style="position:relative;display:inline-block;width:44px;height:24px;"><input type="checkbox" style="opacity:0;width:0;height:0;"><span style="position:absolute;cursor:pointer;inset:0;background:var(--surface3);border:1px solid var(--border);border-radius:24px;transition:0.3s;"></span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ADMIN PAGE -->
+<div class="page" id="page-admin">
+  <div class="admin-grid">
+    <div class="admin-sidebar">
+      <div class="admin-logo">⚡ NexMart Admin</div>
+      <div class="admin-nav-group">
+        <div class="admin-nav-label">Main</div>
+        <button class="admin-nav-btn active" onclick="switchAdminTab(this,'analytics')"><i class="fa fa-chart-bar"></i> Analytics</button>
+        <button class="admin-nav-btn" onclick="switchAdminTab(this,'products')"><i class="fa fa-box-open"></i> Products</button>
+        <button class="admin-nav-btn" onclick="switchAdminTab(this,'orders')"><i class="fa fa-shopping-bag"></i> Orders</button>
+        <button class="admin-nav-btn" onclick="switchAdminTab(this,'customers')"><i class="fa fa-users"></i> Customers</button>
+        <button class="admin-nav-btn" onclick="switchAdminTab(this,'inventory')"><i class="fa fa-warehouse"></i> Inventory</button>
+        <button class="admin-nav-btn" onclick="switchAdminTab(this,'discounts')"><i class="fa fa-tag"></i> Discounts</button>
+      </div>
+      <div class="admin-nav-group">
+        <div class="admin-nav-label">Settings</div>
+        <button class="admin-nav-btn"><i class="fa fa-cog"></i> Configuration</button>
+        <button class="admin-nav-btn"><i class="fa fa-bell"></i> Notifications</button>
+      </div>
+      <div style="position:absolute;bottom:2rem;left:0;right:0;padding:0 1rem;">
+        <button class="admin-nav-btn" onclick="showPage('dashboard')"><i class="fa fa-arrow-left"></i> Back to Store</button>
+      </div>
+    </div>
+    <div class="admin-main">
+      <!-- Analytics -->
+      <div class="admin-section active" id="admin-analytics">
+        <div class="admin-header">
+          <h2>Sales Analytics</h2>
+          <div style="display:flex;gap:0.75rem;">
+            <select style="padding:0.5rem 0.75rem;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:0.85rem;">
+              <option>Last 30 Days</option><option>Last 7 Days</option><option>This Year</option>
+            </select>
+            <button class="btn-primary" style="font-size:0.85rem;padding:0.5rem 1rem;" onclick="showToast('Report exported!','success')"><i class="fa fa-download"></i> Export</button>
+          </div>
+        </div>
+        <div class="analytics-grid">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:rgba(255,61,87,0.1);color:var(--accent);"><i class="fa fa-rupee-sign"></i></div>
+            <div class="stat-label">Total Revenue</div>
+            <div class="stat-val">₹24.6L</div>
+            <div class="stat-change positive">↑ 18.2% vs last month</div>
+            <div class="mini-chart-bar" id="revChart"></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:rgba(59,130,246,0.1);color:var(--info);"><i class="fa fa-shopping-bag"></i></div>
+            <div class="stat-label">Total Orders</div>
+            <div class="stat-val">1,248</div>
+            <div class="stat-change positive">↑ 12.4%</div>
+            <div class="mini-chart-bar" id="ordChart"></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:rgba(34,197,94,0.1);color:var(--success);"><i class="fa fa-users"></i></div>
+            <div class="stat-label">New Customers</div>
+            <div class="stat-val">342</div>
+            <div class="stat-change positive">↑ 8.7%</div>
+            <div class="mini-chart-bar" id="custChart"></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:rgba(245,158,11,0.1);color:var(--warning);"><i class="fa fa-percentage"></i></div>
+            <div class="stat-label">Conversion Rate</div>
+            <div class="stat-val">3.8%</div>
+            <div class="stat-change negative">↓ 0.2%</div>
+            <div class="mini-chart-bar" id="convChart"></div>
+          </div>
+        </div>
+        <!-- Chart placeholder -->
+        <div class="table-wrapper" style="margin-bottom:1.5rem;padding:1.5rem;">
+          <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem;">Revenue Overview</h3>
+          <div style="display:flex;align-items:flex-end;gap:4px;height:120px;" id="mainChart"></div>
+          <div style="display:flex;gap:4px;margin-top:0.5rem;" id="mainChartLabels"></div>
+        </div>
+        <!-- Top Products -->
+        <div class="table-wrapper">
+          <div class="table-header"><h3>Top Selling Products</h3></div>
+          <table class="data-table">
+            <thead><tr><th>Product</th><th>Category</th><th>Revenue</th><th>Units</th><th>Stock</th></tr></thead>
+            <tbody>
+              <tr><td><div style="display:flex;align-items:center;gap:0.75rem;"><span style="font-size:1.2rem;">👟</span> Nike Air Max Pro</div></td><td>Footwear</td><td>₹3,24,000</td><td>38</td><td><span class="order-status status-delivered">In Stock</span></td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:0.75rem;"><span style="font-size:1.2rem;">📱</span> iPhone 15 Pro</div></td><td>Electronics</td><td>₹8,94,000</td><td>10</td><td><span class="order-status status-processing">Low Stock</span></td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:0.75rem;"><span style="font-size:1.2rem;">👔</span> Premium Polo Tee</div></td><td>Fashion</td><td>₹89,250</td><td>85</td><td><span class="order-status status-delivered">In Stock</span></td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:0.75rem;"><span style="font-size:1.2rem;">🎧</span> Sony WH-1000XM5</div></td><td>Electronics</td><td>₹1,49,250</td><td>15</td><td><span class="order-status status-cancelled">Out of Stock</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Products Admin -->
+      <div class="admin-section" id="admin-products">
+        <div class="admin-header">
+          <h2>Product Management</h2>
+          <button class="btn-primary" onclick="showAddProductModal()"><i class="fa fa-plus"></i> Add Product</button>
+        </div>
+        <div class="table-wrapper">
+          <div class="table-header">
+            <h3>All Products (50,000+)</h3>
+            <input type="search" placeholder="Search products..." style="padding:0.5rem 0.75rem;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:0.85rem;width:200px;">
+          </div>
+          <table class="data-table">
+            <thead><tr><th>Product</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="adminProductTable"></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Orders Admin -->
+      <div class="admin-section" id="admin-orders">
+        <div class="admin-header"><h2>Order Management</h2><button class="btn-outline" onclick="showToast('Orders exported!','success')"><i class="fa fa-download"></i> Export</button></div>
+        <div class="table-wrapper">
+          <div class="table-header"><h3>Recent Orders</h3><select style="padding:0.5rem;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:0.85rem;"><option>All Status</option><option>Processing</option><option>Shipped</option><option>Delivered</option></select></div>
+          <table class="data-table">
+            <thead><tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>#NX82341</td><td>Arjun Kumar</td><td>Nike Air Max Pro × 1</td><td>₹8,499</td><td><span class="order-status status-delivered">Delivered</span></td><td><div class="action-btns"><button class="action-btn action-edit"><i class="fa fa-eye"></i></button><button class="action-btn action-delete"><i class="fa fa-print"></i></button></div></td></tr>
+              <tr><td>#NX82156</td><td>Priya Sharma</td><td>Samsung Galaxy Tab × 1</td><td>₹32,999</td><td><span class="order-status status-shipped">Shipped</span></td><td><div class="action-btns"><button class="action-btn action-edit"><i class="fa fa-eye"></i></button><button class="action-btn action-delete" onclick="showToast('Status updated','success')"><i class="fa fa-edit"></i></button></div></td></tr>
+              <tr><td>#NX81987</td><td>Rahul Singh</td><td>Coffee Maker × 1</td><td>₹4,599</td><td><span class="order-status status-processing">Processing</span></td><td><div class="action-btns"><button class="action-btn action-edit"><i class="fa fa-eye"></i></button><button class="action-btn action-delete"><i class="fa fa-edit"></i></button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Customers Admin -->
+      <div class="admin-section" id="admin-customers">
+        <div class="admin-header"><h2>Customer Management</h2></div>
+        <div class="table-wrapper">
+          <div class="table-header"><h3>All Customers</h3></div>
+          <table class="data-table">
+            <thead><tr><th>Customer</th><th>Email</th><th>Orders</th><th>Total Spend</th><th>Tier</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td><div style="display:flex;align-items:center;gap:0.75rem;"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#FF3D57,#FF8C42);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;">AK</div> Arjun Kumar</div></td><td>arjun@example.com</td><td>24</td><td>₹1,24,560</td><td><span class="order-status status-shipped">🥈 Silver</span></td><td><div class="action-btns"><button class="action-btn action-edit"><i class="fa fa-eye"></i></button></div></td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:0.75rem;"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#3B82F6,#8B5CF6);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;">PS</div> Priya Sharma</div></td><td>priya@example.com</td><td>56</td><td>₹3,89,200</td><td><span class="order-status status-delivered">🥇 Gold</span></td><td><div class="action-btns"><button class="action-btn action-edit"><i class="fa fa-eye"></i></button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Inventory -->
+      <div class="admin-section" id="admin-inventory">
+        <div class="admin-header"><h2>Inventory Management</h2></div>
+        <div class="stats-row" style="margin-bottom:1.5rem;">
+          <div class="stat-card"><div class="stat-label">Total SKUs</div><div class="stat-val">50,248</div></div>
+          <div class="stat-card"><div class="stat-label">Low Stock</div><div class="stat-val" style="color:var(--warning);">124</div></div>
+          <div class="stat-card"><div class="stat-label">Out of Stock</div><div class="stat-val" style="color:var(--accent);">38</div></div>
+          <div class="stat-card"><div class="stat-label">Reorder Needed</div><div class="stat-val">62</div></div>
+        </div>
+        <div class="table-wrapper">
+          <div class="table-header"><h3>Low Stock Alerts</h3></div>
+          <table class="data-table">
+            <thead><tr><th>Product</th><th>SKU</th><th>Current Stock</th><th>Min Stock</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>iPhone 15 Pro 256GB</td><td>APL-IP15-256</td><td><span style="color:var(--warning);">5</span></td><td>20</td><td><button class="btn-primary" style="font-size:0.75rem;padding:0.3rem 0.7rem;" onclick="showToast('Reorder placed!','success')">Reorder</button></td></tr>
+              <tr><td>Sony WH-1000XM5</td><td>SNY-WH1000-BLK</td><td><span style="color:var(--accent);">0</span></td><td>10</td><td><button class="btn-primary" style="font-size:0.75rem;padding:0.3rem 0.7rem;" onclick="showToast('Reorder placed!','success')">Reorder</button></td></tr>
+              <tr><td>Samsung Galaxy S24</td><td>SAM-S24-BLK</td><td><span style="color:var(--warning);">8</span></td><td>15</td><td><button class="btn-primary" style="font-size:0.75rem;padding:0.3rem 0.7rem;" onclick="showToast('Reorder placed!','success')">Reorder</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Discounts -->
+      <div class="admin-section" id="admin-discounts">
+        <div class="admin-header"><h2>Discount Management</h2><button class="btn-primary" onclick="showToast('Coupon creation form opened','info')"><i class="fa fa-plus"></i> Create Coupon</button></div>
+        <div class="table-wrapper">
+          <div class="table-header"><h3>Active Coupons</h3></div>
+          <table class="data-table">
+            <thead><tr><th>Code</th><th>Type</th><th>Discount</th><th>Used</th><th>Expires</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td><code style="background:var(--surface3);padding:0.2rem 0.5rem;border-radius:4px;font-size:0.8rem;">NEWNEX15</code></td><td>Percentage</td><td>15% off</td><td>234</td><td>Dec 31, 2024</td><td><span class="order-status status-delivered">Active</span></td><td><div class="action-btns"><button class="action-btn action-edit"><i class="fa fa-edit"></i></button><button class="action-btn action-delete"><i class="fa fa-trash"></i></button></div></td></tr>
+              <tr><td><code style="background:var(--surface3);padding:0.2rem 0.5rem;border-radius:4px;font-size:0.8rem;">SAVE50</code></td><td>Fixed</td><td>₹50 off</td><td>891</td><td>Dec 25, 2024</td><td><span class="order-status status-delivered">Active</span></td><td><div class="action-btns"><button class="action-btn action-edit"><i class="fa fa-edit"></i></button><button class="action-btn action-delete"><i class="fa fa-trash"></i></button></div></td></tr>
+              <tr><td><code style="background:var(--surface3);padding:0.2rem 0.5rem;border-radius:4px;font-size:0.8rem;">FREESHIP</code></td><td>Shipping</td><td>Free Delivery</td><td>1,204</td><td>Jan 15, 2025</td><td><span class="order-status status-delivered">Active</span></td><td><div class="action-btns"><button class="action-btn action-edit"><i class="fa fa-edit"></i></button><button class="action-btn action-delete"><i class="fa fa-trash"></i></button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES PAGE -->
+<div class="page" id="page-categories">
+  <div class="page-hero"><div class="section-inner"><div class="breadcrumb"><a onclick="showPage('home')">Home</a><span class="sep">/</span><span>Categories</span></div><h1>All Categories</h1><p>Explore our vast collection across every category</p></div></div>
+  <section class="section"><div class="section-inner"><div class="categories-grid" id="allCategoriesGrid"></div></div></section>
+</div>
+
+<!-- ABOUT PAGE -->
+<div class="page" id="page-about">
+  <div class="page-hero"><div class="section-inner"><h1>About NexMart</h1><p>Redefining the future of e-commerce in India</p></div></div>
+  <section class="section"><div class="section-inner">
+    <div class="about-grid" style="margin-bottom:4rem;">
+      <div class="about-visual">🏪</div>
+      <div>
+        <div class="section-label">Our Story</div>
+        <h2 style="font-size:clamp(1.5rem,3vw,2.2rem);">Built for India, Built for the Future</h2>
+        <p style="color:var(--text2);margin:1rem 0;line-height:1.8;">NexMart was founded in 2019 with a simple mission: to make premium shopping accessible to every Indian. From our humble beginnings with 100 products, we've grown to over 50,000+ products and 2 million+ happy customers.</p>
+        <p style="color:var(--text2);line-height:1.8;">We believe shopping should be joyful, secure, and effortless. That's why we've built an AI-powered platform that learns your preferences and delivers personalized experiences unlike anything else.</p>
+        <div class="values-grid">
+          <div class="value-card"><i class="fa fa-heart"></i><h4>Customer First</h4><p>Every decision we make starts with your happiness in mind.</p></div>
+          <div class="value-card"><i class="fa fa-shield-alt"></i><h4>Trust & Safety</h4><p>Bank-grade security on every transaction you make.</p></div>
+          <div class="value-card"><i class="fa fa-rocket"></i><h4>Innovation</h4><p>Constantly building the next generation of shopping tech.</p></div>
+          <div class="value-card"><i class="fa fa-leaf"></i><h4>Sustainability</h4><p>Carbon-neutral packaging and eco-friendly operations.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="stats-row" style="margin-bottom:4rem;">
+      <div class="stat-card" style="text-align:center;"><div class="stat-val" style="font-size:2rem;color:var(--accent);">50K+</div><div class="stat-label">Products</div></div>
+      <div class="stat-card" style="text-align:center;"><div class="stat-val" style="font-size:2rem;color:var(--accent);">2M+</div><div class="stat-label">Customers</div></div>
+      <div class="stat-card" style="text-align:center;"><div class="stat-val" style="font-size:2rem;color:var(--accent);">500+</div><div class="stat-label">Brands</div></div>
+      <div class="stat-card" style="text-align:center;"><div class="stat-val" style="font-size:2rem;color:var(--accent);">99.2%</div><div class="stat-label">Satisfaction</div></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="page-contact">
+  <div class="page-hero"><div class="section-inner"><h1>Contact Us</h1><p>We're here to help. Reach out anytime.</p></div></div>
+  <section class="section"><div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem;">Get in Touch</h2>
+        <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name"></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+        <div class="form-group"><label>Subject</label><select><option>Order Issue</option><option>Payment Problem</option><option>Return Request</option><option>General Inquiry</option><option>Partnership</option></select></div>
+        <div class="form-group"><label>Message</label><textarea rows="5" placeholder="Describe your issue or question..." style="resize:vertical;"></textarea></div>
+        <button class="btn-primary" onclick="submitContact()"><i class="fa fa-paper-plane"></i> Send Message</button>
+      </div>
+      <div class="contact-info">
+        <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem;">Contact Information</h2>
+        <div class="contact-card"><div class="contact-card-icon"><i class="fa fa-phone"></i></div><div><h4>Phone Support</h4><p>+91 1800-123-4567 (Toll Free)<br>Mon–Sat, 9 AM – 8 PM</p></div></div>
+        <div class="contact-card"><div class="contact-card-icon"><i class="fa fa-envelope"></i></div><div><h4>Email</h4><p>support@nexmart.in<br>Response within 24 hours</p></div></div>
+        <div class="contact-card"><div class="contact-card-icon"><i class="fab fa-whatsapp" style="color:#25D366;"></i></div><div><h4>WhatsApp</h4><p>Chat with us on WhatsApp<br>+91 98765 00000</p></div></div>
+        <div class="contact-card"><div class="contact-card-icon"><i class="fa fa-map-marker-alt"></i></div><div><h4>Headquarters</h4><p>NexMart HQ, BKC<br>Mumbai, Maharashtra - 400051</p></div></div>
+        <div style="display:flex;gap:0.75rem;margin-top:0.5rem;">
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </div></section>
+</div>
+
+<!-- FAQ PAGE -->
+<div class="page" id="page-faq">
+  <div class="page-hero"><div class="section-inner"><h1>Frequently Asked Questions</h1><p>Find answers to the most common questions</p></div></div>
+  <section class="section"><div class="section-inner">
+    <div style="max-width:200px;margin:0 auto 2rem;display:flex;gap:0.5rem;background:var(--surface2);border-radius:100px;padding:0.25rem;">
+      <button class="btn-primary" style="flex:1;border-radius:100px;padding:0.5rem;font-size:0.85rem;">All</button>
+      <button class="btn-outline" style="flex:1;border-radius:100px;padding:0.5rem;font-size:0.85rem;border:none;">Orders</button>
+      <button class="btn-outline" style="flex:1;border-radius:100px;padding:0.5rem;font-size:0.85rem;border:none;">Returns</button>
+    </div>
+    <div class="faq-list" id="faqList"></div>
+  </div></section>
+</div>
+
+<!-- PRIVACY POLICY PAGE -->
+<div class="page" id="page-privacy">
+  <div class="page-hero"><div class="section-inner"><h1>Privacy Policy</h1><p>Last updated: December 15, 2024</p></div></div>
+  <section class="section"><div class="section-inner"><div class="policy-content">
+    <p>At NexMart, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and safeguard your data.</p>
+    <h3>1. Information We Collect</h3>
+    <ul><li>Personal identification information (name, email, phone number)</li><li>Shipping and billing addresses</li><li>Payment information (encrypted and never stored in plain text)</li><li>Order history and preferences</li><li>Device and browsing data for personalization</li></ul>
+    <h3>2. How We Use Your Information</h3>
+    <ul><li>Processing and fulfilling your orders</li><li>Sending order updates and delivery notifications</li><li>Personalizing your shopping experience using AI</li><li>Fraud detection and security monitoring</li><li>Sending promotional offers (with your consent)</li></ul>
+    <h3>3. Data Security</h3>
+    <p>We use industry-standard SSL/TLS encryption for all data transmission. Payment data is processed through PCI-DSS compliant gateways. We never store your CVV or full card numbers. Regular security audits ensure your data remains protected.</p>
+    <h3>4. Your Rights</h3>
+    <ul><li>Right to access your personal data</li><li>Right to correct inaccurate data</li><li>Right to delete your account and data</li><li>Right to opt out of marketing communications</li><li>Right to data portability</li></ul>
+    <h3>5. Contact Us</h3>
+    <p>For privacy-related queries, contact our Data Protection Officer at privacy@nexmart.in or call +91 1800-123-4567.</p>
+  </div></div></section>
+</div>
+
+<!-- TERMS PAGE -->
+<div class="page" id="page-terms">
+  <div class="page-hero"><div class="section-inner"><h1>Terms & Conditions</h1><p>Last updated: December 15, 2024</p></div></div>
+  <section class="section"><div class="section-inner"><div class="policy-content">
+    <p>By accessing and using NexMart, you agree to be bound by these Terms and Conditions. Please read them carefully before making any purchase.</p>
+    <h3>1. Eligibility</h3>
+    <p>You must be at least 18 years of age to use this platform and make purchases. By creating an account, you confirm that you meet this requirement.</p>
+    <h3>2. Product Accuracy</h3>
+    <p>We strive to ensure all product information, prices, and images are accurate. However, errors may occur. We reserve the right to cancel orders where pricing errors are found.</p>
+    <h3>3. Payment Terms</h3>
+    <ul><li>Payment must be made at the time of order placement</li><li>We accept UPI, credit/debit cards, net banking, wallets, and COD</li><li>COD is available for orders up to ₹10,000</li><li>All prices are inclusive of applicable taxes</li></ul>
+    <h3>4. Intellectual Property</h3>
+    <p>All content on NexMart including logos, images, and text is owned by NexMart Pvt. Ltd. Unauthorized reproduction is strictly prohibited.</p>
+    <h3>5. Limitation of Liability</h3>
+    <p>NexMart is not liable for any indirect, incidental, or consequential damages arising from your use of our platform.</p>
+  </div></div></section>
+</div>
+
+<!-- RETURN & REFUND PAGE -->
+<div class="page" id="page-returns">
+  <div class="page-hero"><div class="section-inner"><h1>Return & Refund Policy</h1><p>Hassle-free returns within 30 days</p></div></div>
+  <section class="section"><div class="section-inner"><div class="policy-content">
+    <div style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:2rem;display:flex;gap:1rem;align-items:flex-start;">
+      <i class="fa fa-check-circle" style="color:var(--success);font-size:1.5rem;flex-shrink:0;margin-top:0.1rem;"></i>
+      <div><h4 style="color:var(--success);margin-bottom:0.5rem;">30-Day Easy Returns</h4><p>Not satisfied? Return it within 30 days for a full refund. No questions asked.</p></div>
+    </div>
+    <h3>How to Initiate a Return</h3>
+    <ul><li>Go to My Orders and select the item you want to return</li><li>Choose your reason for return and upload photos if required</li><li>Schedule a pickup — our courier will collect within 48 hours</li><li>Refund is processed within 5–7 business days</li></ul>
+    <h3>Refund Methods</h3>
+    <ul><li><strong>Original Payment Method:</strong> 5–7 business days</li><li><strong>NexMart Wallet:</strong> Instant refund (recommended)</li><li><strong>Bank Transfer:</strong> 3–5 business days</li></ul>
+    <h3>Non-Returnable Items</h3>
+    <ul><li>Perishable goods and food items</li><li>Intimate or sanitary goods</li><li>Digital downloads and gift cards</li><li>Customized or personalized products</li><li>Items marked as "Final Sale"</li></ul>
+    <h3>Damaged or Wrong Items</h3>
+    <p>If you received a damaged or incorrect product, contact us within 48 hours of delivery. We will arrange immediate replacement or full refund at no cost to you.</p>
+  </div></div></section>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="sidebar-overlay" id="cartOverlay" onclick="toggleCart()">
+  <div class="sidebar-panel" id="cartPanel" onclick="event.stopPropagation()">
+    <div class="sidebar-header">
+      <h3><i class="fa fa-shopping-cart" style="color:var(--accent);margin-right:0.5rem;"></i> Your Cart</h3>
+      <button class="sidebar-close" onclick="toggleCart()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="sidebar-body" id="cartBody"></div>
+    <div class="sidebar-footer">
+      <div class="cart-total">
+        <span class="cart-total-label">Subtotal</span>
+        <span class="cart-total-val" id="cartTotal">₹0</span>
+      </div>
+      <button class="btn-primary" style="width:100%;justify-content:center;padding:1rem;font-size:1rem;" onclick="goToCheckout()">
+        <i class="fa fa-lock"></i> Proceed to Checkout
+      </button>
+      <button class="btn-outline" style="width:100%;justify-content:center;margin-top:0.75rem;" onclick="showPage('products');toggleCart()">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- WISHLIST SIDEBAR -->
+<div class="sidebar-overlay" id="wishlistOverlay" onclick="toggleWishlistSidebar()">
+  <div class="sidebar-panel" id="wishlistPanel" onclick="event.stopPropagation()">
+    <div class="sidebar-header">
+      <h3><i class="fa fa-heart" style="color:var(--accent);margin-right:0.5rem;"></i> Wishlist</h3>
+      <button class="sidebar-close" onclick="toggleWishlistSidebar()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="sidebar-body" id="wishlistBody"></div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal" onclick="closeAuth()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h2>Welcome to NexMart</h2>
+    <p class="sub">Sign in or create an account to shop</p>
+    <div class="modal-tabs">
+      <div class="modal-tab active" onclick="switchAuthTab(this,'login')">Sign In</div>
+      <div class="modal-tab" onclick="switchAuthTab(this,'signup')">Sign Up</div>
+      <div class="modal-tab" onclick="switchAuthTab(this,'otp')">OTP Login</div>
+    </div>
+    <!-- Login -->
+    <div class="modal-tab-content active" id="modal-login">
+      <div class="social-login">
+        <button class="social-btn" onclick="socialLogin('Google')"><i class="fab fa-google" style="color:#EA4335;"></i> Continue with Google</button>
+        <button class="social-btn" onclick="socialLogin('Facebook')"><i class="fab fa-facebook" style="color:#1877F2;"></i> Continue with Facebook</button>
+      </div>
+      <div class="divider">or sign in with email</div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com" id="loginEmail"></div>
+      <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••" id="loginPass"></div>
+      <div style="text-align:right;margin-bottom:1.25rem;"><a style="font-size:0.85rem;color:var(--accent);cursor:pointer;">Forgot password?</a></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;padding:1rem;" onclick="doLogin()">Sign In</button>
+    </div>
+    <!-- Signup -->
+    <div class="modal-tab-content" id="modal-signup">
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="John" id="signupFirst"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe" id="signupLast"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+      <div class="form-group"><label>Mobile</label><input type="tel" placeholder="+91 98765 43210"></div>
+      <div class="form-group"><label>Password</label><input type="password" placeholder="Create password"></div>
+      <div style="font-size:0.8rem;color:var(--text3);margin-bottom:1.25rem;">By signing up, you agree to our <a style="color:var(--accent);cursor:pointer;" onclick="closeAuth();showPage('terms')">Terms</a> & <a style="color:var(--accent);cursor:pointer;" onclick="closeAuth();showPage('privacy')">Privacy Policy</a></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;padding:1rem;" onclick="doSignup()">Create Account</button>
+    </div>
+    <!-- OTP -->
+    <div class="modal-tab-content" id="modal-otp">
+      <div class="form-group"><label>Mobile Number</label><input type="tel" placeholder="+91 98765 43210" id="otpPhone"></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;" onclick="sendOTP()">Send OTP</button>
+      <div id="otpSection" style="display:none;margin-top:1.5rem;">
+        <p style="font-size:0.875rem;color:var(--text2);margin-bottom:1rem;text-align:center;">Enter OTP sent to your number</p>
+        <div class="otp-inputs" id="authOtpInputs">
+          <input type="text" maxlength="1" class="otp-input" oninput="moveNext(this)">
+          <input type="text" maxlength="1" class="otp-input" oninput="moveNext(this)">
+          <input type="text" maxlength="1" class="otp-input" oninput="moveNext(this)">
+          <input type="text" maxlength="1" class="otp-input" oninput="moveNext(this)">
+          <input type="text" maxlength="1" class="otp-input" oninput="moveNext(this)">
+          <input type="text" maxlength="1" class="otp-input">
+        </div>
+        <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1rem;" onclick="verifyOTP()">Verify & Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD PRODUCT MODAL (Admin) -->
+<div class="modal-overlay" id="addProductModal" onclick="closeAddProduct()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h2>Add New Product</h2>
+    <p class="sub">Fill in the product details below</p>
+    <div class="form-group"><label>Product Name</label><input type="text" placeholder="e.g. Nike Air Max Pro 2024"></div>
+    <div class="form-group"><label>Category</label><select><option>Electronics</option><option>Fashion</option><option>Home & Living</option><option>Sports</option></select></div>
+    <div class="form-row">
+      <div class="form-group"><label>Price (₹)</label><input type="number" placeholder="9999"></div>
+      <div class="form-group"><label>Original Price (₹)</label><input type="number" placeholder="14999"></div>
+    </div>
+    <div class="form-group"><label>Stock Quantity</label><input type="number" placeholder="100"></div>
+    <div class="form-group"><label>Description</label><textarea rows="3" placeholder="Product description..."></textarea></div>
+    <div style="display:flex;gap:0.75rem;margin-top:1rem;">
+      <button class="btn-primary" style="flex:1;justify-content:center;padding:0.875rem;" onclick="addProduct()">Add Product</button>
+      <button class="btn-outline" style="flex:1;justify-content:center;" onclick="closeAddProduct()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHATBOT -->
+<button class="chatbot-btn" onclick="toggleChatbot()" title="AI Assistant">
+  <i class="fa fa-robot"></i>
+</button>
+<div class="chatbot-window" id="chatbotWindow">
+  <div class="chatbot-header">
+    <div class="chatbot-avatar"><i class="fa fa-robot" style="color:#fff;"></i></div>
+    <div class="chatbot-header-info">
+      <h4>NexBot AI</h4>
+      <p>● Online · Powered by AI</p>
+    </div>
+    <button onclick="toggleChatbot()" style="background:none;color:rgba(255,255,255,0.8);font-size:1rem;margin-left:auto;"><i class="fa fa-times"></i></button>
+  </div>
+  <div class="chatbot-body" id="chatbotBody">
+    <div class="chat-msg bot"><div class="chat-bubble">Hi! I'm NexBot 👋 How can I help you today? I can help with orders, products, returns, and more!</div></div>
+    <div class="chat-msg bot"><div class="chat-bubble">Quick options: <br>📦 Track Order<br>↩️ Return Request<br>🛍️ Product Search<br>💬 Talk to Human</div></div>
+  </div>
+  <div class="chatbot-footer">
+    <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="if(event.key==='Enter')sendChat()">
+    <button onclick="sendChat()"><i class="fa fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav">
+  <div class="mobile-nav-items">
+    <button class="mobile-nav-item active" onclick="showPage('home');setMobileActive(this)"><i class="fa fa-home"></i><span>Home</span></button>
+    <button class="mobile-nav-item" onclick="showPage('categories');setMobileActive(this)"><i class="fa fa-th"></i><span>Categories</span></button>
+    <button class="mobile-nav-item" onclick="showPage('products');setMobileActive(this)"><i class="fa fa-shopping-bag"></i><span>Shop</span></button>
+    <button class="mobile-nav-item" onclick="toggleCart()"><i class="fa fa-shopping-cart"></i><span>Cart</span></button>
+    <button class="mobile-nav-item" onclick="showPage('dashboard');setMobileActive(this)"><i class="fa fa-user"></i><span>Account</span></button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="mainFooter">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="cursor:default;">Nex<span style="-webkit-text-fill-color:var(--text);">Mart</span></div>
+      <p>India's most loved e-commerce platform. Bringing premium products and unbeatable deals to your doorstep since 2019.</p>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <div class="footer-links">
+        <a onclick="showPage('home');scrollTo(0,0)">Home</a>
+        <a onclick="showPage('products')">Products</a>
+        <a onclick="showPage('categories')">Categories</a>
+        <a onclick="showPage('about')">About Us</a>
+        <a onclick="showPage('contact')">Contact</a>
+        <a onclick="showPage('faq')">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Policies</h4>
+      <div class="footer-links">
+        <a onclick="showPage('privacy')">Privacy Policy</a>
+        <a onclick="showPage('terms')">Terms & Conditions</a>
+        <a onclick="showPage('returns')">Return Policy</a>
+        <a onclick="showPage('faq')">Shipping Info</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p style="font-size:0.85rem;color:var(--text2);margin-bottom:0.75rem;">Get exclusive deals in your inbox</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Enter email">
+        <button onclick="subscribeNewsletter()">Go</button>
+      </div>
+      <p style="font-size:0.8rem;color:var(--text3);margin-top:0.75rem;">🔒 No spam. Unsubscribe anytime.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 NexMart Pvt. Ltd. All rights reserved. 🇮🇳 Made in India</span>
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <span>🔒 SSL Secured</span>
+      <span>✅ PCI-DSS Compliant</span>
+      <span>🚀 Fast & Reliable</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============ DATA ============
+const categories = [
+  { icon:'📱', name:'Electronics', count:'12,400+' },
+  { icon:'👗', name:'Fashion', count:'18,600+' },
+  { icon:'🏠', name:'Home & Living', count:'8,200+' },
+  { icon:'📚', name:'Books', count:'50,000+' },
+  { icon:'⚽', name:'Sports', count:'6,800+' },
+  { icon:'💄', name:'Beauty', count:'9,400+' },
+  { icon:'🍳', name:'Kitchen', count:'4,200+' },
+  { icon:'🎮', name:'Gaming', count:'3,600+' },
+  { icon:'🧸', name:'Toys', count:'7,800+' },
+  { icon:'🌿', name:'Health', count:'5,400+' },
+  { icon:'🚗', name:'Auto', count:'2,800+' },
+  { icon:'🐾', name:'Pets', count:'3,200+' }
+];
+
+const products = [
+  { id:1, emoji:'👟', name:'Nike Air Max Pro 2024', category:'Footwear', price:8499, oldPrice:12999, rating:4.8, reviews:2341, badge:'Sale', desc:'Premium running shoes with React foam cushioning. Lightweight, breathable, and built for performance.', stock:'In Stock' },
+  { id:2, emoji:'📱', name:'iPhone 15 Pro 256GB', category:'Electronics', price:134900, oldPrice:149900, rating:4.9, reviews:8892, badge:'Hot', desc:'The most powerful iPhone yet. A17 Pro chip, 48MP camera system, titanium design.', stock:'In Stock' },
+  { id:3, emoji:'👔', name:'Premium Cotton Polo Tee', category:'Fashion', price:1299, oldPrice:2499, rating:4.5, reviews:567, badge:'Sale', desc:'100% organic cotton polo shirt. Breathable, soft, and perfect for any occasion.', stock:'In Stock' },
+  { id:4, emoji:'🎧', name:'Sony WH-1000XM5', category:'Electronics', price:29990, oldPrice:38990, rating:4.9, reviews:4521, badge:'Hot', desc:'Industry-leading noise cancelling headphones. 30-hour battery, multipoint connection.', stock:'Out of Stock' },
+  { id:5, emoji:'💻', name:'MacBook Air M3 13"', category:'Electronics', price:114900, oldPrice:124900, rating:4.8, reviews:1892, badge:'New', desc:'Supercharged by M3 chip. Incredibly thin, fanless design, 18-hour battery life.', stock:'In Stock' },
+  { id:6, emoji:'⌚', name:'Apple Watch Series 9', category:'Wearables', price:41900, oldPrice:44900, rating:4.7, reviews:2103, badge:'New', desc:'The most powerful Apple Watch yet with S9 chip, brighter display, and carbon neutral.', stock:'In Stock' },
+  { id:7, emoji:'👜', name:'Coach Signature Bag', category:'Fashion', price:18500, oldPrice:24000, rating:4.6, reviews:892, badge:'Sale', desc:'Iconic Coach Signature canvas tote. Spacious, stylish, and built to last.', stock:'In Stock' },
+  { id:8, emoji:'🖥️', name:'Samsung 4K QLED TV 55"', category:'Electronics', price:64990, oldPrice:89990, rating:4.7, reviews:3241, badge:'Sale', desc:'Quantum Dot color technology for vibrant, lifelike picture quality. Smart TV with voice control.', stock:'In Stock' },
+  { id:9, emoji:'☕', name:'Nespresso Vertuo Next', category:'Kitchen', price:12990, oldPrice:15990, rating:4.6, reviews:1243, badge:'', desc:'Single-serve coffee machine. Centrifusion brewing, WiFi connected, 36 capsule varieties.', stock:'In Stock' },
+  { id:10, emoji:'📷', name:'Sony Alpha a7 IV Camera', category:'Electronics', price:249990, oldPrice:279990, rating:4.9, reviews:672, badge:'Hot', desc:'33MP full-frame mirrorless camera. Real-time AF tracking, 4K 60fps video recording.', stock:'In Stock' },
+  { id:11, emoji:'🏋️', name:'Adjustable Dumbbell Set', category:'Sports', price:8999, oldPrice:12999, rating:4.7, reviews:1891, badge:'', desc:'5–25 lbs per dumbbell, 15 weight settings. Compact design replaces 15 pairs of weights.', stock:'In Stock' },
+  { id:12, emoji:'🧴', name:'The Ordinary Skincare Set', category:'Beauty', price:3299, oldPrice:4500, rating:4.5, reviews:5421, badge:'Trending', desc:'Complete skincare routine kit. Includes Hyaluronic Acid, Niacinamide, and Retinol.', stock:'In Stock' }
+];
+
+const faqs = [
+  { q:'How do I track my order?', a:'Go to My Dashboard > Track Order and enter your order ID. You can also receive real-time updates via SMS and email.' },
+  { q:'What is your return policy?', a:'We offer a 30-day hassle-free return policy. Simply initiate a return from your dashboard and we will arrange a pickup within 48 hours.' },
+  { q:'How long does delivery take?', a:'Standard delivery takes 3-7 business days. Express delivery is available in select cities within 24-48 hours. Free delivery on orders above ₹499.' },
+  { q:'Are my payment details safe?', a:'Absolutely! We use bank-grade SSL encryption and are PCI-DSS compliant. We never store your card details or CVV. All transactions are secured.' },
+  { q:'Can I change or cancel my order?', a:'Yes, you can cancel or modify your order within 1 hour of placing it. After that, the order enters processing and cannot be changed.' },
+  { q:'How do I earn NexPoints?', a:'You earn 1 NexPoint for every ₹10 spent. Points can be redeemed for discounts on future purchases. Special bonus points on reviews and referrals.' },
+  { q:'Do you offer COD (Cash on Delivery)?', a:'Yes! Cash on Delivery is available for orders up to ₹10,000 in most pin codes across India. A ₹40 handling fee may apply.' },
+  { q:'How does the referral program work?', a:'Share your unique referral code with friends. When they make their first purchase, you earn ₹200 and they get ₹150 off. No limit on referrals!' },
+  { q:'What if I receive a damaged product?', a:'Contact us within 48 hours of delivery with photos. We will arrange immediate replacement or full refund with return pickup at no cost to you.' },
+  { q:'Do you offer EMI options?', a:'Yes! No-cost EMI is available on orders above ₹3,000 with select credit cards. EMI tenure ranges from 3 to 24 months depending on your bank.' }
+];
+
+// ============ STATE ============
+let cart = [];
+let wishlist = [];
+let isLoggedIn = false;
+let currentProduct = null;
+let quantities = {};
+
+// ============ PAGE NAVIGATION ============
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const page = document.getElementById('page-' + name);
+  if (page) {
+    page.classList.add('active');
+    window.scrollTo(0, 0);
+    // Show/hide footer
+    const footerHidden = ['admin'].includes(name);
+    document.getElementById('mainFooter').style.display = footerHidden ? 'none' : 'block';
+  }
+  // Special init
+  if (name === 'products') renderAllProducts();
+  if (name === 'dashboard') renderDashboard();
+  if (name === 'checkout') renderCheckout();
+  if (name === 'categories') renderAllCategories();
+  if (name === 'faq') renderFAQ();
+  if (name === 'admin') renderAdminChart();
+}
+
+function openAdmin() {
+  showPage('admin');
+}
+
+// ============ RENDER FUNCTIONS ============
+function renderCategories() {
+  const g = document.getElementById('categoriesGrid');
+  if (!g) return;
+  g.innerHTML = categories.slice(0,8).map(c => `
+    <div class="cat-card" onclick="showPage('products')">
+      <div class="cat-icon">${c.icon}</div>
+      <div class="cat-name">${c.name}</div>
+      <div class="cat-count">${c.count} items</div>
+    </div>
+  `).join('');
+}
+
+function renderAllCategories() {
+  const g = document.getElementById('allCategoriesGrid');
+  if (!g) return;
+  g.innerHTML = categories.map(c => `
+    <div class="cat-card" onclick="showPage('products')">
+      <div class="cat-icon">${c.icon}</div>
+      <div class="cat-name">${c.name}</div>
+      <div class="cat-count">${c.count} items</div>
+    </div>
+  `).join('');
+}
+
+function renderProducts(container, prods) {
+  if (!container) return;
+  container.innerHTML = prods.map(p => {
+    const disc = Math.round((1 - p.price/p.oldPrice)*100);
+    const inWish = wishlist.some(w => w.id === p.id);
+    return `
+    <div class="product-card" onclick="openProduct(${p.id})">
+      <div class="product-card-img">
+        ${p.badge ? `<span class="product-badge ${p.badge==='New'?'new':p.badge==='Trending'?'trending':''}">${p.badge}</span>` : ''}
+        <button class="product-wishlist ${inWish?'active':''}" onclick="event.stopPropagation();toggleWishlist(${p.id})" id="wish-${p.id}">
+          <i class="fa fa-heart"></i>
+        </button>
+        <span style="font-size:3.5rem;">${p.emoji}</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-category">${p.category}</div>
+        <div class="product-title">${p.name}</div>
+        <div class="product-rating">
+          <span class="stars">${'★'.repeat(Math.round(p.rating))}${'☆'.repeat(5-Math.round(p.rating))}</span>
+          <span style="font-size:0.8rem;font-weight:600;">${p.rating}</span>
+          <span class="rating-count">(${p.reviews.toLocaleString()})</span>
+        </div>
+        <div class="product-footer">
+          <div class="price-group">
+            <span class="price-now">₹${p.price.toLocaleString()}</span>
+            <span class="price-was">₹${p.oldPrice.toLocaleString()}</span>
+            <span style="font-size:0.75rem;color:var(--success);font-weight:600;">${disc}% off</span>
+          </div>
+          <button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})"><i class="fa fa-plus"></i></button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderFeatured() {
+  renderProducts(document.getElementById('featuredProducts'), products.slice(0,8));
+}
+
+function renderAllProducts() {
+  renderProducts(document.getElementById('allProductsGrid'), products);
+}
+
+function renderFAQ() {
+  const list = document.getElementById('faqList');
+  if (!list) return;
+  list.innerHTML = faqs.map((f, i) => `
+    <div class="faq-item" id="faq-${i}">
+      <div class="faq-question" onclick="toggleFAQ(${i})">
+        <span>${f.q}</span>
+        <i class="fa fa-chevron-down faq-icon"></i>
+      </div>
+      <div class="faq-answer">${f.a}</div>
+    </div>
+  `).join('');
+}
+
+function toggleFAQ(i) {
+  const item = document.getElementById('faq-'+i);
+  item.classList.toggle('open');
+}
+
+function openProduct(id) {
+  currentProduct = products.find(p => p.id === id);
+  if (!currentProduct) return;
+  document.getElementById('detailBreadcrumb').textContent = currentProduct.name;
+  const disc = Math.round((1 - currentProduct.price/currentProduct.oldPrice)*100);
+  const inWish = wishlist.some(w => w.id === id);
+  quantities[id] = quantities[id] || 1;
+  
+  document.getElementById('productDetailContent').innerHTML = `
+    <div class="product-images">
+      <div class="product-main-img">${currentProduct.emoji}</div>
+      <div class="product-thumbnails">
+        ${[1,2,3,4].map((_, i) => `<div class="product-thumb ${i===0?'active':''}">${currentProduct.emoji}</div>`).join('')}
+      </div>
+    </div>
+    <div class="product-detail-info">
+      <div class="product-category" style="font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:0.5rem;">${currentProduct.category}</div>
+      <h1 class="product-detail-name">${currentProduct.name}</h1>
+      <div class="product-detail-meta">
+        <div class="product-rating">
+          <span class="stars">${'★'.repeat(Math.round(currentProduct.rating))}</span>
+          <span style="font-weight:600;">${currentProduct.rating}</span>
+          <span style="color:var(--text3);font-size:0.85rem;">(${currentProduct.reviews.toLocaleString()} reviews)</span>
+        </div>
+        <span class="stock-badge ${currentProduct.stock==='In Stock'?'in-stock':'out-of-stock'}">${currentProduct.stock==='In Stock'?'✓':''} ${currentProduct.stock}</span>
+      </div>
+      <div class="detail-price-group">
+        <span class="detail-price">₹${currentProduct.price.toLocaleString()}</span>
+        <span class="detail-old-price">₹${currentProduct.oldPrice.toLocaleString()}</span>
+        <span class="detail-discount">${disc}% OFF</span>
+      </div>
+      <div class="variant-group">
+        <h4>Size</h4>
+        <div class="size-options">
+          ${['XS','S','M','L','XL','XXL'].map((s,i) => `<button class="size-btn ${i===2?'active':''}" onclick="selectSize(this)">${s}</button>`).join('')}
+        </div>
+      </div>
+      <div class="variant-group">
+        <h4>Color</h4>
+        <div class="color-swatches">
+          <div class="color-swatch active" style="background:#0A0A0F;border:2px solid #fff;"></div>
+          <div class="color-swatch" style="background:#FF3D57;"></div>
+          <div class="color-swatch" style="background:#3B82F6;"></div>
+          <div class="color-swatch" style="background:#22C55E;"></div>
+        </div>
+      </div>
+      <div class="qty-selector">
+        <label>Quantity</label>
+        <button class="qty-btn" onclick="changeQty(${id},-1)">−</button>
+        <div class="qty-display" id="qty-${id}">${quantities[id]}</div>
+        <button class="qty-btn" onclick="changeQty(${id},1)">+</button>
+      </div>
+      <div class="detail-actions">
+        <button class="btn-cart" onclick="addToCart(${id},true)"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+        <button class="btn-wish ${inWish?'active':''}" onclick="toggleWishlist(${id})" id="detailWish-${id}"><i class="fa fa-heart"></i></button>
+      </div>
+      <div class="product-features">
+        <div class="product-feature"><i class="fa fa-check-circle"></i> Free delivery on orders above ₹499</div>
+        <div class="product-feature"><i class="fa fa-check-circle"></i> 30-day easy return policy</div>
+        <div class="product-feature"><i class="fa fa-check-circle"></i> 1 year manufacturer warranty</div>
+        <div class="product-feature"><i class="fa fa-shield-alt" style="color:var(--info);"></i> 100% authentic product</div>
+      </div>
+      <!-- Tabs -->
+      <div class="product-tabs">
+        <div class="tab-nav">
+          <button class="tab-btn active" onclick="switchTab(this,'desc')">Description</button>
+          <button class="tab-btn" onclick="switchTab(this,'specs')">Specifications</button>
+          <button class="tab-btn" onclick="switchTab(this,'reviews')">Reviews (${currentProduct.reviews.toLocaleString()})</button>
+        </div>
+      </div>
+      <div class="tab-content active" id="tab-desc">
+        <p style="color:var(--text2);line-height:1.8;font-size:0.9rem;">${currentProduct.desc} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Premium quality materials and expert craftsmanship ensure this product exceeds expectations.</p>
+      </div>
+      <div class="tab-content" id="tab-specs">
+        <table style="width:100%;border-collapse:collapse;font-size:0.875rem;">
+          ${[['Brand','NexMart Premium'],['Model','2024 Edition'],['Material','Premium Grade'],['Weight','350g'],['Warranty','1 Year'],['Country of Origin','India']].map(([k,v]) => `<tr><td style="padding:0.6rem 0;color:var(--text3);width:40%;border-bottom:1px solid var(--border);">${k}</td><td style="padding:0.6rem 0;border-bottom:1px solid var(--border);">${v}</td></tr>`).join('')}
+        </table>
+      </div>
+      <div class="tab-content" id="tab-reviews">
+        <div class="reviews-list">
+          ${[
+            {name:'Rahul M.', rating:5, text:'Absolutely love this product! The quality is outstanding and delivery was super fast. Would definitely buy again.', date:'2 days ago'},
+            {name:'Priya S.', rating:4, text:'Great product overall. Packaging was excellent. Minor improvement needed in size chart accuracy but otherwise perfect.', date:'1 week ago'},
+            {name:'Amit K.', rating:5, text:'Best purchase I made this year! Worth every rupee. Customer support was also very helpful when I had a query.', date:'2 weeks ago'}
+          ].map(r => `
+            <div class="review-card">
+              <div class="review-header">
+                <div class="reviewer">
+                  <div class="reviewer-avatar">${r.name[0]}</div>
+                  <div><div class="reviewer-name">${r.name}</div><div class="review-date">${r.date}</div></div>
+                </div>
+                <div class="stars" style="font-size:0.85rem;">${'★'.repeat(r.rating)}</div>
+              </div>
+              <div class="review-text">${r.text}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="margin-top:1.5rem;">
+          <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:1rem;">Write a Review</h4>
+          <div style="display:flex;gap:0.25rem;margin-bottom:0.75rem;font-size:1.5rem;cursor:pointer;">★★★★★</div>
+          <textarea placeholder="Share your experience..." rows="3" style="width:100%;padding:0.75rem;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);resize:vertical;"></textarea>
+          <button class="btn-primary" style="margin-top:0.75rem;" onclick="showToast('Review submitted! Thank you.','success')">Submit Review</button>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Related products
+  const related = products.filter(p => p.id !== id).slice(0, 4);
+  renderProducts(document.getElementById('relatedProducts'), related);
+  
+  showPage('product-detail');
+}
+
+function switchTab(btn, tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+
+function selectSize(btn) {
+  btn.closest('.size-options').querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function changeQty(id, delta) {
+  quantities[id] = Math.max(1, (quantities[id] || 1) + delta);
+  const el = document.getElementById('qty-'+id);
+  if (el) el.textContent = quantities[id];
+}
+
+// ============ CART ============
+function addToCart(id, withQty = false) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  const qty = withQty ? (quantities[id] || 1) : 1;
+  const existing = cart.find(c => c.id === id);
+  if (existing) existing.qty += qty;
+  else cart.push({...p, qty});
+  updateCartBadge();
+  showToast(`${p.name} added to cart!`, 'success', `Qty: ${qty}`);
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(c => c.id !== id);
+  updateCartBadge();
+  renderCart();
+}
+
+function changeCartQty(id, delta) {
+  const item = cart.find(c => c.id === id);
+  if (!item) return;
+  item.qty = Math.max(1, item.qty + delta);
+  if (item.qty === 0) removeFromCart(id);
+  renderCart();
+  updateCartBadge();
+}
+
+function updateCartBadge() {
+  const total = cart.reduce((a, c) => a + c.qty, 0);
+  document.getElementById('cartBadge').textContent = total;
+}
+
+function renderCart() {
+  const body = document.getElementById('cartBody');
+  const totalEl = document.getElementById('cartTotal');
+  if (!body) return;
+  if (cart.length === 0) {
+    body.innerHTML = `<div class="empty-state"><i class="fa fa-shopping-cart"></i><h4>Your cart is empty</h4><p>Add items to get started</p></div>`;
+    if (totalEl) totalEl.textContent = '₹0';
+    return;
+  }
+  body.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-img">${item.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-variant">Size: M · Color: Black</div>
+        <div class="cart-item-footer">
+          <div class="cart-item-price">₹${(item.price * item.qty).toLocaleString()}</div>
+          <div class="cart-item-actions">
+            <button class="cart-qty-btn" onclick="changeCartQty(${item.id},-1)">−</button>
+            <span class="cart-qty-val">${item.qty}</span>
+            <button class="cart-qty-btn" onclick="changeCartQty(${item.id},1)">+</button>
+            <button class="cart-qty-btn" onclick="removeFromCart(${item.id})" style="color:var(--accent);margin-left:0.25rem;"><i class="fa fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  const total = cart.reduce((a, c) => a + c.price * c.qty, 0);
+  if (totalEl) totalEl.textContent = '₹' + total.toLocaleString();
+}
+
+function toggleCart() {
+  const overlay = document.getElementById('cartOverlay');
+  const panel = document.getElementById('cartPanel');
+  overlay.classList.toggle('open');
+  panel.classList.toggle('open');
+  renderCart();
+}
+
+// ============ WISHLIST ============
+function toggleWishlist(id) {
+  const p = products.find(x => x.id === id);
+  const idx = wishlist.findIndex(w => w.id === id);
+  if (idx > -1) {
+    wishlist.splice(idx, 1);
+    showToast(`Removed from wishlist`, 'info');
+  } else {
+    wishlist.push(p);
+    showToast(`${p.name} added to wishlist!`, 'success', '❤️');
+  }
+  updateWishlistBadge();
+  // Update buttons
+  document.querySelectorAll(`[id^="wish-${id}"]`).forEach(el => {
+    el.classList.toggle('active', wishlist.some(w => w.id === id));
+  });
+  const detailWish = document.getElementById(`detailWish-${id}`);
+  if (detailWish) detailWish.classList.toggle('active', wishlist.some(w => w.id === id));
+  renderWishlistSidebar();
+  // Update dash count
+  const dashCount = document.getElementById('dashWishlistCount');
+  if (dashCount) dashCount.textContent = wishlist.length;
+}
+
+function updateWishlistBadge() {
+  document.getElementById('wishlistBadge').textContent = wishlist.length;
+}
+
+function toggleWishlistSidebar() {
+  const overlay = document.getElementById('wishlistOverlay');
+  const panel = document.getElementById('wishlistPanel');
+  overlay.classList.toggle('open');
+  panel.classList.toggle('open');
+  renderWishlistSidebar();
+}
+
+function renderWishlistSidebar() {
+  const body = document.getElementById('wishlistBody');
+  if (!body) return;
+  if (wishlist.length === 0) {
+    body.innerHTML = `<div class="empty-state"><i class="fa fa-heart"></i><h4>No items in wishlist</h4><p>Heart products to save them here</p></div>`;
+    return;
+  }
+  body.innerHTML = wishlist.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-img">${item.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-variant">${item.category}</div>
+        <div class="cart-item-footer">
+          <div class="cart-item-price">₹${item.price.toLocaleString()}</div>
+          <div class="cart-item-actions">
+            <button class="cart-qty-btn" onclick="addToCart(${item.id});showToast('Added to cart!','success')" style="padding:0 0.5rem;width:auto;"><i class="fa fa-cart-plus"></i></button>
+            <button class="cart-qty-btn" onclick="toggleWishlist(${item.id})" style="color:var(--accent);"><i class="fa fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderDashboard() {
+  const wg = document.getElementById('wishlistGrid');
+  const ew = document.getElementById('emptyWishlist');
+  if (wg && ew) {
+    if (wishlist.length === 0) {
+      wg.innerHTML = '';
+      ew.style.display = 'block';
+    } else {
+      ew.style.display = 'none';
+      renderProducts(wg, wishlist);
+    }
+  }
+  const dashCount = document.getElementById('dashWishlistCount');
+  if (dashCount) dashCount.textContent = wishlist.length;
+}
+
+// ============ CHECKOUT ============
+function renderCheckout() {
+  const itemsEl = document.getElementById('checkoutItems');
+  const subtotalEl = document.getElementById('checkoutSubtotal');
+  const totalEl = document.getElementById('checkoutTotal');
+  if (!itemsEl) return;
+  const total = cart.reduce((a,c) => a + c.price*c.qty, 0);
+  itemsEl.innerHTML = cart.length === 0 
+    ? '<p style="color:var(--text3);font-size:0.85rem;">No items in cart</p>'
+    : cart.map(item => `
+    <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem 0;border-bottom:1px solid var(--border);">
+      <div style="width:44px;height:44px;background:var(--surface3);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">${item.emoji}</div>
+      <div style="flex:1;min-width:0;"><div style="font-size:0.85rem;font-weight:600;">${item.name}</div><div style="font-size:0.75rem;color:var(--text3);">Qty: ${item.qty}</div></div>
+      <div style="font-weight:600;font-size:0.9rem;">₹${(item.price*item.qty).toLocaleString()}</div>
+    </div>`).join('');
+  if (subtotalEl) subtotalEl.textContent = '₹' + total.toLocaleString();
+  if (totalEl) totalEl.textContent = '₹' + total.toLocaleString();
+}
+
+function goToCheckout() {
+  if (cart.length === 0) { showToast('Your cart is empty!', 'error'); return; }
+  toggleCart();
+  showPage('checkout');
+}
+
+function selectPayment(el) {
+  document.querySelectorAll('.payment-option').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+}
+
+let couponApplied = false;
+function applyCoupon() {
+  const code = document.getElementById('couponInput').value.trim().toUpperCase();
+  applyCouponCode(code);
+}
+function applyCouponCode(code) {
+  document.getElementById('couponInput').value = code;
+  const msg = document.getElementById('couponMsg');
+  const discEl = document.getElementById('checkoutDiscount');
+  const totalEl = document.getElementById('checkoutTotal');
+  const subtotal = cart.reduce((a,c) => a + c.price*c.qty, 0);
+  
+  if (code === 'NEWNEX15') {
+    const disc = Math.round(subtotal * 0.15);
+    if (discEl) discEl.textContent = '-₹' + disc.toLocaleString();
+    if (totalEl) totalEl.textContent = '₹' + (subtotal - disc).toLocaleString();
+    if (msg) msg.innerHTML = '<span style="color:var(--success);">✓ 15% discount applied! You save ₹' + disc.toLocaleString() + '</span>';
+    couponApplied = true;
+  } else if (code === 'SAVE50') {
+    if (discEl) discEl.textContent = '-₹50';
+    if (totalEl) totalEl.textContent = '₹' + (subtotal - 50).toLocaleString();
+    if (msg) msg.innerHTML = '<span style="color:var(--success);">✓ ₹50 flat discount applied!</span>';
+    couponApplied = true;
+  } else {
+    if (msg) msg.innerHTML = '<span style="color:var(--accent);">✗ Invalid coupon code</span>';
+  }
+}
+
+function placeOrder() {
+  if (cart.length === 0) { showToast('Add items to cart first!', 'error'); return; }
+  showToast('🎉 Order placed successfully!', 'success', 'You will receive a confirmation email');
+  cart = [];
+  updateCartBadge();
+  setTimeout(() => showPage('dashboard'), 1500);
+}
+
+// ============ AUTH ============
+function openAuth() {
+  document.getElementById('authModal').classList.add('open');
+}
+function closeAuth() {
+  document.getElementById('authModal').classList.remove('open');
+}
+function switchAuthTab(el, tab) {
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.modal-tab-content').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('modal-'+tab).classList.add('active');
+}
+function doLogin() {
+  isLoggedIn = true;
+  closeAuth();
+  showToast('Welcome back! Signed in successfully.', 'success');
+  document.getElementById('loginBtn').textContent = 'My Account';
+  document.getElementById('loginBtn').onclick = () => showPage('dashboard');
+}
+function doSignup() {
+  isLoggedIn = true;
+  closeAuth();
+  showToast('🎉 Account created! Welcome to NexMart!', 'success', 'Enjoy ₹150 off your first order');
+  document.getElementById('loginBtn').textContent = 'My Account';
+  document.getElementById('loginBtn').onclick = () => showPage('dashboard');
+}
+function socialLogin(provider) {
+  isLoggedIn = true;
+  closeAuth();
+  showToast(`Signed in with ${provider}!`, 'success');
+  document.getElementById('loginBtn').textContent = 'My Account';
+  document.getElementById('loginBtn').onclick = () => showPage('dashboard');
+}
+function sendOTP() {
+  document.getElementById('otpSection').style.display = 'block';
+  showToast('OTP sent to your mobile!', 'info');
+}
+function verifyOTP() {
+  doLogin();
+  showToast('OTP verified! Logged in.', 'success');
+}
+function signOut() {
+  isLoggedIn = false;
+  showToast('Signed out successfully.', 'info');
+  showPage('home');
+  document.getElementById('loginBtn').textContent = 'Sign In';
+  document.getElementById('loginBtn').onclick = openAuth;
+}
+
+// ============ OTP INPUT FLOW ============
+function moveNext(input) {
+  if (input.value && input.nextElementSibling && input.nextElementSibling.classList.contains('otp-input')) {
+    input.nextElementSibling.focus();
+  }
+}
+
+// ============ SEARCH ============
+function handleSearch(val) {
+  const sug = document.getElementById('searchSuggestions');
+  if (val.length > 0) sug.classList.add('show');
+  else sug.classList.remove('show');
+}
+function showSuggestions() {
+  if (document.getElementById('searchInput').value.length === 0)
+    document.getElementById('searchSuggestions').classList.add('show');
+}
+function hideSuggestions() {
+  setTimeout(() => document.getElementById('searchSuggestions').classList.remove('show'), 200);
+}
+function searchFor(term) {
+  document.getElementById('searchInput').value = term;
+  document.getElementById('searchSuggestions').classList.remove('show');
+  showPage('products');
+}
+function doSearch() {
+  showPage('products');
+}
+function applyFilters() { showToast('Filters applied!', 'info'); }
+function resetFilters() { showToast('Filters reset!', 'info'); }
+
+// ============ ADMIN ============
+function switchAdminTab(el, tab) {
+  document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+  if (el) el.classList.add('active');
+  document.getElementById('admin-'+tab).classList.add('active');
+}
+
+function renderAdminChart() {
+  // Mini charts in stat cards
+  const months = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+  const vals = [40,65,45,80,60,90,75,85,70,95,88,100];
+  
+  const mainChart = document.getElementById('mainChart');
+  const mainLabels = document.getElementById('mainChartLabels');
+  if (mainChart) {
+    mainChart.innerHTML = vals.map((v, i) => 
+      `<div style="flex:1;background:linear-gradient(to top,#FF3D57,#FF8C42);border-radius:4px 4px 0 0;height:${v}%;opacity:0.8;transition:opacity 0.2s;cursor:pointer;" title="Month ${i+1}: ₹${(v*24600).toLocaleString()}"></div>`
+    ).join('');
+  }
+  if (mainLabels) {
+    mainLabels.innerHTML = months.map(m => `<div style="flex:1;text-align:center;font-size:0.65rem;color:var(--text3);">${m}</div>`).join('');
+  }
+  
+  // Admin product table
+  const tbody = document.getElementById('adminProductTable');
+  if (tbody) {
+    tbody.innerHTML = products.slice(0,6).map(p => `
+      <tr>
+        <td><div style="display:flex;align-items:center;gap:0.75rem;"><span style="font-size:1.2rem;">${p.emoji}</span><div><div style="font-weight:500;">${p.name}</div><div style="font-size:0.75rem;color:var(--text3);">${p.category}</div></div></div></td>
+        <td>₹${p.price.toLocaleString()}</td>
+        <td>${p.stock === 'In Stock' ? Math.floor(Math.random()*200+20) : 0}</td>
+        <td><span class="order-status ${p.stock==='In Stock'?'status-delivered':'status-cancelled'}">${p.stock}</span></td>
+        <td><div class="action-btns">
+          <button class="action-btn action-edit" onclick="showToast('Edit product form opened','info')"><i class="fa fa-edit"></i></button>
+          <button class="action-btn action-delete" onclick="showToast('Product deleted','error')"><i class="fa fa-trash"></i></button>
+        </div></td>
+      </tr>
+    `).join('');
+  }
+}
+
+function showAddProductModal() {
+  document.getElementById('addProductModal').classList.add('open');
+}
+function closeAddProduct() {
+  document.getElementById('addProductModal').classList.remove('open');
+}
+function addProduct() {
+  closeAddProduct();
+  showToast('Product added successfully!', 'success');
+}
+
+// ============ DASHBOARD TABS ============
+function switchDashTab(btn, tab) {
+  document.querySelectorAll('.dash-nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.getElementById('dash-'+tab).classList.add('active');
+  if (tab === 'wishlist') renderDashboard();
+}
+
+// ============ TRACKING ============
+function trackOrder() {
+  showToast('Order found!', 'success', 'Showing tracking details below');
+}
+
+// ============ TOAST ============
+function showToast(title, type = 'success', sub = '') {
+  const container = document.getElementById('toastContainer');
+  const icons = { success: 'fa-check-circle', error: 'fa-times-circle', info: 'fa-info-circle' };
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `
+    <i class="fa ${icons[type]} toast-icon ${type}"></i>
+    <div class="toast-text">
+      <div class="toast-title">${title}</div>
+      ${sub ? `<div class="toast-sub">${sub}</div>` : ''}
+    </div>
+    <button onclick="this.parentElement.remove()" style="background:none;color:var(--text3);font-size:0.9rem;flex-shrink:0;"><i class="fa fa-times"></i></button>
+  `;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add('exit');
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
+}
+
+// ============ CHATBOT ============
+const chatbotReplies = {
+  'track': 'To track your order, go to My Dashboard → Track Order and enter your Order ID.',
+  'return': 'You can initiate a return from My Dashboard → My Orders within 30 days of delivery.',
+  'delivery': 'Standard delivery takes 3-7 business days. Free delivery on orders above ₹499!',
+  'payment': 'We accept UPI, Credit/Debit Cards, Net Banking, Wallets, and Cash on Delivery.',
+  'cancel': 'Orders can be cancelled within 1 hour of placement from your dashboard.',
+  'discount': 'Try coupon codes NEWNEX15 for 15% off or SAVE50 for ₹50 flat discount!',
+};
+
+function toggleChatbot() {
+  document.getElementById('chatbotWindow').classList.toggle('open');
+}
+
+function sendChat() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  
+  const body = document.getElementById('chatbotBody');
+  body.innerHTML += `<div class="chat-msg user"><div class="chat-bubble">${msg}</div></div>`;
+  input.value = '';
+  
+  setTimeout(() => {
+    const lower = msg.toLowerCase();
+    let reply = 'I understand! Let me connect you with our support team for detailed assistance. You can also email support@nexmart.in or call 1800-123-4567.';
+    for (const [key, val] of Object.entries(chatbotReplies)) {
+      if (lower.includes(key)) { reply = val; break; }
+    }
+    body.innerHTML += `<div class="chat-msg bot"><div class="chat-bubble">${reply}</div></div>`;
+    body.scrollTop = body.scrollHeight;
+  }, 600);
+  
+  body.scrollTop = body.scrollHeight;
+}
+
+// ============ MISC ============
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+
+function setMobileActive(btn) {
+  document.querySelectorAll('.mobile-nav-item').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function subscribeNewsletter() {
+  showToast('🎉 Subscribed! Get 15% off your first order.', 'success');
+}
+
+function submitContact() {
+  showToast('Message sent! We will reply within 24 hours.', 'success');
+}
+
+function copyReferral() {
+  showToast('Referral code copied!', 'success', 'Share it with friends to earn ₹200');
+}
+
+// ============ INIT ============
+function init() {
+  renderCategories();
+  renderFeatured();
+  renderFAQ();
+  // Build mini charts in admin when needed
+}
+
+init();
+</script>
+</body>
+</html>
