@@ -54,12 +54,11 @@ const designs = [
   type: 'internal'
 },
   {
-    title: 'Admin Panel UI',
-    category: 'Software',
-    image: 'https://images.unsplash.com/photo-1555421689-491a97ff2040?w=1200',
-    link: 'https://example.com',
-    type: 'external',
-  },
+  title: 'ERP Software',
+  category: 'software',
+  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoK0b5JoB98LrhC7dC4Gm3g5cRyEJIY77T3A&s',
+  link: '/design/erpsoftware'
+},
   {
     title: 'SaaS Product Design',
     category: 'Startup',
