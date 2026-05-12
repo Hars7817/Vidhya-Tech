@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Precision Manufacturing | CNC Machining & Custom Components</title>
+  <meta name="description" content="Precision CNC machining for automotive, aerospace, medical, and electronics industries. ISO 9001 certified. Custom production with global shipping.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <style>
+    /* ===== CSS RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #334155; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    ul { list-style: none; }
+    
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --primary-50: #eff6ff;
+      --primary-100: #dbeafe;
+      --primary-200: #bfdbfe;
+      --primary-300: #93c5fd;
+      --primary-400: #60a5fa;
+      --primary-500: #3b82f6;
+      --primary-600: #1d4ed8;
+      --primary-700: #1e40af;
+      --primary-800: #1e3a8a;
+      --primary-900: #172554;
+      --accent-400: #fbbf24;
+      --accent-500: #f59e0b;
+      --accent-600: #d97706;
+      --steel-50: #f8fafc;
+      --steel-100: #f1f5f9;
+      --steel-200: #e2e8f0;
+      --steel-300: #cbd5e1;
+      --steel-400: #94a3b8;
+      --steel-500: #64748b;
+      --steel-600: #475569;
+      --steel-700: #334155;
+      --steel-800: #1e293b;
+      --steel-900: #0f172a;
+      --green-100: #dcfce7;
+      --green-500: #22c55e;
+      --green-600: #16a34a;
+      --green-700: #15803d;
+    }
+    
+    /* ===== UTILITY CLASSES ===== */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-center { justify-content: center; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .gap-8 { gap: 2rem; }
+    .grid { display: grid; }
+    .text-center { text-align: center; }
+    .text-white { color: white; }
+    .font-bold { font-weight: 700; }
+    .font-black { font-weight: 900; }
+    .rounded-lg { border-radius: 0.5rem; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-full { border-radius: 9999px; }
+    .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); }
+    .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1); }
+    .transition { transition: all 0.3s ease; }
+    .hidden { display: none; }
+    
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+    .animation-delay-200 { animation-delay: 0.2s; opacity: 0; }
+    .animation-delay-300 { animation-delay: 0.3s; opacity: 0; }
+    .animation-delay-400 { animation-delay: 0.4s; opacity: 0; }
+    
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: var(--primary-700);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--primary-800); }
+    .btn-accent {
+      background: var(--accent-500);
+      color: white;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+    }
+    .btn-accent:hover { background: var(--accent-600); }
+    .btn-outline {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.2); }
+    .btn-lg { padding: 1rem 2rem; font-size: 1.125rem; }
+    
+    /* ===== TOP BAR ===== */
+    .top-bar {
+      background: var(--primary-900);
+      color: white;
+      font-size: 0.875rem;
+      padding: 0.5rem 0;
+    }
+    .top-bar a:hover { color: var(--accent-400); }
+    .top-bar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-bar-left { display: flex; gap: 1.5rem; }
+    .top-bar-right { color: var(--primary-200); }
+    @media (max-width: 768px) { .top-bar { display: none; } }
+    
+    /* ===== HEADER ===== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .header.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-700);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 900;
+      font-size: 1.25rem;
+    }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-text-main { font-weight: 700; color: var(--steel-900); font-size: 1.125rem; line-height: 1.2; }
+    .logo-text-sub { font-size: 0.625rem; letter-spacing: 0.2em; color: var(--steel-500); text-transform: uppercase; }
+    .nav { display: flex; gap: 0.25rem; }
+    .nav-link {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--steel-700);
+      border-radius: 0.5rem;
+      transition: all 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary-700);
+      background: var(--primary-50);
+    }
+    .header-cta { display: flex; align-items: center; gap: 0.75rem; }
+    .mobile-menu-btn {
+      display: none;
+      padding: 0.5rem;
+      color: var(--steel-700);
+    }
+    @media (max-width: 1024px) {
+      .nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      .header-cta .btn { display: none; }
+    }
+    
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border-top: 1px solid var(--steel-100);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+      padding: 1rem;
+    }
+    .mobile-menu.active { display: block; }
+    .mobile-menu .nav-link {
+      display: block;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      text-align: left;
+    }
+    .mobile-menu .btn {
+      width: 100%;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+    
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(15,23,42,0.9), rgba(15,23,42,0.75), rgba(15,23,42,0.4));
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 800px;
+      padding: 5rem 0;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 9999px;
+      padding: 0.375rem 1rem;
+      margin-bottom: 1.5rem;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .hero-badge i { color: var(--accent-400); }
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 900;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title span { color: var(--accent-400); }
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.875rem;
+    }
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hero-trust-item i { color: var(--accent-400); }
+    
+    /* Stats Bar */
+    .stats-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to right, var(--primary-800), var(--primary-900));
+      padding: 1.5rem 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--accent-400);
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--primary-200);
+      margin-top: 0.25rem;
+    }
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    /* ===== SECTION STYLES ===== */
+    .section {
+      padding: 5rem 0;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-tag {
+      color: var(--primary-600);
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .section-title {
+      font-size: clamp(1.875rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--steel-900);
+      margin-top: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      color: var(--steel-500);
+      font-size: 1.125rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .section-dark {
+      background: linear-gradient(to right, var(--primary-700), var(--primary-900));
+      color: white;
+    }
+    .section-dark .section-title { color: white; }
+    .section-dark .section-subtitle { color: var(--primary-200); }
+    .section-gray { background: var(--steel-50); }
+    
+    /* ===== ABOUT SECTION ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+    .about-image-wrapper { position: relative; }
+    .about-image {
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      width: 100%;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--primary-700);
+      color: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    }
+    .about-badge-number { font-size: 2.5rem; font-weight: 900; }
+    .about-badge-text { color: var(--primary-200); font-size: 0.875rem; }
+    @media (max-width: 768px) { .about-badge { display: none; } }
+    .about-content h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--steel-900);
+      margin-bottom: 1rem;
+    }
+    .about-content p {
+      color: var(--steel-600);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .fact-card {
+      background: var(--steel-50);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .fact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-100);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-700);
+      flex-shrink: 0;
+    }
+    .fact-label { font-size: 0.75rem; color: var(--steel-500); text-transform: uppercase; letter-spacing: 0.05em; }
+    .fact-value { font-size: 1.125rem; font-weight: 700; color: var(--steel-900); }
+    .mission-box {
+      background: var(--primary-50);
+      border-left: 4px solid var(--primary-600);
+      border-radius: 0 0.75rem 0.75rem 0;
+      padding: 1.25rem;
+    }
+    .mission-box h4 { font-weight: 700; color: var(--primary-900); margin-bottom: 0.25rem; }
+    .mission-box p { color: var(--primary-800); font-size: 0.875rem; line-height: 1.6; }
+    
+    /* ===== PRODUCTS GRID ===== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 1024px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .products-grid { grid-template-columns: 1fr; } }
+    .product-card {
+      background: white;
+      border: 1px solid var(--steel-200);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .product-card:hover {
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+      border-color: var(--primary-200);
+    }
+    .product-header {
+      background: linear-gradient(135deg, var(--primary-600), var(--primary-800));
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .product-icon { font-size: 2.5rem; }
+    .product-name { font-size: 1.25rem; font-weight: 700; color: white; }
+    .product-body { padding: 1.5rem; }
+    .product-desc { color: var(--steel-600); font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem; }
+    .product-specs { margin-bottom: 1rem; }
+    .product-specs-title { font-size: 0.75rem; font-weight: 600; color: var(--steel-800); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .product-specs li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--steel-600);
+      margin-bottom: 0.375rem;
+    }
+    .product-specs li i { color: var(--primary-500); margin-top: 0.25rem; flex-shrink: 0; }
+    .product-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-bottom: 1.25rem; }
+    .product-tag {
+      background: var(--primary-50);
+      color: var(--primary-700);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.25rem 0.625rem;
+      border-radius: 9999px;
+    }
+    .product-cta {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--steel-100);
+      color: var(--steel-700);
+      font-weight: 600;
+      font-size: 0.875rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+    }
+    .product-card:hover .product-cta {
+      background: var(--primary-600);
+      color: white;
+    }
+    
+    /* ===== INDUSTRIES GRID ===== */
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 1024px) { .industries-grid { grid-template-columns: repeat(2, 1fr); } }
+    .industry-card {
+      background: var(--steel-50);
+      border: 1px solid var(--steel-200);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .industry-card:hover {
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+      border-color: var(--primary-300);
+      transform: translateY(-4px);
+    }
+    .industry-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+    .industry-name { font-weight: 700; color: var(--steel-900); font-size: 1.125rem; margin-bottom: 0.5rem; }
+    .industry-card:hover .industry-name { color: var(--primary-700); }
+    .industry-desc { color: var(--steel-500); font-size: 0.875rem; line-height: 1.5; }
+    
+    /* ===== CERTIFICATIONS ===== */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 1024px) { .certs-grid { grid-template-columns: repeat(2, 1fr); } }
+    .cert-card {
+      background: white;
+      border: 1px solid var(--steel-200);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .cert-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+      border-color: var(--primary-300);
+    }
+    .cert-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--primary-50);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      color: var(--primary-700);
+    }
+    .cert-card:hover .cert-icon { background: var(--primary-100); }
+    .cert-name { font-weight: 700; color: var(--steel-900); font-size: 1.125rem; margin-bottom: 0.25rem; }
+    .cert-desc { color: var(--steel-500); font-size: 0.875rem; margin-bottom: 0.75rem; }
+    .cert-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+    }
+    .cert-badge.certified { background: var(--green-100); color: var(--green-700); }
+    .cert-badge.compliant { background: var(--primary-100); color: var(--primary-700); }
+    
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 768px) { .testimonials-grid { grid-template-columns: 1fr; } }
+    .testimonial-card {
+      background: white;
+      border: 1px solid var(--steel-200);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+    .testimonial-quote {
+      color: var(--steel-700);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      background: var(--primary-100);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-700);
+      font-weight: 700;
+      font-size: 1.125rem;
+    }
+    .testimonial-name { font-weight: 700; color: var(--steel-900); }
+    .testimonial-role { font-size: 0.875rem; color: var(--steel-500); }
+    
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      padding: 5rem 0;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--primary-200);
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    /* ===== QUOTE FORM ===== */
+    .quote-section {
+      background: linear-gradient(135deg, var(--primary-800), var(--primary-900));
+      padding: 5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+    }
+    @media (max-width: 1024px) { .quote-grid { grid-template-columns: 1fr; } }
+    .quote-benefits { display: flex; flex-direction: column; gap: 1.5rem; }
+    .benefit-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+    }
+    .benefit-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(245, 158, 11, 0.2);
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      color: var(--accent-400);
+    }
+    .benefit-title { font-weight: 700; color: white; font-size: 1.125rem; margin-bottom: 0.5rem; }
+    .benefit-desc { color: var(--primary-200); font-size: 0.875rem; line-height: 1.6; }
+    .quote-form {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { margin-bottom: 0; }
+    .form-group.full { grid-column: span 2; }
+    @media (max-width: 640px) { .form-group.full { grid-column: span 1; } }
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--steel-700);
+      margin-bottom: 0.375rem;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--steel-300);
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary-500);
+      box-shadow: 0 0 0 3px var(--primary-100);
+    }
+    .form-textarea { resize: none; }
+    .file-upload {
+      border: 2px dashed var(--steel-300);
+      border-radius: 0.5rem;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .file-upload:hover { border-color: var(--primary-400); }
+    .file-upload i { color: var(--steel-400); margin-bottom: 0.5rem; }
+    .file-upload-text { color: var(--steel-600); font-size: 0.875rem; }
+    .file-upload-text span { color: var(--primary-600); font-weight: 600; }
+    .file-upload-hint { color: var(--steel-400); font-size: 0.75rem; margin-top: 0.5rem; }
+    .form-submit {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      font-size: 1.125rem;
+    }
+    .form-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--steel-400);
+      margin-top: 0.75rem;
+    }
+    
+    /* ===== CONTACT SECTION ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+    }
+    @media (max-width: 1024px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: var(--steel-50);
+      border: 1px solid var(--steel-200);
+      border-radius: 0.75rem;
+      transition: all 0.3s;
+    }
+    .contact-card:hover {
+      border-color: var(--primary-300);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+    .contact-card-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--primary-100);
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-700);
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    .contact-card:hover .contact-card-icon {
+      background: var(--primary-600);
+      color: white;
+    }
+    .contact-card-label { font-size: 0.75rem; color: var(--steel-400); text-transform: uppercase; letter-spacing: 0.05em; }
+    .contact-card-value { font-weight: 600; color: var(--steel-900); }
+    .contact-card-sub { font-size: 0.875rem; color: var(--steel-500); }
+    .contact-form {
+      background: var(--steel-50);
+      border: 1px solid var(--steel-200);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+    .contact-form h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--steel-900);
+      margin-bottom: 1.5rem;
+    }
+    .map-placeholder {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, var(--primary-100), var(--primary-200));
+      border-radius: 1rem;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .map-placeholder i { color: var(--primary-600); margin-bottom: 0.75rem; }
+    .map-placeholder h4 { font-weight: 700; color: var(--primary-900); font-size: 1.25rem; }
+    .map-placeholder p { color: var(--primary-700); margin-top: 0.5rem; }
+    
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--steel-900);
+      color: var(--steel-300);
+    }
+    .footer-trust {
+      background: var(--steel-800);
+      border-bottom: 1px solid var(--steel-700);
+      padding: 1.5rem 0;
+    }
+    .footer-trust-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 3rem;
+      font-size: 0.875rem;
+      color: var(--steel-400);
+    }
+    .footer-trust-item { display: flex; align-items: center; gap: 0.5rem; }
+    .footer-trust-item i { color: var(--accent-400); }
+    .footer-main { padding: 4rem 0; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+    @media (max-width: 1024px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand .logo { margin-bottom: 1rem; }
+    .footer-brand .logo-icon { background: var(--primary-600); }
+    .footer-brand .logo-text-main { color: white; }
+    .footer-brand p { font-size: 0.875rem; color: var(--steel-400); line-height: 1.6; margin-bottom: 1rem; }
+    .footer-years { display: flex; align-items: center; gap: 1rem; }
+    .footer-years-number { font-size: 1.5rem; font-weight: 900; color: var(--accent-400); }
+    .footer-years-text { font-size: 0.75rem; color: var(--steel-500); line-height: 1.3; }
+    .footer-title { font-weight: 700; color: white; font-size: 1.125rem; margin-bottom: 1rem; }
+    .footer-links { display: flex; flex-direction: column; gap: 0.625rem; }
+    .footer-links a {
+      color: var(--steel-400);
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent-400); }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.875rem;
+    }
+    .footer-contact-item i { color: var(--accent-400); margin-top: 0.125rem; flex-shrink: 0; }
+    .footer-contact-item a { color: var(--steel-400); transition: color 0.2s; }
+    .footer-contact-item a:hover { color: white; }
+    .footer-cta {
+      margin-top: 1.5rem;
+      width: 100%;
+      justify-content: center;
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--steel-800);
+      padding: 1.5rem 0;
+    }
+    .footer-bottom-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .footer-copyright { font-size: 0.875rem; color: var(--steel-500); }
+    .footer-legal {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.875rem;
+      color: var(--steel-500);
+    }
+    .footer-legal span { cursor: pointer; transition: color 0.2s; }
+    .footer-legal span:hover { color: var(--steel-300); }
+    .back-to-top {
+      width: 40px;
+      height: 40px;
+      background: var(--steel-800);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s;
+    }
+    .back-to-top:hover { background: var(--primary-600); }
+    
+    /* ===== WHATSAPP BUTTON ===== */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s;
+    }
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+      background: #20BA5C;
+    }
+    
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      background: linear-gradient(to right, var(--primary-800), var(--primary-900));
+      padding: 4rem 0 5rem;
+      text-align: center;
+    }
+    .page-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    .page-subtitle {
+      color: var(--primary-200);
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-left">
+        <a href="tel:+15558204500"><i data-lucide="phone" style="width:14px;height:14px;"></i> +1 (555) 820-4500</a>
+        <a href="mailto:info@apexprecision.com"><i data-lucide="mail" style="width:14px;height:14px;"></i> info@apexprecision.com</a>
+      </div>
+      <div class="top-bar-right">ISO 9001 | IATF 16949 | AS9100D Certified</div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header-content">
+      <a href="#home" class="logo">
+        <div class="logo-icon">A</div>
+        <div class="logo-text">
+          <span class="logo-text-main">APEX</span>
+          <span class="logo-text-sub">Precision Mfg</span>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#products" class="nav-link">Products</a>
+        <a href="#capabilities" class="nav-link">Capabilities</a>
+        <a href="#quality" class="nav-link">Quality</a>
+        <a href="#industries" class="nav-link">Industries</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-cta">
+        <a href="#quote" class="btn btn-accent">Get a Quote</a>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <i data-lucide="menu" id="menu-icon"></i>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#home" class="nav-link" onclick="closeMobileMenu()">Home</a>
+      <a href="#about" class="nav-link" onclick="closeMobileMenu()">About</a>
+      <a href="#products" class="nav-link" onclick="closeMobileMenu()">Products</a>
+      <a href="#capabilities" class="nav-link" onclick="closeMobileMenu()">Capabilities</a>
+      <a href="#quality" class="nav-link" onclick="closeMobileMenu()">Quality</a>
+      <a href="#industries" class="nav-link" onclick="closeMobileMenu()">Industries</a>
+      <a href="#contact" class="nav-link" onclick="closeMobileMenu()">Contact</a>
+      <a href="#quote" class="btn btn-accent" onclick="closeMobileMenu()">Get a Quote</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1920&q=80" alt="CNC Manufacturing Facility">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-badge animate-fade-in-up">
+        <i data-lucide="shield-check" style="width:14px;height:14px;"></i>
+        <span>ISO 9001 | IATF 16949 | AS9100D Certified</span>
+      </div>
+      <h1 class="hero-title animate-fade-in-up">
+        Precision CNC Machining for <span>Automotive & Aerospace</span> Components
+      </h1>
+      <p class="hero-subtitle animate-fade-in-up animation-delay-200">
+        From prototype to mass production — delivering precision-engineered components with tight tolerances, 
+        on-time delivery, and uncompromising quality. Trusted by industry leaders across 42+ countries.
+      </p>
+      <div class="hero-cta animate-fade-in-up animation-delay-300">
+        <a href="#quote" class="btn btn-accent btn-lg">
+          Get a Free Quote <i data-lucide="arrow-right" style="width:20px;height:20px;"></i>
+        </a>
+        <a href="#capabilities" class="btn btn-outline btn-lg">Our Capabilities</a>
+      </div>
+      <div class="hero-trust animate-fade-in-up animation-delay-400">
+        <div class="hero-trust-item"><i data-lucide="zap" style="width:16px;height:16px;"></i> Fast Turnaround</div>
+        <div class="hero-trust-item"><i data-lucide="globe" style="width:16px;height:16px;"></i> Global Shipping</div>
+        <div class="hero-trust-item"><i data-lucide="shield-check" style="width:16px;height:16px;"></i> 99.7% Quality Rate</div>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat"><div class="stat-number">28+</div><div class="stat-label">Years in Business</div></div>
+          <div class="stat"><div class="stat-number">350+</div><div class="stat-label">Skilled Employees</div></div>
+          <div class="stat"><div class="stat-number">42+</div><div class="stat-label">Countries Served</div></div>
+          <div class="stat"><div class="stat-number">12M+</div><div class="stat-label">Parts Produced Annually</div></div>
+          <div class="stat"><div class="stat-number">99.7%</div><div class="stat-label">Quality Rate</div></div>
+          <div class="stat"><div class="stat-number">185K</div><div class="stat-label">Sq Ft Facility</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&q=80" alt="Apex Precision Team" class="about-image">
+          <div class="about-badge">
+            <div class="about-badge-number">28+</div>
+            <div class="about-badge-text">Years of Excellence</div>
+          </div>
+        </div>
+        <div class="about-content">
+          <span class="section-tag">About Apex Precision</span>
+          <h2 class="section-title" style="text-align:left;margin-bottom:1.5rem;">Engineering Excellence Since 1998</h2>
+          <p>Founded in 1998 by a team of veteran mechanical engineers, Apex Precision Manufacturing began as a small CNC machine shop in Detroit, Michigan. Driven by an unwavering commitment to precision and quality, we've grown into a 185,000 sq ft state-of-the-art manufacturing facility employing over 350 skilled professionals.</p>
+          <p>Today, we serve Fortune 500 companies and innovative startups across 42+ countries. Our investment in advanced technology, continuous training, and robust quality systems enables us to deliver components that meet the most demanding specifications.</p>
+          <div class="facts-grid">
+            <div class="fact-card">
+              <div class="fact-icon"><i data-lucide="building-2" style="width:20px;height:20px;"></i></div>
+              <div><div class="fact-label">Facility Size</div><div class="fact-value">185,000 sq ft</div></div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-icon"><i data-lucide="users" style="width:20px;height:20px;"></i></div>
+              <div><div class="fact-label">Team Members</div><div class="fact-value">350+</div></div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-icon"><i data-lucide="target" style="width:20px;height:20px;"></i></div>
+              <div><div class="fact-label">Annual Parts</div><div class="fact-value">12M+</div></div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-icon"><i data-lucide="award" style="width:20px;height:20px;"></i></div>
+              <div><div class="fact-label">Countries Served</div><div class="fact-value">42+</div></div>
+            </div>
+          </div>
+          <div class="mission-box">
+            <h4>Our Mission</h4>
+            <p>To deliver precision-engineered components that exceed expectations in quality, reliability, and value — empowering our customers to build better products for a better world.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="section section-gray" id="products">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Products & Services</span>
+        <h2 class="section-title">Precision Manufacturing Solutions</h2>
+        <p class="section-subtitle">From single prototypes to high-volume production — we offer comprehensive manufacturing services with industry-leading quality and competitive lead times.</p>
+      </div>
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="product-header">
+            <span class="product-icon">🔧</span>
+            <h3 class="product-name">CNC Milling Components</h3>
+          </div>
+          <div class="product-body">
+            <p class="product-desc">High-precision 3, 4, and 5-axis CNC milling for complex geometries. From prototypes to high-volume production runs.</p>
+            <div class="product-specs">
+              <h4 class="product-specs-title">Specifications</h4>
+              <ul>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Tolerance: ±0.005mm</li>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Max Size: 1500×800×600mm</li>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Materials: Aluminum, Steel, Titanium</li>
+              </ul>
+            </div>
+            <div class="product-tags">
+              <span class="product-tag">Engine blocks</span>
+              <span class="product-tag">Turbine housings</span>
+              <span class="product-tag">Brackets</span>
+            </div>
+            <a href="#quote" class="product-cta">Request Quote <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+          </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="product-header">
+            <span class="product-icon">⚙️</span>
+            <h3 class="product-name">CNC Turning Parts</h3>
+          </div>
+          <div class="product-body">
+            <p class="product-desc">Precision CNC lathe turning for cylindrical components with tight tolerances and superior surface finishes.</p>
+            <div class="product-specs">
+              <h4 class="product-specs-title">Specifications</h4>
+              <ul>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Tolerance: ±0.003mm</li>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Max Diameter: 450mm</li>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Live tooling available</li>
+              </ul>
+            </div>
+            <div class="product-tags">
+              <span class="product-tag">Shafts</span>
+              <span class="product-tag">Bushings</span>
+              <span class="product-tag">Connectors</span>
+            </div>
+            <a href="#quote" class="product-cta">Request Quote <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+          </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-header">
+            <span class="product-icon">🏗️</span>
+            <h3 class="product-name">Sheet Metal Fabrication</h3>
+          </div>
+          <div class="product-body">
+            <p class="product-desc">Complete sheet metal solutions including laser cutting, bending, welding, and surface treatment.</p>
+            <div class="product-specs">
+              <h4 class="product-specs-title">Specifications</h4>
+              <ul>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Thickness: 0.5mm – 25mm</li>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Laser cutting: ±0.1mm</li>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Powder coating available</li>
+              </ul>
+            </div>
+            <div class="product-tags">
+              <span class="product-tag">Enclosures</span>
+              <span class="product-tag">Chassis</span>
+              <span class="product-tag">Panels</span>
+            </div>
+            <a href="#quote" class="product-cta">Request Quote <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+          </div>
+        </div>
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="product-header">
+            <span class="product-icon">🏭</span>
+            <h3 class="product-name">Die Casting</h3>
+          </div>
+          <div class="product-body">
+            <p class="product-desc">High-pressure die casting for aluminum and zinc alloys with in-house tooling and finishing capabilities.</p>
+            <div class="product-specs">
+              <h4 class="product-specs-title">Specifications</h4>
+              <ul>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Machine force: 200T–1600T</li>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Aluminum & Zinc alloys</li>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Post-machining available</li>
+              </ul>
+            </div>
+            <div class="product-tags">
+              <span class="product-tag">Motor housings</span>
+              <span class="product-tag">LED housings</span>
+              <span class="product-tag">Auto parts</span>
+            </div>
+            <a href="#quote" class="product-cta">Request Quote <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+          </div>
+        </div>
+        <!-- Product 5 -->
+        <div class="product-card">
+          <div class="product-header">
+            <span class="product-icon">✨</span>
+            <h3 class="product-name">Surface Treatment</h3>
+          </div>
+          <div class="product-body">
+            <p class="product-desc">Comprehensive finishing services including anodizing, plating, powder coating, and heat treatment.</p>
+            <div class="product-specs">
+              <h4 class="product-specs-title">Specifications</h4>
+              <ul>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Anodizing: Type II & III</li>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Electroplating: Zinc, Nickel, Chrome</li>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> RAL powder colors</li>
+              </ul>
+            </div>
+            <div class="product-tags">
+              <span class="product-tag">Corrosion protection</span>
+              <span class="product-tag">Wear resistance</span>
+            </div>
+            <a href="#quote" class="product-cta">Request Quote <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+          </div>
+        </div>
+        <!-- Product 6 -->
+        <div class="product-card">
+          <div class="product-header">
+            <span class="product-icon">📦</span>
+            <h3 class="product-name">Assembly & Integration</h3>
+          </div>
+          <div class="product-body">
+            <p class="product-desc">Sub-assembly and full product assembly with testing and packaging for ship-ready deliverables.</p>
+            <div class="product-specs">
+              <h4 class="product-specs-title">Specifications</h4>
+              <ul>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Mechanical assembly</li>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Electrical integration</li>
+                <li><i data-lucide="chevron-right" style="width:14px;height:14px;"></i> Custom packaging</li>
+              </ul>
+            </div>
+            <div class="product-tags">
+              <span class="product-tag">Complete modules</span>
+              <span class="product-tag">Tested systems</span>
+            </div>
+            <a href="#quote" class="product-cta">Request Quote <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities Section -->
+  <section class="section" id="capabilities">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Manufacturing Capabilities</span>
+        <h2 class="section-title">State-of-the-Art Equipment</h2>
+        <p class="section-subtitle">Our 185,000 sq ft facility houses over 100 advanced CNC machines, ensuring we have the capacity and capability to handle projects of any complexity.</p>
+      </div>
+      
+      <!-- Equipment Grid -->
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;margin-bottom:3rem;">
+        <div style="background:var(--steel-50);border-radius:1rem;padding:2rem;border:1px solid var(--steel-200);">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
+            <div style="width:56px;height:56px;background:var(--primary-100);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;">
+              <i data-lucide="wrench" style="width:28px;height:28px;color:var(--primary-700);"></i>
+            </div>
+            <h3 style="font-size:1.25rem;font-weight:700;color:var(--steel-900);">CNC Machining Centers</h3>
+          </div>
+          <ul style="display:flex;flex-direction:column;gap:0.75rem;">
+            <li style="display:flex;align-items:center;gap:0.75rem;color:var(--steel-700);"><div style="width:8px;height:8px;background:var(--primary-500);border-radius:50%;"></div>5-Axis Machining Centers (DMG Mori) × 8</li>
+            <li style="display:flex;align-items:center;gap:0.75rem;color:var(--steel-700);"><div style="width:8px;height:8px;background:var(--primary-500);border-radius:50%;"></div>4-Axis Horizontal Machining Centers × 12</li>
+            <li style="display:flex;align-items:center;gap:0.75rem;color:var(--steel-700);"><div style="width:8px;height:8px;background:var(--primary-500);border-radius:50%;"></div>3-Axis Vertical Machining Centers × 20</li>
+            <li style="display:flex;align-items:center;gap:0.75rem;color:var(--steel-700);"><div style="width:8px;height:8px;background:var(--primary-500);border-radius:50%;"></div>CNC Turning Centers with Live Tooling × 15</li>
+          </ul>
+        </div>
+        <div style="background:var(--steel-50);border-radius:1rem;padding:2rem;border:1px solid var(--steel-200);">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
+            <div style="width:56px;height:56px;background:var(--primary-100);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;">
+              <i data-lucide="cpu" style="width:28px;height:28px;color:var(--primary-700);"></i>
+            </div>
+            <h3 style="font-size:1.25rem;font-weight:700;color:var(--steel-900);">Sheet Metal & Fabrication</h3>
+          </div>
+          <ul style="display:flex;flex-direction:column;gap:0.75rem;">
+            <li style="display:flex;align-items:center;gap:0.75rem;color:var(--steel-700);"><div style="width:8px;height:8px;background:var(--primary-500);border-radius:50%;"></div>Fiber Laser Cutting (6kW) × 4</li>
+            <li style="display:flex;align-items:center;gap:0.75rem;color:var(--steel-700);"><div style="width:8px;height:8px;background:var(--primary-500);border-radius:50%;"></div>CNC Press Brakes (320T) × 6</li>
+            <li style="display:flex;align-items:center;gap:0.75rem;color:var(--steel-700);"><div style="width:8px;height:8px;background:var(--primary-500);border-radius:50%;"></div>Robotic Welding Cells × 8</li>
+            <li style="display:flex;align-items:center;gap:0.75rem;color:var(--steel-700);"><div style="width:8px;height:8px;background:var(--primary-500);border-radius:50%;"></div>Manual TIG/MIG Welding Stations × 12</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Specs Summary -->
+      <div style="background:linear-gradient(135deg,var(--steel-800),var(--steel-900));border-radius:1rem;padding:3rem;">
+        <h3 style="font-size:1.5rem;font-weight:700;color:white;text-align:center;margin-bottom:2rem;">Technical Specifications</h3>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;text-align:center;">
+          <div><div style="color:var(--accent-400);font-weight:700;font-size:1.5rem;">1500×800×600mm</div><div style="color:var(--steel-400);font-size:0.875rem;margin-top:0.25rem;">Max Part Size</div></div>
+          <div><div style="color:var(--accent-400);font-weight:700;font-size:1.5rem;">±0.003mm</div><div style="color:var(--steel-400);font-size:0.875rem;margin-top:0.25rem;">Min Tolerance</div></div>
+          <div><div style="color:var(--accent-400);font-weight:700;font-size:1.5rem;">50+ Alloys</div><div style="color:var(--steel-400);font-size:0.875rem;margin-top:0.25rem;">Materials</div></div>
+          <div><div style="color:var(--accent-400);font-weight:700;font-size:1.5rem;">Ra 0.2μm</div><div style="color:var(--steel-400);font-size:0.875rem;margin-top:0.25rem;">Surface Finish</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quality Section -->
+  <section class="section section-gray" id="quality">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Quality & Certifications</span>
+        <h2 class="section-title">Uncompromising Quality Standards</h2>
+        <p class="section-subtitle">Quality isn't just a department — it's embedded in every step of our process with 99.7% first-pass yield.</p>
+      </div>
+      
+      <div class="certs-grid">
+        <div class="cert-card">
+          <div class="cert-icon"><i data-lucide="shield-check" style="width:28px;height:28px;"></i></div>
+          <div class="cert-name">ISO 9001:2015</div>
+          <div class="cert-desc">Quality Management System</div>
+          <span class="cert-badge certified"><i data-lucide="check-circle-2" style="width:12px;height:12px;"></i> Certified</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon"><i data-lucide="shield-check" style="width:28px;height:28px;"></i></div>
+          <div class="cert-name">IATF 16949</div>
+          <div class="cert-desc">Automotive Quality</div>
+          <span class="cert-badge certified"><i data-lucide="check-circle-2" style="width:12px;height:12px;"></i> Certified</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon"><i data-lucide="shield-check" style="width:28px;height:28px;"></i></div>
+          <div class="cert-name">AS9100D</div>
+          <div class="cert-desc">Aerospace Quality</div>
+          <span class="cert-badge certified"><i data-lucide="check-circle-2" style="width:12px;height:12px;"></i> Certified</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon"><i data-lucide="shield-check" style="width:28px;height:28px;"></i></div>
+          <div class="cert-name">ISO 13485</div>
+          <div class="cert-desc">Medical Device Quality</div>
+          <span class="cert-badge certified"><i data-lucide="check-circle-2" style="width:12px;height:12px;"></i> Certified</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon"><i data-lucide="shield-check" style="width:28px;height:28px;"></i></div>
+          <div class="cert-name">ISO 14001</div>
+          <div class="cert-desc">Environmental Management</div>
+          <span class="cert-badge certified"><i data-lucide="check-circle-2" style="width:12px;height:12px;"></i> Certified</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon"><i data-lucide="shield-check" style="width:28px;height:28px;"></i></div>
+          <div class="cert-name">CE Marking</div>
+          <div class="cert-desc">European Conformity</div>
+          <span class="cert-badge compliant"><i data-lucide="check-circle-2" style="width:12px;height:12px;"></i> Compliant</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon"><i data-lucide="shield-check" style="width:28px;height:28px;"></i></div>
+          <div class="cert-name">RoHS</div>
+          <div class="cert-desc">Hazardous Substances</div>
+          <span class="cert-badge compliant"><i data-lucide="check-circle-2" style="width:12px;height:12px;"></i> Compliant</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon"><i data-lucide="shield-check" style="width:28px;height:28px;"></i></div>
+          <div class="cert-name">REACH</div>
+          <div class="cert-desc">Chemical Safety</div>
+          <span class="cert-badge compliant"><i data-lucide="check-circle-2" style="width:12px;height:12px;"></i> Compliant</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries Section -->
+  <section class="section" id="industries">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Industries Served</span>
+        <h2 class="section-title">Trusted Across Industries</h2>
+        <p class="section-subtitle">We serve diverse industries with unique requirements for precision, quality, and compliance.</p>
+      </div>
+      <div class="industries-grid">
+        <div class="industry-card">
+          <div class="industry-icon">🚗</div>
+          <h3 class="industry-name">Automotive</h3>
+          <p class="industry-desc">Engine components, transmission parts, structural elements</p>
+        </div>
+        <div class="industry-card">
+          <div class="industry-icon">✈️</div>
+          <h3 class="industry-name">Aerospace</h3>
+          <p class="industry-desc">Flight-critical components, turbine parts, brackets</p>
+        </div>
+        <div class="industry-card">
+          <div class="industry-icon">🏥</div>
+          <h3 class="industry-name">Medical</h3>
+          <p class="industry-desc">Surgical instruments, implants, diagnostic equipment</p>
+        </div>
+        <div class="industry-card">
+          <div class="industry-icon">💻</div>
+          <h3 class="industry-name">Electronics</h3>
+          <p class="industry-desc">Enclosures, heat sinks, connectors, EMI shielding</p>
+        </div>
+        <div class="industry-card">
+          <div class="industry-icon">🏗️</div>
+          <h3 class="industry-name">Construction</h3>
+          <p class="industry-desc">Structural steel, custom fittings, hardware</p>
+        </div>
+        <div class="industry-card">
+          <div class="industry-icon">⚡</div>
+          <h3 class="industry-name">Energy</h3>
+          <p class="industry-desc">Wind turbine components, solar mounting systems</p>
+        </div>
+        <div class="industry-card">
+          <div class="industry-icon">🍽️</div>
+          <h3 class="industry-name">Food Processing</h3>
+          <p class="industry-desc">Stainless steel equipment, sanitary fittings</p>
+        </div>
+        <div class="industry-card">
+          <div class="industry-icon">🛒</div>
+          <h3 class="industry-name">Consumer Goods</h3>
+          <p class="industry-desc">Product housings, mechanical assemblies</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Client Testimonials</span>
+        <h2 class="section-title">What Our Clients Say</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"Apex has been our primary machining partner for 8 years. Their quality consistency and technical expertise are unmatched. They've helped us reduce costs while improving part quality."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">J</div>
+            <div>
+              <div class="testimonial-name">James Richardson</div>
+              <div class="testimonial-role">VP of Procurement, AutoDrive Systems Inc.</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"When we needed a supplier who could handle Inconel and titanium machining with aerospace-grade quality, Apex delivered. Their AS9100 processes give us complete confidence."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div>
+              <div class="testimonial-name">Sarah Chen</div>
+              <div class="testimonial-role">Supply Chain Director, SkyTech Aerospace</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section class="quote-section" id="quote">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:2rem;">
+        <span class="section-tag" style="color:var(--accent-400);">Request a Quote</span>
+        <h2 class="section-title" style="color:white;">Get Your Free Quote Today</h2>
+        <p class="section-subtitle" style="color:var(--primary-200);">Send us your requirements and we'll respond with a detailed quotation within 24 hours.</p>
+      </div>
+      <div class="quote-grid">
+        <div class="quote-benefits">
+          <div class="benefit-card">
+            <div class="benefit-icon"><i data-lucide="clock" style="width:24px;height:24px;"></i></div>
+            <h4 class="benefit-title">24-Hour Response</h4>
+            <p class="benefit-desc">We respond to all quote requests within one business day with detailed pricing.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon"><i data-lucide="shield" style="width:24px;height:24px;"></i></div>
+            <h4 class="benefit-title">NDA Protected</h4>
+            <p class="benefit-desc">Your designs are safe with us. We sign NDAs before reviewing any proprietary drawings.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon"><i data-lucide="headphones" style="width:24px;height:24px;"></i></div>
+            <h4 class="benefit-title">Engineering Support</h4>
+            <p class="benefit-desc">Free DFM review and optimization recommendations with every quote request.</p>
+          </div>
+        </div>
+        <form class="quote-form" onsubmit="handleQuoteSubmit(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-input" placeholder="John Smith" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Company *</label>
+              <input type="text" class="form-input" placeholder="Acme Corporation" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email *</label>
+              <input type="email" class="form-input" placeholder="john@acme.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input type="tel" class="form-input" placeholder="+1 (555) 000-0000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Country *</label>
+              <select class="form-select" required>
+                <option value="">Select country</option>
+                <option>United States</option>
+                <option>Canada</option>
+                <option>Germany</option>
+                <option>United Kingdom</option>
+                <option>France</option>
+                <option>Japan</option>
+                <option>China</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Estimated Quantity *</label>
+              <select class="form-select" required>
+                <option value="">Select quantity range</option>
+                <option>Prototype (1–10 pcs)</option>
+                <option>Low Volume (10–100 pcs)</option>
+                <option>Medium Volume (100–1,000 pcs)</option>
+                <option>High Volume (1,000–10,000 pcs)</option>
+                <option>Mass Production (10,000+ pcs)</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Product Requirements *</label>
+              <textarea class="form-textarea" rows="4" placeholder="Describe your project requirements, materials, tolerances, surface finish..." required></textarea>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Upload Drawings / Specs</label>
+              <div class="file-upload">
+                <i data-lucide="upload" style="width:32px;height:32px;"></i>
+                <p class="file-upload-text"><span>Click to upload</span> or drag and drop</p>
+                <p class="file-upload-hint">STEP, IGES, DWG, DXF, PDF (max 50MB)</p>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-accent btn-lg form-submit">
+            <i data-lucide="send" style="width:20px;height:20px;"></i> Submit Quote Request
+          </button>
+          <p class="form-note">We respect your privacy. Your information will never be shared with third parties.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">Have questions? Our team is ready to help.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-cards">
+          <a href="tel:+15558204500" class="contact-card">
+            <div class="contact-card-icon"><i data-lucide="phone" style="width:22px;height:22px;"></i></div>
+            <div>
+              <div class="contact-card-label">Phone</div>
+              <div class="contact-card-value">+1 (555) 820-4500</div>
+              <div class="contact-card-sub">Mon–Fri, 7AM–6PM EST</div>
+            </div>
+          </a>
+          <a href="mailto:sales@apexprecision.com" class="contact-card">
+            <div class="contact-card-icon"><i data-lucide="mail" style="width:22px;height:22px;"></i></div>
+            <div>
+              <div class="contact-card-label">Email</div>
+              <div class="contact-card-value">sales@apexprecision.com</div>
+              <div class="contact-card-sub">Sales inquiries</div>
+            </div>
+          </a>
+          <div class="contact-card">
+            <div class="contact-card-icon"><i data-lucide="map-pin" style="width:22px;height:22px;"></i></div>
+            <div>
+              <div class="contact-card-label">Address</div>
+              <div class="contact-card-value">2800 Industrial Parkway</div>
+              <div class="contact-card-sub">Detroit, MI 48201, United States</div>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon"><i data-lucide="clock" style="width:22px;height:22px;"></i></div>
+            <div>
+              <div class="contact-card-label">Business Hours</div>
+              <div class="contact-card-value">Mon – Fri: 7:00 AM – 6:00 PM EST</div>
+              <div class="contact-card-sub">Emergency support available 24/7</div>
+            </div>
+          </div>
+          <a href="https://wa.me/15558204500" class="contact-card" target="_blank">
+            <div class="contact-card-icon"><i data-lucide="message-circle" style="width:22px;height:22px;"></i></div>
+            <div>
+              <div class="contact-card-label">WhatsApp</div>
+              <div class="contact-card-value">+1 (555) 820-4500</div>
+              <div class="contact-card-sub">Quick responses on WhatsApp</div>
+            </div>
+          </a>
+        </div>
+        <div>
+          <form class="contact-form" onsubmit="handleContactSubmit(event)">
+            <h3>Send Us a Message</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Name *</label>
+                <input type="text" class="form-input" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email *</label>
+                <input type="email" class="form-input" placeholder="you@company.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Company</label>
+                <input type="text" class="form-input" placeholder="Company name">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Subject *</label>
+                <select class="form-select" required>
+                  <option value="">Select subject</option>
+                  <option>General Inquiry</option>
+                  <option>Quote Request</option>
+                  <option>Technical Question</option>
+                  <option>Partnership Opportunity</option>
+                  <option>Careers</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label class="form-label">Message *</label>
+                <textarea class="form-textarea" rows="5" placeholder="How can we help you?" required></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top:1rem;">
+              <i data-lucide="mail" style="width:18px;height:18px;"></i> Send Message
+            </button>
+          </form>
+          <div class="map-placeholder">
+            <div>
+              <i data-lucide="map-pin" style="width:48px;height:48px;"></i>
+              <h4>Apex Precision Manufacturing</h4>
+              <p>2800 Industrial Parkway, Detroit, MI 48201</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-trust">
+      <div class="container">
+        <div class="footer-trust-items">
+          <div class="footer-trust-item"><i data-lucide="shield-check" style="width:16px;height:16px;"></i> ISO 9001 Certified</div>
+          <div class="footer-trust-item"><i data-lucide="shield-check" style="width:16px;height:16px;"></i> IATF 16949 Certified</div>
+          <div class="footer-trust-item"><i data-lucide="shield-check" style="width:16px;height:16px;"></i> AS9100D Certified</div>
+          <div class="footer-trust-item"><i data-lucide="shield-check" style="width:16px;height:16px;"></i> RoHS Compliant</div>
+          <div class="footer-trust-item"><i data-lucide="shield-check" style="width:16px;height:16px;"></i> CE Marked</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#home" class="logo">
+              <div class="logo-icon">A</div>
+              <div class="logo-text">
+                <span class="logo-text-main">APEX</span>
+                <span class="logo-text-sub">Precision Mfg</span>
+              </div>
+            </a>
+            <p>Precision CNC machining and custom manufacturing for automotive, aerospace, medical, and electronics industries. Trusted worldwide since 1998.</p>
+            <div class="footer-years">
+              <div class="footer-years-number">28+</div>
+              <div class="footer-years-text">Years of<br>Excellence</div>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer-title">Quick Links</h4>
+            <nav class="footer-links">
+              <a href="#home">Home</a>
+              <a href="#about">About</a>
+              <a href="#products">Products</a>
+              <a href="#capabilities">Capabilities</a>
+              <a href="#quality">Quality</a>
+              <a href="#industries">Industries</a>
+              <a href="#contact">Contact</a>
+              <a href="#quote" style="color:var(--accent-400);font-weight:600;">Request a Quote</a>
+            </nav>
+          </div>
+          <div>
+            <h4 class="footer-title">Our Services</h4>
+            <nav class="footer-links">
+              <a href="#products">CNC Milling (3, 4, 5-Axis)</a>
+              <a href="#products">CNC Turning</a>
+              <a href="#products">Sheet Metal Fabrication</a>
+              <a href="#products">Die Casting</a>
+              <a href="#products">Surface Treatment</a>
+              <a href="#products">Assembly & Integration</a>
+              <a href="#products">Prototyping</a>
+              <a href="#products">Custom Tooling</a>
+            </nav>
+          </div>
+          <div>
+            <h4 class="footer-title">Contact</h4>
+            <div class="footer-contact-item">
+              <i data-lucide="phone" style="width:16px;height:16px;"></i>
+              <a href="tel:+15558204500">+1 (555) 820-4500</a>
+            </div>
+            <div class="footer-contact-item">
+              <i data-lucide="mail" style="width:16px;height:16px;"></i>
+              <a href="mailto:info@apexprecision.com">info@apexprecision.com</a>
+            </div>
+            <div class="footer-contact-item">
+              <i data-lucide="map-pin" style="width:16px;height:16px;"></i>
+              <span style="color:var(--steel-400);">2800 Industrial Parkway<br>Detroit, MI 48201<br>United States</span>
+            </div>
+            <a href="#quote" class="btn btn-accent footer-cta">Get a Free Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <div class="footer-copyright">© 2024 Apex Precision Manufacturing. All rights reserved.</div>
+        <div class="footer-legal">
+          <span>Privacy Policy</span>
+          <span>Terms of Service</span>
+          <span>Sitemap</span>
+        </div>
+        <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+          <i data-lucide="arrow-up" style="width:18px;height:18px;"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/15558204500" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">
+    <i data-lucide="message-circle" style="width:28px;height:28px;"></i>
+  </a>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-icon');
+      menu.classList.toggle('active');
+      if (menu.classList.contains('active')) {
+        icon.setAttribute('data-lucide', 'x');
+      } else {
+        icon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons();
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-icon');
+      menu.classList.remove('active');
+      icon.setAttribute('data-lucide', 'menu');
+      lucide.createIcons();
+    }
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Form handlers
+    function handleQuoteSubmit(e) {
+      e.preventDefault();
+      alert('Quote request submitted! We will contact you within 24 hours.');
+      e.target.reset();
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      alert('Message sent! We will get back to you shortly.');
+      e.target.reset();
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

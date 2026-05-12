@@ -23,7 +23,7 @@ const defaultPortfolios: PortfolioProject[] = [
     title: 'Digital Agency Website',
     description: 'Premium landing page for a growing agency brand.',
     image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85',
-    link: '#',
+    link: '/designs/portfolio',
     category: 'Web Design',
     order: 1,
   },
