@@ -141,7 +141,7 @@ const teamMembers = [
     role: 'Web Development',
     image: '/images/Happu sir.png',
     imagePosition: '50% 42%',
-    icon: '👨‍💻',  // Fallback icon
+    linkedin: 'https://www.linkedin.com/in/harsh-kumar-69864036a',
     description: 'Expert in building scalable web applications with modern technologies.',
     bgColor: 'from-blue-600 to-blue-400'
   },
@@ -161,7 +161,7 @@ const teamMembers = [
     role: 'UI/UX Designer',
     image: '/images/Lakshya Sir.png',
     imagePosition: '50% 42%',
-    icon: '🎨',  // Fallback icon
+    linkedin: 'https://www.linkedin.com/in/lakshya-kumar-gupta-41a44b35b/',
     description: 'Creating beautiful and intuitive user experiences for digital products.',
     bgColor: 'from-pink-600 to-pink-400'
   }
@@ -927,9 +927,14 @@ export default function Home() {
                     <button className="w-10 h-10 rounded-full border border-[#ffcc00]/30 flex items-center justify-center hover:bg-[#ffcc00] hover:text-black transition-all">
                       𝕏
                     </button>
-                    <button className="w-10 h-10 rounded-full border border-[#ffcc00]/30 flex items-center justify-center hover:bg-[#ffcc00] hover:text-black transition-all">
-                      in
-                    </button>
+                    <a
+                     href={member.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-full border border-[#ffcc00]/30 flex items-center justify-center hover:bg-[#ffcc00] hover:text-black transition-all"
+                          >
+                            in
+                          </a>
                   </motion.div>
                 </div>
               </motion.div>

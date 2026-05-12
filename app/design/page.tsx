@@ -7,14 +7,14 @@ const designs = [
   {
     title: 'Bright Futture Academy',
     category: 'Website',
-    image: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4bf43e183310133.653d5654b8145.jpg',
+    image: '/images/bright future academy.png',
     link: '/design/school',
     type: 'internal',
   },
   {
     title: 'Vidyalaya International School',
     category: 'Website',
-    image: 'https://www.vviscbse.in/img/about-us.webp',
+    image: '/images/vidyalaya international school.png',
     link: '/design/erp',
     type: 'internal',
   },
