@@ -149,7 +149,7 @@ const teamMembers = [
     id: 2,
     name: 'Harsh Vasisth',
     role: 'Web & Software Development',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop',
+    image: '/images/harshv.jpg',
     imagePosition: '50% 42%',
     icon: '👨‍💼',  // Fallback icon
     description: 'Specialized in full-stack development and software architecture.',

@@ -19,7 +19,7 @@ const designs = [
     type: 'internal',
   },
    {
-     title: 'Luna Restaurant Website',
+     title: 'Restaurant Website',
      category: 'Website',
      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd5gDVElwBUh_a8XutB9QLzv2v61e7eq9g-w&s',
      link: '/design/restaurant',
@@ -61,7 +61,7 @@ const designs = [
 },
   {
   title: 'IRONFORGE Gym Website',
-  category: 'website',
+  category: 'Application',
   image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPFH2EQGJxWHsRdltEUURfktBchgSb2BMHHg&s',
   link: '/design/gym'
 },
