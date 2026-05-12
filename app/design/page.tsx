@@ -35,7 +35,7 @@ const designs = [
   {
   title: 'Nexmart E-commerce',
   category: 'Website',
-  image: 'https://yt3.googleusercontent.com/sC6zwneN2nCExhaPz_l6fUJaw9nFzwUTj43cBefZfYvGI1ktEXcmn5m3nYhpQw4Hge2-wilziQ=s900-c-k-c0x00ffffff-no-rj',
+  image: '/images/NEXMART website.png',
   link: '/design/nexmart',
   type: 'internal'
 },
@@ -49,7 +49,7 @@ const designs = [
   {
   title: 'Construction Website',
   category: 'Website',
-  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyIlo0ITqTk6LqFIRMqjIm_03JEeZSwinFxg&s',
+  image: '/images/construction website.png',
   link: '/design/construction',
   type: 'internal'
 },
@@ -61,7 +61,7 @@ const designs = [
 },
   {
   title: 'IRONFORGE Gym Website',
-  category: 'Application',
+  category: '/images/iron force gym website.png',
   image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPFH2EQGJxWHsRdltEUURfktBchgSb2BMHHg&s',
   link: '/design/gym'
 },
