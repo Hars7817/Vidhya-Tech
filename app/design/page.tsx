@@ -42,7 +42,7 @@ const designs = [
   {
   title: 'Full E-commerce Website',
   category: 'website',
-  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB9c_dmxf-2sCzWAoTX2m7cRRXn-2RzUw08g&s',
+  image: '/images/ecommerce.png',
   link: '/design/ecommerce',
   type: 'internal'
 },
