@@ -75,7 +75,7 @@ const portfolioProjects = [
       'Modern educational platform with enrollment system and course management.',
     image:
       'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c2Nob29sc3xlbnwwfHwwfHx8MA%3D%3D',
-    link: '/designs/mainportfolio',
+    link: '/designs/mainportfolio1',
   },
 
   {
