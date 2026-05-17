@@ -1,11 +1,11 @@
 'use client';
 export const heroSlides = [
   {
-    label: 'Digital Solutions',
-    title: 'Vidhya Tech',
-    text: 'Build fast, scalable digital solutions.',
+    // label: 'Digital Solutions',
+    // title: 'Vidhya Tech',
+    // text: 'Build fast, scalable digital solutions.',
     image: '/images/logo.jpg',
-    position: 'center 42%',
+    // position: 'center 42%',
   },
   {
     label: 'Web Design & Development',
