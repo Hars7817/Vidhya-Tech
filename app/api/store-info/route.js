@@ -5,7 +5,7 @@ export async function POST(req) {
   try {
     const body = await req.json();
 
-    console.log("Incoming Data:", body); // ✅ correct place
+    console.log("Incoming Data:", body);
 
     const { name, email, phone, company, message } = body;
 
@@ -14,6 +14,31 @@ export async function POST(req) {
       return Response.json(
         { error: 'All fields required' },
         { status: 400 }
+      );
+    }
+
+    // ✅ Check environment variables
+    if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL) {
+      console.error("❌ Missing GOOGLE_SERVICE_ACCOUNT_EMAIL");
+      return Response.json(
+        { error: 'Server configuration error: missing email' },
+        { status: 500 }
+      );
+    }
+
+    if (!process.env.GOOGLE_PRIVATE_KEY) {
+      console.error("❌ Missing GOOGLE_PRIVATE_KEY");
+      return Response.json(
+        { error: 'Server configuration error: missing private key' },
+        { status: 500 }
+      );
+    }
+
+    if (!process.env.GOOGLE_SHEET_ID) {
+      console.error("❌ Missing GOOGLE_SHEET_ID");
+      return Response.json(
+        { error: 'Server configuration error: missing sheet ID' },
+        { status: 500 }
       );
     }
 
@@ -33,6 +58,14 @@ export async function POST(req) {
     await doc.loadInfo();
     const sheet = doc.sheetsByIndex[0];
 
+    if (!sheet) {
+      console.error("❌ No sheet found in spreadsheet");
+      return Response.json(
+        { error: 'No sheet found in spreadsheet' },
+        { status: 500 }
+      );
+    }
+
     // ✅ Save Data
     await sheet.addRow({
       Name: name,
@@ -48,10 +81,11 @@ export async function POST(req) {
     return Response.json({ success: true });
 
   } catch (err) {
-    console.error("❌ ERROR:", err);
+    console.error("❌ ERROR:", err.message || err);
+    console.error("Stack:", err.stack);
 
     return Response.json(
-      { error: 'Failed to save data' },
+      { error: err.message || 'Failed to save data' },
       { status: 500 }
     );
   }
