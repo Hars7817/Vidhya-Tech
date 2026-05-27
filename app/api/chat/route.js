@@ -4,97 +4,103 @@ export async function POST(req) {
 
     if (!body.message || !body.message.trim()) {
       return Response.json(
-        { error: "Message is required" },
-        { status: 400 }
+        { text: "Please type a message!" },
+        { status: 200 }
       );
     }
 
     if (!process.env.GEMINI_API_KEY) {
       console.error("❌ Missing GEMINI_API_KEY");
       return Response.json(
-        { error: 'Missing GEMINI_API_KEY in environment' },
-        { status: 500 }
+        { text: "AI service is not configured. Please try again later." },
+        { status: 200 }
       );
     }
 
     console.log("📨 Chat Request:", body.message);
 
-    // Fetch available models
-    const modelListResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models?key=${process.env.GEMINI_API_KEY}`
-    );
+    const systemPrompt =
+      "You are a helpful, friendly customer support assistant for Vidhya Tech, a digital agency. Provide concise, professional responses (under 150 words). Be warm and approachable. If asked about services, mention web development, digital marketing, and custom IT solutions.";
 
-    if (!modelListResponse.ok) {
-      console.error("❌ Failed to fetch model list:", modelListResponse.statusText);
-      return Response.json(
-        { error: "Failed to fetch available models" },
-        { status: 500 }
-      );
-    }
-
-    const modelList = await modelListResponse.json();
-    const availableModels = modelList.models || [];
-
-    if (availableModels.length === 0) {
-      console.error("❌ No models available:", modelList);
-      return Response.json(
-        { error: "No models available for AI generation" },
-        { status: 500 }
-      );
-    }
-
-    const selectedModel = availableModels[0].name; // Use the first available model
-
+    // Use gemini-1.5-flash model with a supported systemInstruction payload
     const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/${selectedModel}:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          systemInstruction: {
+            role: "system",
+            parts: [{ text: systemPrompt }],
+          },
           contents: [
             {
+              role: "user",
               parts: [{ text: body.message }],
             },
           ],
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 250,
+          },
         }),
       }
     );
 
-    if (!res.ok) {
-      console.error("❌ Gemini API error:", res.status, res.statusText);
-      const errorData = await res.text();
-      console.error("Error details:", errorData);
-      return Response.json(
-        { error: `Gemini API error: ${res.statusText}` },
-        { status: 500 }
-      );
-    }
-
     const data = await res.json();
 
-    if (!data.candidates || !data.candidates[0]) {
-      console.warn("⚠️ No candidates in response:", data);
+    if (!res.ok) {
+      const errorMsg = data?.error?.message || res.statusText;
+      console.error("❌ Gemini API error:", res.status, errorMsg);
+      
+      // Return a helpful fallback response
       return Response.json(
-        { text: "I'm processing your request. Please try again." },
+        { text: "I'm having a brief moment of confusion. Could you rephrase that?" },
         { status: 200 }
       );
     }
 
-    const reply =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      "I couldn't generate a response.";
+    // Validate response structure
+    if (!data.candidates || data.candidates.length === 0) {
+      console.warn("⚠️ No candidates in response");
+      return Response.json(
+        { text: "I'm not sure how to respond to that. Can you ask something else?" },
+        { status: 200 }
+      );
+    }
 
-    console.log("✅ AI Response:", reply.substring(0, 100) + "...");
+    const candidate = data.candidates[0];
+    if (!candidate.content || !candidate.content.parts || candidate.content.parts.length === 0) {
+      console.warn("⚠️ No content parts in candidate");
+      return Response.json(
+        { text: "Let me think about that... Could you rephrase your question?" },
+        { status: 200 }
+      );
+    }
+
+    const reply = candidate.content.parts[0].text || null;
+
+    if (!reply || reply.trim().length === 0) {
+      console.warn("⚠️ Empty reply text");
+      return Response.json(
+        { text: "I'm thinking... Please try asking again!" },
+        { status: 200 }
+      );
+    }
+
+    console.log("✅ AI Response:", reply.substring(0, 100));
 
     return Response.json({ text: reply });
   } catch (err) {
     console.error("❌ Chat Error:", err.message);
     console.error("Stack:", err.stack);
+    
+    // Always return 200 with a friendly message
     return Response.json(
-      { error: err.message || "Failed to process your message" },
-      { status: 500 }
+      { text: "I encountered a hiccup. How else can I help you?" },
+      { status: 200 }
     );
   }
 }

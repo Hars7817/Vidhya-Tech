@@ -21,9 +21,9 @@ export default function Footer() {
           <div className="mt-5 grid gap-3 text-sm text-white/62">
             <Link href="/#home" className="transition hover:text-[#ffcc00]">Home</Link>
             <Link href="/services" className="transition hover:text-[#ffcc00]">Services</Link>
-            <Link href="/clients" className="transition hover:text-[#ffcc00]">Clients</Link>
+            <Link href="/design" className="transition hover:text-[#ffcc00]">Design</Link>
             <Link href="/portfolio" className="transition hover:text-[#ffcc00]">Portfolio</Link>
-            <Link href="/story" className="transition hover:text-[#ffcc00]">Story</Link>
+            <Link href="/pricing" className="transition hover:text-[#ffcc00]">Pricing</Link>
             <Link href="/contact" className="transition hover:text-[#ffcc00]">Contact</Link>
           </div>
         </div>

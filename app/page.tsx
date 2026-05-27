@@ -76,7 +76,7 @@ const portfolioProjects = [
       'Modern educational platform with enrollment system and course management.',
     image:
       'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c2Nob29sc3xlbnwwfHwwfHx8MA%3D%3D',
-    link: '/designs/mainportfolio1'
+    link: '/designs/mainportfolio1/index.html'
   },
 
   {
@@ -87,7 +87,7 @@ const portfolioProjects = [
       'Modern product storefront with conversion-focused pages and checkout flow.',
     image:
       'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop',
-    link: 'https://example-ecommerce.com',
+    link: '/design/ecommerce',
   },
 
   {
@@ -98,7 +98,7 @@ const portfolioProjects = [
       'Automated support flow for lead capture and service questions.',
     image:
       'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=1200&auto=format&fit=crop',
-    link: 'https://example-chatbot.com',
+    link: '/services',
   },
 
   {
@@ -109,7 +109,7 @@ const portfolioProjects = [
       'Bold fitness landing page with packages and booking CTA.',
     image:
       'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop',
-    link: 'https://example-fitness.com',
+    link: '/design/gym',
   },
 
   {
@@ -120,7 +120,7 @@ const portfolioProjects = [
       'Menu, gallery, reservation, and local SEO-ready restaurant site.',
     image:
       'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop',
-    link: 'https://example-restaurant.com',
+    link: '/design/restaurant',
   },
 
   {
@@ -131,7 +131,7 @@ const portfolioProjects = [
       'Launch assets and social media campaign for a brand rollout.',
     image:
       'https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=1200&auto=format&fit=crop',
-    link: 'https://example-marketing.com',
+    link: '/services',
   },
 ];
 // Team Members

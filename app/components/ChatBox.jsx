@@ -125,7 +125,7 @@ export default function ChatBox() {
         onClick={() => setOpen(!open)}
         className="fixed bottom-5 right-5 bg-yellow-400 text-black px-4 py-2 rounded-full z-50 shadow-lg transition-transform hover:scale-105"
       >
-        {open ? "✖" : "💬"}
+        {open ? "✖" : "Ask me💬"}
       </button>
 
       {/* Chat Box */}

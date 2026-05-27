@@ -40,12 +40,13 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) {
+      const data = (await res.json()) as { success?: boolean; error?: string };
+
+      if (res.ok && data.success) {
         setSubmitted(true);
         setFormData({ name: '', email: '', phone: '', message: '' });
         setTimeout(() => setSubmitted(false), 5000);
       } else {
-        const data = (await res.json()) as { error?: string };
         setError(data.error || 'Failed to submit form');
       }
     } catch {
@@ -89,7 +90,13 @@ export default function ContactPage() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="grid gap-5">
+            <form
+              action="/api/contact"
+              method="post"
+              encType="application/x-www-form-urlencoded"
+              onSubmit={handleSubmit}
+              className="grid gap-5"
+            >
               <input
                 type="text"
                 name="name"
