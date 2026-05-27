@@ -14,11 +14,37 @@ export default function ChatBox() {
   });
 
   const [chat, setChat] = useState([
-    { sender: "bot", text: "Hi 👋 Welcome to Vidhya Tech!\nWhat's your name?" },
+    { sender: "bot", text: "Hi there! I'm the Vidhya Tech sales assistant.\nWhat's your name?" },
   ]);
 
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false); // Added this so they can't spam enter while waiting
+
+  const isWeakReply = (text) => {
+    const value = (text || "").toLowerCase();
+    return (
+      !value ||
+      value.includes("having trouble thinking") ||
+      value.includes("trouble thinking right now") ||
+      value.includes("brief moment of confusion") ||
+      value.includes("could you rephrase") ||
+      value.includes("i'm not sure how to respond") ||
+      value.includes("i am not sure how to respond") ||
+      value.includes("i'm having trouble") ||
+      value.includes("i am having trouble") ||
+      value.includes("i can't think") ||
+      value.includes("i cannot think")
+    );
+  };
+
+  const getSalesFallback = (lead = {}) => {
+    const name = lead?.name?.trim();
+    const company = lead?.company?.trim();
+    const intro = name ? `Thanks, ${name}.` : "Thanks for sharing that.";
+    const companyClause = company ? ` for ${company}` : "";
+
+    return `${intro} We can help${companyClause} with web development, AI automation, digital marketing, video editing, social media management, AI integration, and custom IT solutions. What result are you aiming for, and when would you like to get started?`;
+  };
 
   const handleSend = async (inputText) => {
     if (!inputText.trim()) return;
@@ -38,19 +64,20 @@ export default function ChatBox() {
       try {
         if (step === 0) {
           setForm((prev) => ({ ...prev, name: inputText }));
-          botReply = "Great! Please enter your email:";
+          botReply = "Great. Please enter your email address:";
         } else if (step === 1) {
           setForm((prev) => ({ ...prev, email: inputText }));
-          botReply = "Your phone number?";
+          botReply = "What is the best phone number to reach you?";
         } else if (step === 2) {
           setForm((prev) => ({ ...prev, phone: inputText }));
-          botReply = "Company or project name?";
+          botReply = "Which company or project is this for?";
         } else if (step === 3) {
           setForm((prev) => ({ ...prev, company: inputText }));
-          botReply = "Tell me your requirement:";
+          botReply = "Tell me a little about what you want to build or improve:";
         } else if (step === 4) {
           const finalData = { ...form, message: inputText };
-          console.log("Sending Data:", finalData);
+          setForm(finalData);
+          console.log("Sending data:", finalData);
 
           // Save Data to Google Sheets
           const storeResponse = await fetch("/api/store-info", {
@@ -60,29 +87,36 @@ export default function ChatBox() {
           });
 
           if (!storeResponse.ok) {
-            console.error("❌ Data save failed");
+            const errorText = await storeResponse.text().catch(() => "");
+            console.error("Data save failed:", storeResponse.status, errorText);
           }
 
-          // Get the very first AI reply
-          let aiText = "We will contact you soon. How else can I help you today?";
+          // Ask the sales AI to answer on behalf of the company.
+          let aiText =
+            "Thanks for sharing that. We can help with web development, AI automation, digital marketing, video editing, social media management, AI integration, and custom IT solutions. What timeline are you working with?";
           try {
             const res = await fetch("/api/chat", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ message: inputText }),
+              body: JSON.stringify({
+                message: inputText,
+                lead: finalData,
+                history: chat,
+              }),
             });
             const data = await res.json();
-            if (res.ok && data?.text) aiText = data.text;
+            if (res.ok && data?.text && !isWeakReply(data.text)) aiText = data.text;
           } catch (err) {
             console.error("AI Fetch Error:", err);
           }
 
-          botReply = `✅ Thank you! Our team will contact you soon.\n\n🤖 ${aiText}`;
+          botReply = aiText;
           nextStep = 5; // Move to continuous chat phase!
         }
       } catch (err) {
         console.error("Error:", err);
-        botReply = "⚠️ Something went wrong. Try again.";
+        botReply =
+          "Sorry, something went wrong. We can still help with web development, AI automation, digital marketing, and more. What would you like to do next?";
         nextStep = step; // Keep them on the same step if it fails
       }
 
@@ -97,22 +131,40 @@ export default function ChatBox() {
     // PHASE 2: CONTINUOUS AI CHAT (Step 5+)
     // ==========================================
     else {
+      const currentLead = { ...form };
+
       try {
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: inputText }),
+          body: JSON.stringify({
+            message: inputText,
+            lead: currentLead,
+            history: chat,
+          }),
         });
 
         const data = await res.json();
-        
-        if (res.ok && data.text) {
+
+        if (res.ok && data.text && !isWeakReply(data.text)) {
           setChat((prev) => [...prev, { sender: "bot", text: data.text }]);
         } else {
-          setChat((prev) => [...prev, { sender: "bot", text: "Sorry, I am having trouble thinking right now." }]);
+          setChat((prev) => [
+            ...prev,
+            {
+              sender: "bot",
+              text: getSalesFallback(currentLead),
+            },
+          ]);
         }
-      } catch (err) {
-        setChat((prev) => [...prev, { sender: "bot", text: "⚠️ Network error connecting to AI." }]);
+      } catch {
+        setChat((prev) => [
+          ...prev,
+          {
+            sender: "bot",
+            text: "Sorry, I hit a network issue. If you share your goal, I can still help guide you toward the right service.",
+          },
+        ]);
       }
       setIsTyping(false);
     }
@@ -125,7 +177,7 @@ export default function ChatBox() {
         onClick={() => setOpen(!open)}
         className="fixed bottom-5 right-5 bg-yellow-400 text-black px-4 py-2 rounded-full z-50 shadow-lg transition-transform hover:scale-105"
       >
-        {open ? "✖" : "Ask me💬"}
+        {open ? "Close" : "Ask me"}
       </button>
 
       {/* Chat Box */}
