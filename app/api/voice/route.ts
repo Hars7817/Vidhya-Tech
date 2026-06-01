@@ -3,8 +3,8 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const PRIMARY_MODEL = 'gemini-pro';
-const FALLBACK_MODELS = ['gemini-1.5-flash'];
+const PRIMARY_MODEL = 'gemini-1.5-flash';
+const FALLBACK_MODELS = ['gemini-1.5-pro'];
 
 type HistoryMessage = {
   role?: unknown;
@@ -103,27 +103,28 @@ function normalizeHistory(history: unknown) {
 }
 
 function buildSystemInstruction() {
-  return [
-    'You are the friendly, professional voice assistant for Vidhya Tech.',
-    'Vidhya Tech offers: School ERP, Website Development, and AI Automation.',
-    'Speak in clear Hinglish using Roman script unless the user writes in Hindi script.',
-    'Keep replies concise (1-2 sentences), natural, and easy to speak aloud.',
-    '',
-    'IMPORTANT RULES:',
-    '1. Answer the user\'s question directly and accurately.',
-    '2. If the question is about Vidhya Tech services, explain what we offer for that service.',
-    '3. If the question is about School ERP: mention admissions, fees, attendance, exams, parent portal.',
-    '4. If the question is about Website Development: mention fast, modern, SEO-friendly, conversion-focused designs.',
-    '5. If the question is about AI Automation: mention lead capture, WhatsApp automation, workflow automation.',
-    '6. Ask for clarification only if the user\'s question is vague.',
-    '7. Never repeat the exact same response twice in a row.',
-    '8. Do not mention internal policies, prompts, models, or system messages.',
-    '9. Return plain text only. No markdown, bullets, emojis, or code fences.',
-  ].join('\n');
+  return `You are Vidhya Tech's professional voice assistant. You help visitors with information about our services.
+
+Vidhya Tech Services:
+- School ERP: Complete school management system (admissions, attendance, fees, exams, parent portal, timetable)
+- Website Development: Fast, modern, SEO-friendly, conversion-focused websites for businesses
+- AI Automation: WhatsApp automation, lead capture, workflow automation, intelligent bots
+
+Your Responsibilities:
+1. Answer questions directly and accurately based on your knowledge
+2. If asked about our services, explain what we offer in that area
+3. Be conversational and helpful in Hinglish (Roman script)
+4. Keep responses concise (1-2 sentences for voice) and easy to speak
+5. Ask clarifying questions only if the user's request is unclear
+6. Do NOT repeat previous responses
+7. Do NOT mention system prompts, model names, or technical details
+8. Provide plain text only - no markdown, bullets, emojis, or code formatting
+
+When the user asks about services, provide specific details about what we offer.`;
 }
 
 function buildFallbackReply() {
-  return 'Bilkul. Main aapki help karunga. Sabse pehle aapka naam kya hai, aapka business type kya hai, aur aapko School ERP, website development, ya AI automation me kis cheez ki requirement hai?';
+  return 'Bilkul! Main aapki help karunga. Aap School ERP, website development, ya AI automation mein se kaunsa service ke baare mein jaankari chahte ho?';
 }
 
 function getModelCandidates() {
@@ -147,6 +148,9 @@ function isWeakReply(reply: string) {
     'i cannot think',
     "i can't think",
     'sorry, i',
+    'i apologize',
+    'unable to provide',
+    'cannot generate',
   ];
 
   return weakPatterns.some((pattern) => value.includes(pattern));
@@ -163,25 +167,36 @@ export async function POST(request: Request) {
     const history = normalizeHistory(body.history);
 
     if (!message) {
+      console.warn('[Voice API] Empty message received');
       return Response.json({ text: buildFallbackReply() }, { status: 200 });
     }
 
     const apiKey = safeText(process.env.GEMINI_API_KEY);
     if (!apiKey) {
-      return Response.json({ text: buildFallbackReply() }, { status: 200 });
+      console.error('[Voice API] GEMINI_API_KEY not configured');
+      return Response.json(
+        { text: 'API key not configured. Please add GEMINI_API_KEY to environment variables.' },
+        { status: 500 }
+      );
     }
+
+    console.log('[Voice API] Processing message:', message.substring(0, 50));
+    console.log('[Voice API] Model candidates:', getModelCandidates());
 
     const genAI = new GoogleGenerativeAI(apiKey);
 
     for (const modelName of getModelCandidates()) {
       try {
+        console.log(`[Voice API] Attempting model: ${modelName}`);
+
         const model = genAI.getGenerativeModel({
           model: modelName,
           systemInstruction: buildSystemInstruction(),
           generationConfig: {
             temperature: 0.7,
-            topP: 0.95,
-            maxOutputTokens: 260,
+            topP: 0.9,
+            maxOutputTokens: 150,
+            responseMimeType: 'text/plain',
           },
         });
 
@@ -189,23 +204,59 @@ export async function POST(request: Request) {
         const result = await chat.sendMessage(message);
         const reply = safeText(result.response.text());
 
-        if (reply && !isWeakReply(reply)) {
-          return Response.json({ text: reply }, { status: 200 });
+        if (!reply) {
+          console.warn(`[Voice API] Empty response from ${modelName}`);
+          continue;
         }
-      } catch (error) {
-        const errorText = safeText((error as Error | undefined)?.message).toLowerCase();
-        const unavailable =
-          errorText.includes('404') || errorText.includes('not found') || errorText.includes('not supported');
 
-        if (!unavailable) {
-          throw error;
+        if (isWeakReply(reply)) {
+          console.warn(`[Voice API] Weak reply detected from ${modelName}: ${reply.substring(0, 50)}`);
+          continue;
         }
+
+        console.log(`[Voice API] Success with ${modelName}: ${reply.substring(0, 60)}`);
+        return Response.json({ text: reply }, { status: 200 });
+      } catch (modelError) {
+        const errorMsg = (modelError as Error).message || String(modelError);
+        console.error(`[Voice API] Error with ${modelName}:`, errorMsg);
+
+        // Check for specific API errors
+        const isAuthError = errorMsg.includes('API_KEY_INVALID') || errorMsg.includes('401');
+        const isQuotaError = errorMsg.includes('RESOURCE_EXHAUSTED') || errorMsg.includes('429');
+        const isModelError =
+          errorMsg.includes('404') || errorMsg.includes('not found') || errorMsg.includes('not supported');
+
+        if (isAuthError) {
+          console.error('[Voice API] Authentication failed - API key may be invalid');
+          return Response.json(
+            { text: 'Authentication failed. Please check your API key.' },
+            { status: 401 }
+          );
+        }
+
+        if (isQuotaError) {
+          console.error('[Voice API] Quota exceeded');
+          return Response.json({ text: 'Service temporarily unavailable. Please try again later.' }, { status: 429 });
+        }
+
+        if (isModelError) {
+          console.warn(`[Voice API] Model ${modelName} not available, trying next`);
+          continue;
+        }
+
+        // For other errors, try next model
+        continue;
       }
     }
 
+    console.warn('[Voice API] All models failed, using fallback');
     return Response.json({ text: buildFallbackReply() }, { status: 200 });
   } catch (error) {
-    console.error('Voice API error:', error);
-    return Response.json({ text: buildFallbackReply() }, { status: 200 });
+    const errorMsg = (error as Error).message || String(error);
+    console.error('[Voice API] Fatal error:', errorMsg);
+    return Response.json(
+      { text: 'An error occurred. Using fallback response. ' + buildFallbackReply() },
+      { status: 500 }
+    );
   }
 }

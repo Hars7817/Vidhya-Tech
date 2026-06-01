@@ -162,7 +162,7 @@ export default function VoiceAgent() {
       text: WELCOME_MESSAGE,
     },
   ]);
-  const [isOpen, setIsOpen] = useState(true); // Auto-open on load to prompt for mic permission
+  const [isOpen, setIsOpen] = useState(false);
   const [draftTranscript, setDraftTranscript] = useState('');
   const [status, setStatus] = useState('Ready to listen');
   const [error, setError] = useState('');
@@ -324,10 +324,11 @@ export default function VoiceAgent() {
       if (!autoStartedRef.current) {
         autoStartedRef.current = true;
         setTimeout(() => {
-          if (!isListening && !welcomeSpokenRef.current) {
+          // Use refs instead of state variables to avoid closure issues
+          if (!welcomeSpokenRef.current) {
             // Welcome is being spoken, wait a bit more
             setTimeout(() => startListening(), 1500);
-          } else if (welcomeSpokenRef.current && !isListening) {
+          } else if (welcomeSpokenRef.current) {
             // Welcome has finished, start listening
             startListening();
           }
@@ -409,21 +410,54 @@ export default function VoiceAgent() {
 
       const payload = (await response.json().catch(() => ({}))) as {
         text?: unknown;
+        error?: unknown;
       };
 
+      // Check if the response indicates an error
+      if (!response.ok || typeof payload.error === 'string') {
+        const errorMsg = safeText(payload.error) || `API Error: ${response.status}`;
+        console.error('[Voice Widget] API error:', errorMsg);
+        
+        // Use fallback for API errors
+        const fallback = buildFallbackReply(cleanedTranscript, lastAssistant);
+        appendMessage('assistant', fallback);
+        speakText(fallback);
+        setStatus('Ready to listen');
+        return;
+      }
+
       const reply = safeText(payload?.text);
-      const finalReply =
-        reply && normalizeForComparison(reply) !== normalizeForComparison(lastAssistant ?? '')
-          ? reply
-          : buildFallbackReply(cleanedTranscript, lastAssistant);
-      appendMessage('assistant', finalReply);
-      speakText(finalReply);
-    } catch {
+      if (!reply) {
+        // Empty response, use fallback
+        const fallback = buildFallbackReply(cleanedTranscript, lastAssistant);
+        appendMessage('assistant', fallback);
+        speakText(fallback);
+        setStatus('Ready to listen');
+        return;
+      }
+
+      // Check if the reply is the same as last response (avoid repetition)
+      const normalizedReply = normalizeForComparison(reply);
+      const normalizedLast = normalizeForComparison(lastAssistant ?? '');
+      
+      if (normalizedReply === normalizedLast && normalizedReply) {
+        // API returned same response, use different fallback
+        const fallback = buildFallbackReply(cleanedTranscript, lastAssistant);
+        appendMessage('assistant', fallback);
+        speakText(fallback);
+      } else {
+        // API gave a good response
+        appendMessage('assistant', reply);
+        speakText(reply);
+      }
+    } catch (error) {
+      console.error('[Voice Widget] Fetch error:', error);
       const fallback = buildFallbackReply(cleanedTranscript, lastAssistant);
       appendMessage('assistant', fallback);
       speakText(fallback);
     } finally {
       setIsProcessing(false);
+      setStatus('Ready to listen');
     }
   }
 
@@ -624,19 +658,13 @@ export default function VoiceAgent() {
 
       <button
         type="button"
-        onClick={() => {
-          if (isListening) {
-            recognitionRef.current?.stop();
-          } else if (isOpen) {
-            startListening();
-          } else {
-            setIsOpen(true);
-            setTimeout(() => startListening(), 150);
-          }
+        onClick={isOpen ? closeWidget : () => {
+          setIsOpen(true);
+          setTimeout(() => startListening(), 150);
         }}
         disabled={isProcessing}
-        aria-pressed={isListening}
-        aria-label={isListening ? 'Stop listening' : 'Start listening'}
+        aria-pressed={isOpen}
+        aria-label={isOpen ? 'Close voice agent' : 'Open voice agent'}
         className={`pointer-events-auto flex h-14 w-14 items-center justify-center rounded-full transition-all duration-200 ${
           isOpen || isListening
             ? 'border-[#ffcc00]/40 bg-[#ffcc00]/14 shadow-[0_0_0_8px_rgba(255,204,0,0.08)]'
