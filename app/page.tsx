@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Link from 'next/link';
-import ChatBox from './components/ChatBox';
+import VoiceAgent from './components/VoiceAgent';
 import Image from 'next/image';
 import { heroSlides } from './heroSlides';
 // import { img } from 'framer-motion/client';
@@ -1087,7 +1087,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-         <ChatBox />
+         <VoiceAgent />
       <Footer />
     </div>
   );
