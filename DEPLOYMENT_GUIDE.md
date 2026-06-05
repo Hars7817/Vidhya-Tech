@@ -102,6 +102,7 @@ git push -u origin main
 4. Select repository
 5. Add environment variable:
    - `DATABASE_URL`: Your Railway database URL
+   - `NEXT_PUBLIC_SITE_URL`: `https://www.vidhyatech.com`
 6. Deploy!
 
 ### Deploy Backend to Railway
@@ -120,6 +121,9 @@ Since we're using Next.js API routes, the backend deploys with frontend to Verce
 ```env
 # Database
 DATABASE_URL="postgresql://user:password@host:port/database"
+
+# Public site URL for metadata, canonical links, and sitemap generation
+NEXT_PUBLIC_SITE_URL="https://www.vidhyatech.com"
 
 # Optional - for production
 NODE_ENV="production"

@@ -1,10 +1,25 @@
 import type { Metadata } from 'next';
 
-const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/+$/, '');
-const normalizedSiteUrl =
-  configuredSiteUrl && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(configuredSiteUrl)
-    ? configuredSiteUrl
-    : 'https://www.vidhyatech.com';
+const DEFAULT_SITE_URL = 'https://www.vidhyatech.com';
+
+function resolveSiteUrl(value: string | undefined): string {
+  const trimmed = value?.trim().replace(/\/+$/, '');
+  if (!trimmed) return DEFAULT_SITE_URL;
+
+  const candidate = /^https?:\/\//i.test(trimmed)
+    ? trimmed
+    : /^(localhost|127\.0\.0\.1)(:\d+)?$/i.test(trimmed)
+      ? `http://${trimmed}`
+      : `https://${trimmed}`;
+
+  try {
+    return new URL(candidate).origin;
+  } catch {
+    return DEFAULT_SITE_URL;
+  }
+}
+
+const normalizedSiteUrl = resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 export const SITE_URL = normalizedSiteUrl;
 export const SITE_URL_OBJECT = new URL(normalizedSiteUrl);
