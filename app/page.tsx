@@ -752,7 +752,7 @@ export default function Home() {
               WHY CHOOSE US
             </motion.p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
-              Trusted By Clients Across India
+              Why Clients Choose Vidhya Tech
             </h2>
             <p className="text-white/70 max-w-3xl mx-auto text-lg leading-relaxed">
               Real results from real projects. Here&apos;s what we&apos;ve achieved for our clients.
