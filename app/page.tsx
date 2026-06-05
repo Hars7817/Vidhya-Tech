@@ -152,6 +152,7 @@ const teamMembers = [
     role: 'Web & Software Development',
     image: '/images/Harsh sir9.png',
     imagePosition: '50% 42%',
+    linkedin: 'https://www.linkedin.com/in/harsh-vashisth-9259b7268/',
     icon: '👨‍💼',  // Fallback icon
     description: 'Specialized in full-stack development and software architecture.',
     bgColor: 'from-purple-600 to-purple-400'
