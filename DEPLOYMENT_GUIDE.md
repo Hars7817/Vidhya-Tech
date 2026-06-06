@@ -103,7 +103,12 @@ git push -u origin main
 5. Add environment variable:
    - `DATABASE_URL`: Your Railway database URL
    - `NEXT_PUBLIC_SITE_URL`: `https://www.vidhyatech.com`
-6. Deploy!
+6. In Vercel project settings, keep these build values:
+   - Framework preset: `Next.js`
+   - Build command: `npm run build`
+   - Output directory: leave blank so Vercel uses the Next.js default
+   - Production branch: `main`
+7. Deploy!
 
 ### Deploy Backend to Railway
 
@@ -193,6 +198,12 @@ Edit Tailwind classes in:
 - Check browser console for errors
 - Verify database migrations ran
 - Check Prisma schema
+
+**Vercel preview shows "This page couldn't load"?**
+- Open Vercel Dashboard -> Settings -> Deployment Protection.
+- If Vercel Authentication or Standard Protection is enabled, the `*-main.vercel.app` deployment URL can return `401 Unauthorized` with `X-Frame-Options: DENY`, which blocks the dashboard preview iframe.
+- Fix it by adding the deployment URL to Deployment Protection Exceptions, or by disabling deployment protection for preview deployments.
+- This does not change `www.vidhyatech.com`; it only affects the protected `vercel.app` deployment URL.
 
 ## 📞 Support
 
