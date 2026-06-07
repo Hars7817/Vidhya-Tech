@@ -988,7 +988,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-         <VoiceAgent />
+         {/* <VoiceAgent /> */}
       <Footer />
     </div>
   );
