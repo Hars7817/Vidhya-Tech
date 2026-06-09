@@ -25,7 +25,6 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.png",
   },
-
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
   authors: [{ name: SITE_NAME }],
@@ -54,17 +53,10 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
   },
 };
 
+// ✅ Existing Schema
 const professionalServiceJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -79,56 +71,62 @@ const professionalServiceJsonLd = {
     '@type': 'PostalAddress',
     addressCountry: 'IN',
   },
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Digital Services',
-    itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Web Development' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Automation' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Digital Marketing' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Video Editing' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Social Media Management' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Integration' } },
-    ],
-  },
 };
 
+// ✅ Existing Schema
 const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: SITE_NAME,
   url: SITE_URL,
   description: SITE_DESCRIPTION,
-  inLanguage: 'en-IN',
-  publisher: {
-    '@type': 'Organization',
-    name: SITE_NAME,
-    url: SITE_URL,
-  },
+};
+
+// 🔥 NEW IMPORTANT (ADD THIS)
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Vidhya Tech',
+  url: 'https://www.vidhyatech.com',
+  logo: 'https://www.vidhyatech.com/images/logo.jpg',
+  sameAs: [
+    SITE_LINKEDIN,
+    'https://www.instagram.com/your-instagram' // replace
+  ],
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en">
       <head>
+        {/* Existing */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(professionalServiceJsonLd).replace(/</g, '\\u003c'),
+            __html: JSON.stringify(professionalServiceJsonLd),
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteJsonLd).replace(/</g, '\\u003c'),
+            __html: JSON.stringify(websiteJsonLd),
+          }}
+        />
+
+        {/* 🔥 NEW ADD THIS */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col">
+
+      <body>
         {children}
 
         {/* Google Analytics */}
@@ -138,12 +136,11 @@ export default function RootLayout({
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-8H42VMYLK4');
-    `}
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-8H42VMYLK4');
+          `}
         </Script>
       </body>
     </html>
