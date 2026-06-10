@@ -49,24 +49,16 @@ export function SocialShareImage() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-          <div
+          <img
+            src={`${SITE_URL}/logo.png`}
+            width="96"
+            height="96"
             style={{
-              width: '96px',
-              height: '96px',
               borderRadius: '24px',
-              background: '#ffcc00',
-              color: '#050505',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '38px',
-              fontWeight: 900,
-              letterSpacing: '-0.04em',
+              objectFit: 'cover',
               boxShadow: '0 0 60px rgba(255, 204, 0, 0.35)',
             }}
-          >
-            VT
-          </div>
+          />
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
             <div
