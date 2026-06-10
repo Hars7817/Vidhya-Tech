@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: '%s | Vidhya Tech',
   },
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.ico?v=2",
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
