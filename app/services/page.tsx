@@ -43,14 +43,7 @@ const defaultServices: ServiceItem[] = [
     image: null,
     order: 1,
   },
-  {
-    id: 2,
-    title: 'AI Automation',
-    description: 'Automated workflows, chatbots, AI forms, and smart systems for growing business operations.',
-    icon: 'AI',
-    image: null,
-    order: 2,
-  },
+  
   {
     id: 3,
     title: 'Digital Marketing',
@@ -66,6 +59,14 @@ const defaultServices: ServiceItem[] = [
     icon: 'VID',
     image: null,
     order: 4,
+  },
+  {
+    id: 2,
+    title: 'AI Automation',
+    description: 'Automated workflows, chatbots, AI forms, and smart systems for growing business operations.',
+    icon: 'AI',
+    image: null,
+    order: 2,
   },
   {
     id: 5,
@@ -193,12 +194,12 @@ export default function ServicesPage() {
       <section className="relative isolate overflow-hidden border-b border-white/10 px-5 py-24 sm:px-6 lg:px-8">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_70%_15%,rgba(255,204,0,.16),transparent_34%),linear-gradient(180deg,#080808,#030303)]" />
         <div className="mx-auto max-w-7xl text-center">
-          <p className="text-2xl sm:text-2xl font-black uppercase tracking-wider text-[#ffcc00]">Service Page</p>
+          <p className="text-2xl sm:text-2xl font-black uppercase tracking-wider text-[#ffcc00]">Growth Solutions</p>
           <h1 className="mt-4 text-5xl font-black leading-tight text-white sm:text-3xl lg:text-5xl">
-            Digital Services, Core Tools, And Trust Sections
+            Everything You Need To Launch, Grow & Scale Online
           </h1>
           <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-white/66">
-            A premium service page with the same structure as your example, using Vidhya Tech&apos;s black and gold design instead of changing the color palette.
+            Everything you need to attract the right audience, convert them into paying customers, and scale your business with clarity and confidence — powered by proven strategies, smart tools, and performance-driven systems, all seamlessly integrated under one roof.
           </p>
         </div>
       </section>
@@ -206,10 +207,10 @@ export default function ServicesPage() {
       <section className="border-b border-white/10 bg-[#050505] px-5 py-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-2xl sm:text-2xl font-black uppercase tracking-wider text-[#ffcc00]">What We Do</p>
+            <p className="text-2xl sm:text-2xl font-black uppercase tracking-wider text-[#ffcc00]">How Vidhya Tech Drives Your Growth</p>
             <h2 className="mt-3 text-4xl font-black text-white sm:text-5xl">Our Services</h2>
             <p className="mt-5 text-base leading-7 text-white/65">
-              We offer complete digital services for brands that want better websites, better systems, and better online growth.
+              At Vidhya Tech, we deliver complete digital solutions that empower brands to build powerful online presences, streamline their systems, and scale their growth with clarity, precision, and measurable results.
             </p>
           </div>
 
@@ -335,10 +336,10 @@ export default function ServicesPage() {
       </section>
 
       <ClientsShowcase />
-      <SocialProofSection />
+      {/* <SocialProofSection /> */}
       <BusinessStorySection />
-      <CertificatesSection />
-      <ReviewsSection />
+      {/* <CertificatesSection /> */}
+      {/* <ReviewsSection /> */}
 
       <section className="bg-[#030303] px-5 py-20 text-center sm:px-6 lg:px-8">
         <p className="text-lg font-black uppercase text-[#ffcc00] sm:text-xl">Ready</p>

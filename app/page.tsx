@@ -115,15 +115,15 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    <div className="relative flex items-center justify-center w-full h-[500px] md:h-[650px] overflow-hidden">
+    <div className="relative flex items-center justify-center w-full h-[500px] md:h-[650px] overflow-visible">
 
 
       {/* Background Glow */}
-      <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-[#ffcc00]/40 bg-[#ffcc00]/10 blur-3xl z-0" />
+      <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-[#ffcc00]/60 bg-[#ffcc00]/20 blur-3xl z-0 shadow-[0_0_120px_rgba(255,204,0,0.4)]" />
 
       {/* Animated Ring */}
       <motion.div
-        className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full border-2 border-[#ffcc00]/40 z-0"
+        className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full border-2 border-[#ffcc00]/60 z-0 shadow-[0_0_80px_rgba(255,204,0,0.3)]"
         animate={{
           scale: [1, 1.05, 1],
           rotate: [0, 3, 0],
@@ -151,7 +151,7 @@ const HeroCarousel = () => {
         >
           {/* Main Card */}
           <motion.div
-            className="relative z-10 w-full max-w-[520px] h-[350px] md:h-[500px] rounded-[32px] overflow-hidden border-4 border-white/90 shadow-[0_0_60px_rgba(255,204,0,0.15)]"
+            className="relative z-10 w-full max-w-[420px] h-[280px] md:h-[420px] rounded-[24px] overflow-hidden border border-white/20"
             animate={{
               y: [0, -10, 0],
             }}
@@ -237,7 +237,7 @@ export default function Home() {
       <Header />
 
       {/* ============ HERO SECTION ============ */}
-      <section className="relative flex-1 px-5 py-16 sm:px-6 lg:px-8 min-h-screen flex items-center">
+      <section className="relative overflow-hidden flex-1 px-5 py-16 sm:px-6 lg:px-8 min-h-screen flex items-center">
         <div className="mx-auto max-w-7xl w-full">
           <div className="grid gap-12 md:grid-cols-2 md:gap-8 items-center">
             {/* Left Content (static for fast first paint) */}
