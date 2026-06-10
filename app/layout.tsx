@@ -77,9 +77,18 @@ const professionalServiceJsonLd = {
 const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: SITE_NAME,
-  url: SITE_URL,
+  name: 'Vidhya Tech',
+  alternateName: 'vidhyatech.com',
+  url: 'https://www.vidhyatech.com',
   description: SITE_DESCRIPTION,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://www.vidhyatech.com/?s={search_term_string}',
+    },
+    'query-input': 'required name=search_term_string',
+  },
 };
 
 // 🔥 NEW IMPORTANT (ADD THIS)
